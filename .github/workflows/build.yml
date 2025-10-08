@@ -6,6 +6,9 @@ env:
   # CMake build type (Release, Debug, RelWithDebInfo)
   BUILD_TYPE: RelWithDebInfo
 
+  # architectures to build for on macos
+  OSX_ARCHITECTURES: ${{ '"arm64;x86_64"' }}
+
   # CPM cache subdirectory
   CPM_SOURCE_CACHE: ./cpm_cache
 
@@ -60,7 +63,7 @@ jobs:
           enableCrossOsArchive: true
 
       - name: Configure CMake
-        run: cmake . -B build -G Ninja -D CMAKE_BUILD_TYPE=${{ env.BUILD_TYPE }}
+        run: cmake . -B build -G Ninja -D CMAKE_BUILD_TYPE=${{ env.BUILD_TYPE }} -D CMAKE_OSX_ARCHITECTURES=${{ env.OSX_ARCHITECTURES }}
         env:
           CC: ${{ matrix.config.cc }}
           CXX: ${{ matrix.config.cxx }}
