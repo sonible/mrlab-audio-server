@@ -13,8 +13,8 @@
 namespace mrlab::view
 {
 
-MainComponent::MainComponent (controller::MainController& mainController)
-    : mainController (mainController)
+MainComponent::MainComponent (controller::MainController& controller)
+    : mainController (controller)
 {
     setSize (600, 400);
 }

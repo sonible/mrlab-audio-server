@@ -24,7 +24,7 @@ class MainComponent : public juce::Component
 {
 public:
     //==============================================================================
-    MainComponent (controller::MainController& mainController);
+    MainComponent (controller::MainController& controller);
 
     void paint (juce::Graphics&) override;
     void resized() override;
