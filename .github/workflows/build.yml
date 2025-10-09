@@ -1,6 +1,6 @@
 name: Build and upload executables
 
-on: [push, pull_request]
+on: [pull_request]
 
 env:
   # CMake build type (Release, Debug, RelWithDebInfo)
