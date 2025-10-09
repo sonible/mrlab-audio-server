@@ -60,9 +60,3 @@ target_link_libraries (${MRLABCTRL_TARGET}
         juce::juce_recommended_warning_flags
         juce::juce_gui_extra
 )
-
-# Remove -Wshadow-field-in-constructor from default warning flags
-target_compile_options (juce_recommended_warning_flags
-    INTERFACE
-        -Wno-shadow-field-in-constructor
-)
