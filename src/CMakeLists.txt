@@ -9,6 +9,12 @@ target_sources (mrlabctrl
     PRIVATE
         Main.cpp
 
+        controller/AppConfigController.h
+        controller/AppConfigController.cpp
+        controller/AppController.h
+        controller/AppController.cpp
+        controller/AppHandle.h
+        controller/AppHandle.cpp
         controller/MainController.h
         controller/MainController.cpp
 
