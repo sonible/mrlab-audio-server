@@ -10,6 +10,7 @@
 #pragma once
 
 #include <juce_gui_basics/juce_gui_basics.h>
+#include <controller/AppController.h>
 
 namespace mrlab::controller
 {
@@ -18,20 +19,28 @@ class MainController;
 
 namespace mrlab::view
 {
+class AppControlComponent;
 
 //==============================================================================
-class MainComponent : public juce::Component
+class MainComponent : public juce::Component,
+                      public controller::AppController::Listener
 {
 public:
     //==============================================================================
     MainComponent (controller::MainController& controller);
+    ~MainComponent() override;
 
     void paint (juce::Graphics&) override;
     void resized() override;
 
+    void appAdded (controller::AppHandle& app) override;
+    void appWillBeRemoved (controller::AppHandle& app) override;
+
 private:
     //==============================================================================
     controller::MainController& mainController;
+
+    std::vector<std::unique_ptr<AppControlComponent>> appControls;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainComponent)
 };
