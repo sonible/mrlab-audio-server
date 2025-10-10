@@ -20,6 +20,8 @@ target_sources (mrlabctrl
 
         util/ListenerInterface.h
 
+        view/AppControlComponent.h
+        view/AppControlComponent.cpp
         view/MainComponent.h
         view/MainComponent.cpp
         view/MainWindow.h
