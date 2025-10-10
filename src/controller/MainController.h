@@ -9,6 +9,9 @@
 
 #pragma once
 
+#include "AppConfigController.h"
+#include "AppController.h"
+
 namespace mrlab::controller
 {
 
@@ -19,8 +22,13 @@ public:
     //==============================================================================
     MainController();
 
+    /** @returns a reference to the AppController. */
+    AppController& getAppController() { return appController; }
+
 private:
     //==============================================================================
+    AppConfigController appConfigController;
+    AppController appController;
 };
 
 } // namespace mrlab::controller
