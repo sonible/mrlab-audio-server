@@ -22,7 +22,7 @@ set (CMAKE_EXPORT_COMPILE_COMMANDS TRUE)
 set (CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
 
 # JUCE dependency
-CPMAddPackage ("gh:juce-framework/JUCE#8.0.9")
+CPMAddPackage ("gh:juce-framework/JUCE#8.0.10")
 
 #====================================================================================
 set (MRLABCTRL_TARGET mrlabctrl)
