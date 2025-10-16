@@ -12,6 +12,8 @@ target_sources (mrlabctrl
         controller/MainController.h
         controller/MainController.cpp
 
+        util/ListenerInterface.h
+
         view/MainComponent.h
         view/MainComponent.cpp
         view/MainWindow.h
