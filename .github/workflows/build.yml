@@ -1,6 +1,6 @@
-name: Build and upload executables
+name: Build, upload executables, run unit tests
 
-on: [pull_request]
+on: [pull_request, workflow_dispatch]
 
 env:
   # CMake build type (Release, Debug, RelWithDebInfo)
@@ -75,8 +75,12 @@ jobs:
       - name: Build default targets
         run: cmake --build build/
 
-      - uses: actions/upload-artifact@v4
+      - name: Upload app artefacts
+        uses: actions/upload-artifact@v4
         with:
           name: mrlabctrl-${{ matrix.config.name }}
-          path: ./build/mrlabctrl_artefacts/${{ env.BUILD_TYPE }}/
+          path: ./build/mrlabctrl_App_artefacts/${{ env.BUILD_TYPE }}/
           if-no-files-found: error
+
+      - name: Build and run unit tests
+        run: cmake --build build/ --target run_tests
