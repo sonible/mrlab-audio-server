@@ -37,7 +37,7 @@ juce_add_gui_app (${MRLABCTRL_TARGET}
 
 # We do not intend to use JuceHeader.h generally,
 # this is just for exploiting its ProjectInfo:: facility.
-juce_generate_juce_header(${MRLABCTRL_TARGET})
+juce_generate_juce_header (${MRLABCTRL_TARGET})
 
 add_subdirectory (resources)
 add_subdirectory (src)
