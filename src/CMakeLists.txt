@@ -17,6 +17,8 @@ target_sources (mrlabctrl
         controller/AppHandle.cpp
         controller/MainController.h
         controller/MainController.cpp
+        controller/WebServerController.h
+        controller/WebServerController.cpp
 
         util/ListenerInterface.h
 

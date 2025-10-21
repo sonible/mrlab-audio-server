@@ -11,6 +11,7 @@
 
 #include "AppConfigController.h"
 #include "AppController.h"
+#include "WebServerController.h"
 
 namespace mrlab::controller
 {
@@ -25,10 +26,18 @@ public:
     /** @returns a reference to the AppController. */
     AppController& getAppController() { return appController; }
 
+    /** @returns a reference to the WebServerController. */
+    WebServerController& getWebServerController() { return webServerController; }
+
 private:
+    //==============================================================================
+    /** Start the webserver with a default configuration. */
+    void startWebServer();
+
     //==============================================================================
     AppConfigController appConfigController;
     AppController appController;
+    WebServerController webServerController;
 };
 
 } // namespace mrlab::controller
