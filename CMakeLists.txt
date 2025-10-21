@@ -24,6 +24,17 @@ set (CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
 # JUCE dependency
 CPMAddPackage ("gh:juce-framework/JUCE#8.0.10")
 
+# civetweb for webserver and websocket
+CPMAddPackage (
+    URI "gh:civetweb/civetweb#dfdfdb6926765541751cab055472f70daa9aa2dd"
+    OPTIONS
+    "CIVETWEB_ENABLE_SERVER_EXECUTABLE OFF"
+    "CIVETWEB_BUILD_TESTING OFF"
+    "CIVETWEB_ENABLE_ASAN OFF"
+    "CIVETWEB_ENABLE_CXX ON"
+    "CIVETWEB_ENABLE_WEBSOCKETS ON"
+)
+
 #====================================================================================
 set (MRLABCTRL_TARGET mrlabctrl)
 
@@ -59,4 +70,5 @@ target_link_libraries (${MRLABCTRL_TARGET}
         juce::juce_recommended_lto_flags
         juce::juce_recommended_warning_flags
         juce::juce_gui_extra
+        civetweb-cpp
 )
