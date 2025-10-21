@@ -44,6 +44,7 @@ juce_add_gui_app (${MRLABCTRL_TARGET}
     BUNDLE_ID     com.sonible.mrlabctrl
 
     HARDENED_RUNTIME_ENABLED TRUE
+    NEEDS_WEBVIEW2 TRUE
 )
 
 # We do not intend to use JuceHeader.h generally,
@@ -58,7 +59,8 @@ target_include_directories (${MRLABCTRL_TARGET} PUBLIC "src")
 target_compile_definitions (${MRLABCTRL_TARGET}
     PRIVATE
         DONT_SET_USING_JUCE_NAMESPACE=1
-        JUCE_WEB_BROWSER=0
+        JUCE_WEB_BROWSER=1
+        JUCE_USE_WIN_WEBVIEW2_WITH_STATIC_LINKING=1
         JUCE_USE_CURL=0
 )
 
