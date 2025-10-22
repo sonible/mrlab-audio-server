@@ -103,7 +103,7 @@ void AppHandle::updateState()
 
     // Previously running app stopped execution?
     if (isRunning() && ! processRunning)
-        setStateAndNotify (getExitCode() == 0 ? AppState::stoppedSuccess : AppState::stoppedError);
+        setStateAndNotify (process.getExitCode() == 0 ? AppState::stoppedSuccess : AppState::stoppedError);
 
     // TODO: Implement crash detection of app (IMRV-35).
 }
