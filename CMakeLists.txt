@@ -21,10 +21,18 @@ set (CMAKE_EXPORT_COMPILE_COMMANDS TRUE)
 # Static linkage on Windows
 set (CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
 
-# JUCE dependency
-CPMAddPackage ("gh:juce-framework/JUCE#8.0.10")
+# Define alias for builtin test target such that we can add a dependency to it.
+# Undocumented feature: https://gitlab.kitware.com/cmake/cmake/-/issues/22239
+# This has to happen before including CTest and thus before adding the CivetWeb package
+# because CivetWeb includes CTest even if CIVETWEB_BUILD_TESTING is switched off.
+set (CTEST_TEST_TARGET_ALIAS run_tests)
+include (CTest)
 
-# civetweb for webserver and websocket
+# JUCE dependency
+# Specify version (@x) and tag (#x) since JUCE does not follow the 'v' prefix tag convention.
+CPMAddPackage ("gh:juce-framework/JUCE@8.0.10#8.0.10")
+
+# CivetWeb for webserver and websocket
 CPMAddPackage (
     URI "gh:civetweb/civetweb#dfdfdb6926765541751cab055472f70daa9aa2dd"
     OPTIONS
@@ -36,9 +44,7 @@ CPMAddPackage (
 )
 
 #====================================================================================
-set (MRLABCTRL_TARGET mrlabctrl)
-
-juce_add_gui_app (${MRLABCTRL_TARGET}
+juce_add_gui_app (mrlabctrl_App
     PRODUCT_NAME  mrlabctrl
     COMPANY_NAME  sonible
     BUNDLE_ID     com.sonible.mrlabctrl
@@ -48,27 +54,40 @@ juce_add_gui_app (${MRLABCTRL_TARGET}
 
 # We do not intend to use JuceHeader.h generally,
 # this is just for exploiting its ProjectInfo:: facility.
-juce_generate_juce_header(${MRLABCTRL_TARGET})
+juce_generate_juce_header (mrlabctrl_App)
+
+# Interface library for code shared between, e.g., the main and test targets.
+add_library (mrlabctrl_Common INTERFACE)
 
 add_subdirectory (resources)
 add_subdirectory (src)
+add_subdirectory (test)
 
-target_include_directories (${MRLABCTRL_TARGET} PUBLIC "src")
+target_include_directories (mrlabctrl_Common INTERFACE "src")
 
-target_compile_definitions (${MRLABCTRL_TARGET}
-    PRIVATE
+target_compile_definitions (mrlabctrl_Common
+    INTERFACE
         DONT_SET_USING_JUCE_NAMESPACE=1
         JUCE_WEB_BROWSER=0
         JUCE_USE_CURL=0
 )
 
-target_compile_features (${MRLABCTRL_TARGET} PUBLIC cxx_std_20)
+target_compile_features (mrlabctrl_Common
+    INTERFACE
+        cxx_std_20
+)
 
-target_link_libraries (${MRLABCTRL_TARGET}
-    PRIVATE
+target_link_libraries (mrlabctrl_Common
+    INTERFACE
         juce::juce_recommended_config_flags
         juce::juce_recommended_lto_flags
         juce::juce_recommended_warning_flags
+        juce::juce_core
         juce::juce_gui_extra
         civetweb-cpp
+)
+
+target_link_libraries (mrlabctrl_App
+    PRIVATE
+        mrlabctrl_Common
 )
