@@ -5,10 +5,13 @@
 # SPDX-License-Identifier: EUPL-1.2
 # SPDX-FileCopyrightText: Copyright (c) 2025 Martin Rumori/sonible GmbH
 
-target_sources (mrlabctrl
+target_sources (mrlabctrl_App
     PRIVATE
         Main.cpp
+)
 
+target_sources (mrlabctrl_Common
+    INTERFACE
         controller/AppConfigController.h
         controller/AppConfigController.cpp
         controller/AppController.h
