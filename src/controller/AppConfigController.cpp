@@ -25,11 +25,8 @@ AppConfig AppConfigController::findConfig (const juce::Identifier& appId) const
             .id = testConfig0,
             .name = "Reaper Empty 0",
             .description = "Reaper DAW with empty test session",
-#if JUCE_WIN
-            .startCommand = juce::StringArray ("start ''",
-                                               "/B /WAIT",
-                                               // "/D <working dir>",
-                                               "C:\\'Program Files'\\'REAPER (x64)'\\reaper",
+#if JUCE_WINDOWS
+            .startCommand = juce::StringArray ("C:\\Program Files\\REAPER (x64)\\reaper",
                                                "-new")
 #elif JUCE_MAC
             .startCommand = juce::StringArray ("/Applications/REAPER.app/Contents/MacOS/REAPER",
@@ -44,13 +41,9 @@ AppConfig AppConfigController::findConfig (const juce::Identifier& appId) const
             .id = testConfig1,
             .name = "Pd YAMI 1",
             .description = "Pd with YAMI test patch",
-#if JUCE_WIN
-            .startCommand = juce::StringArray ("start ''",
-                                               "/B /WAIT",
-                                               // "/D <working dir>",
-                                               "C:\\'Program Files'\\Pd\\bin\\Pd",
-                                               // "<patch>"
-                                              )
+#if JUCE_WINDOWS
+            .startCommand = juce::StringArray ("C:\\Program Files\\Pd\\bin\\Pd",
+                                               "C:\\Users\\fux\\Documents\\Pd\\test_stdout.pd")
 #elif JUCE_MAC
             .startCommand = juce::StringArray ("/Applications/Pd-0.56-1.app/Contents/MacOS/Pd",
                                                "/Users/rm/Documents/Pd/test_stdout.pd")

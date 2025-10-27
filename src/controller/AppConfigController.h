@@ -40,7 +40,7 @@ class AppConfigController
 public:
     //==============================================================================
     /** Exception that is thrown when there is no app for the given id. */
-    class AppConfigNotFoundException : std::exception
+    class AppConfigNotFoundException : public std::exception
     {
     public:
         AppConfigNotFoundException (const juce::Identifier& appId)
