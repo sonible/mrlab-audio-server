@@ -1,0 +1,70 @@
+{
+  "version": 8,
+  "$schema": "https://cmake.org/cmake/help/latest/_downloads/3e2d73bff478d88a7de0de736ba5e361/schema.json",
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 28,
+    "patch": 0
+  },
+  "configurePresets": [
+    {
+      "name": "common",
+      "hidden": true,
+      "generator": "Ninja",
+      "binaryDir": "build-${presetName}",
+      "cacheVariables": {
+        "CPM_SOURCE_CACHE": "$env{HOME}$env{USERPROFILE}/.cache/CPM",
+        "CPM_USE_NAMED_CACHE_DIRECTORIES": "ON"
+      }
+    },
+    {
+      "name": "debug",
+      "displayName": "Default debug configuration",
+      "inherits": "common",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug"
+      }
+    },
+    {
+      "name": "release",
+      "displayName": "Default release configuration",
+      "inherits": "common",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "app-debug",
+      "displayName": "App debug build",
+      "configurePreset": "debug",
+      "configuration": "Debug"
+    },
+    {
+      "name": "app-release",
+      "displayName": "App release build",
+      "configurePreset": "release",
+      "configuration": "Release"
+    },
+    {
+      "name": "test-release",
+      "displayName": "Test release build",
+      "configurePreset": "release",
+      "configuration": "Release",
+      "targets": "mrlabctrl_UnitTest"
+    }
+  ],
+  "testPresets": [
+    {
+      "name": "test-release",
+      "displayName": "Test run",
+      "configurePreset": "release",
+      "output": { "outputOnFailure": true },
+      "execution": {
+        "noTestsAction": "error",
+        "stopOnFailure": true
+      }
+    }
+  ]
+}
