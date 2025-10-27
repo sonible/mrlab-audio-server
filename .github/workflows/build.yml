@@ -27,7 +27,7 @@ jobs:
             cc: cl
             cxx: cl
 
-          - runner: macos-latest
+          - runner: macos-26
             name: mac
 
           - runner: ubuntu-latest

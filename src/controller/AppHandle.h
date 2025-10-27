@@ -12,6 +12,7 @@
 #include <juce_core/juce_core.h>
 #include <juce_events/juce_events.h>
 #include <util/ListenerInterface.h>
+#include <thread>
 #include "AppConfigController.h"
 
 namespace mrlab::controller
@@ -52,6 +53,7 @@ public:
         lost,                           ///< Connection to the app was lost.
 
         stopRequested,                  ///< App has been requested to stop gracefully.
+        killRequested,                  ///< System was requested to kill the app.
         killFailed                      ///< Attempt to kill the app failed.
     };
 
@@ -68,6 +70,7 @@ public:
           { AppState::busy, "busy" },
           { AppState::lost, "lost" },
           { AppState::stopRequested, "quitting..." },
+          { AppState::killRequested, "killing..." },
           { AppState::killFailed, "kill failed" } }
     );
 
@@ -165,7 +168,7 @@ public:
 
         @returns A reference to a string containing the app's standard and/or error output.
      */
-    const juce::String& getOutput() const { return output; }
+    const juce::String& getOutput() const { return lastOutput; }
 
     /** Convenience function to check whether this app is in a running state.
 
@@ -197,10 +200,13 @@ private:
     void updateOutput();
 
     //==============================================================================
-    AppConfig config;                   ///< App configuration.
-    juce::ChildProcess process;         ///< Actual app process.
-    AppState state = AppState::init;    ///< Current app state.
-    juce::String output;                ///< Output captured from the app process.
+    AppConfig config;                            ///< App configuration.
+    juce::ChildProcess process;                  ///< Actual app process.
+    AppState state = AppState::init;             ///< Current app state.
+    juce::String lastOutput;                     ///< Last available output captured from the app.
+    juce::MemoryOutputStream output;             ///< Output currently being captured.
+    juce::CriticalSection outputLock;            ///< Lock for concurrent access to output.
+    std::unique_ptr<std::jthread> captureThread; ///< Thread for asynchronous output capturing.
 
     MRLAB_IMPLEMENT_LISTENER_INTERFACE
 };
