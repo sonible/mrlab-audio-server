@@ -35,8 +35,8 @@ void MainController::startWebServer()
 
     config.listenPort = 7080;
 
-#if JUCE_WIN
-   const auto appSupportDir = juce::File (juce::SystemStats::getEnvironmentVariable ("APPDATA", juce::File::getSpecialLocation (juce::File::userApplicationDataDirectory).getFullPathName));
+#if JUCE_WINDOWS
+   const auto appSupportDir = juce::File (juce::SystemStats::getEnvironmentVariable ("APPDATA", juce::File::getSpecialLocation (juce::File::userApplicationDataDirectory).getFullPathName()));
 #elif JUCE_MAC
    const auto appSupportDir = juce::File::getSpecialLocation (juce::File::userApplicationDataDirectory).getChildFile ("Application Support");
 #elif JUCE_LINUX
