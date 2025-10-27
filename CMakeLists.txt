@@ -8,7 +8,7 @@
 cmake_minimum_required (VERSION 3.16)
 
 # This setting has to occur BEFORE the project call to work correctly
-set (CMAKE_OSX_DEPLOYMENT_TARGET "10.14" CACHE STRING "macOS deployment target" FORCE)
+set (CMAKE_OSX_DEPLOYMENT_TARGET "11.0" CACHE STRING "macOS deployment target" FORCE)
 
 project (mrlab VERSION 0.0.1)
 
