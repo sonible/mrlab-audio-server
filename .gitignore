@@ -6,6 +6,7 @@
 # Editors/IDEs
 .idea/
 .vscode/
+.vs/
 *~
 
 # Unit test reports
@@ -24,3 +25,5 @@ Thumbs.db
 
 build*/
 cmake-build*/
+
+CMakeUserPresets.json
