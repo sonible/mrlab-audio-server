@@ -11,6 +11,7 @@
 
 #include <map>
 #include <juce_core/juce_core.h>
+#include <juce_events/juce_events.h>
 #include <util/ListenerInterface.h>
 
 namespace mrlab::controller
@@ -25,7 +26,7 @@ class AppController
 public:
     //==============================================================================
     /** Exception that is thrown when there is no app for the given id. */
-    class AppUnknownException : std::exception
+    class AppUnknownException : public std::exception
     {
     public:
         AppUnknownException (const juce::Identifier& appId)
@@ -79,13 +80,38 @@ public:
 
     /** Remove the app handle for appId from this controller.
 
-        This is only supported for apps in a dead or unknown state.
+        This is only supported for apps that are not running.
 
         @param appId Unique app identifier.
         @returns true on success, false if the app is in a running state.
         @throws AppUnknownException.
      */
     bool remove (const juce::Identifier& appId);
+
+    /** Request to stop all managed and currently running apps.
+
+        If callWhenDone is not empty, the function will be called with false
+        as the timedOut argument once all apps reached a non-running state.
+        If timeoutMs is greater than 0, callWhenDone will be called with true
+        as the timedOut argument when the time has elapsed and there are still
+        apps in a running state.
+
+        @param callWhenDone Function to be called when apps are done or timeout reached.
+        @param timeoutMs Timeout in ms after which callWhenDone will be called in any case.
+
+        @note If this is called repeatedly, the callback and the
+              running timeout of a previous call will be discarded.
+     */
+    void stopAllApps (std::function<void (bool timedOut)> callWhenDone, uint32_t timeoutMs = 0);
+
+    /** Request to kill all managed apps unconditionally. */
+    void killAllApps();
+
+    /** Query whether there are running apps managed by this.
+
+        @returns false if none of the managed apps are running, true otherwise.
+     */
+    bool isAnyAppRunning() const;
 
     /** Get the app handle for appId.
 
@@ -110,9 +136,25 @@ private:
     void checkForAppAndThrowIfNotFound (const juce::Identifier& appId) const;
 
     //==============================================================================
-    std::map<juce::Identifier, std::unique_ptr<AppHandle>> apps;
+    /** Helper to be used in stopAllApps(). */
+    struct AppStopTimer : juce::Timer
+    {
+        static constexpr uint32_t checkIntervalMs = 100;
 
+        AppStopTimer (AppController& appController, uint32_t timeoutMs);
+
+        void timerCallback() override;
+
+        AppController& controller;
+        uint32_t numIntervals = 0;
+        std::function<void (bool allFinished)> callWhenDone;
+    };
+
+    //==============================================================================
     AppConfigController& appConfigController;
+
+    std::map<juce::Identifier, std::unique_ptr<AppHandle>> apps; ///< Managed apps.
+    std::unique_ptr<AppStopTimer> appStopTimer;                  ///< Helper used in stopAllApps().
 
     MRLAB_IMPLEMENT_LISTENER_INTERFACE
 };
