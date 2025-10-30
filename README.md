@@ -98,3 +98,5 @@ Below this base path, the following subdirectories are used:
 ### Webgui
 
 The repository includes a very simple proof-of-concept webgui project in `resources/webgui_minimal`. Its contents need to be copied to the webserver document root (see above).
+
+The default listening port of the webserver is `7080`, so pointing the browser to <http://localhost:7080> should show the webgui.
