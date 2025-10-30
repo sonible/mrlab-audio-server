@@ -19,7 +19,8 @@
     },
     {
       "name": "debug",
-      "displayName": "Default debug configuration",
+      "displayName": "Debug",
+      "description": "Default Debug configuration",
       "inherits": "common",
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Debug"
@@ -27,29 +28,71 @@
     },
     {
       "name": "release",
-      "displayName": "Default release configuration",
+      "displayName": "Release",
+      "description": "Default Release configuration",
       "inherits": "common",
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Release"
+      }
+    },
+    {
+      "name": "relwithdebinfo",
+      "displayName": "RelWithDebInfo",
+      "description": "Default Release (with debug symbols) configuration",
+      "inherits": "common",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "RelWithDebInfo"
+      }
+    },
+    {
+      "name": "release-universal",
+      "displayName": "Release Universal",
+      "description": "Release configuration for universal binaries",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Darwin"
+      },
+      "inherits": "common",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+	"CMAKE_OSX_ARCHITECTURES": "arm64;x86_64"
       }
     }
   ],
   "buildPresets": [
     {
       "name": "app-debug",
-      "displayName": "App debug build",
+      "displayName": "App Debug",
       "configurePreset": "debug",
       "configuration": "Debug"
     },
     {
       "name": "app-release",
-      "displayName": "App release build",
+      "displayName": "App Release",
       "configurePreset": "release",
       "configuration": "Release"
     },
     {
+      "name": "app-relwithdebinfo",
+      "displayName": "App RelWithDebInfo",
+      "configurePreset": "relwithdebinfo",
+      "configuration": "RelWithDebInfo"
+    },
+    {
+      "name": "app-release-universal",
+      "displayName": "App Release Universal",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Darwin"
+      },
+      "configurePreset": "release-universal",
+      "configuration": "Release"
+    },
+    {
       "name": "test-release",
-      "displayName": "Test release build",
+      "displayName": "Test Release",
       "configurePreset": "release",
       "configuration": "Release",
       "targets": "mrlabctrl_UnitTest"
