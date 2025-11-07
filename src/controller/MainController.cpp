@@ -17,7 +17,8 @@ namespace mrlab::controller
 
 MainController::MainController()
     : appController (appConfigController),
-      webServerController (appController)
+      oscController (*this),
+      webServerController (*this)
 {
     startWebServer();
 
