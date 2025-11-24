@@ -27,6 +27,9 @@ target_sources (mrlabctrl_Common
 
         util/ListenerInterface.h
 
+        util/osc/OSCHelpers.h
+        util/osc/OSCMessageOrBundle.h
+
         view/AppControlComponent.h
         view/AppControlComponent.cpp
         view/MainComponent.h

@@ -96,6 +96,7 @@ target_link_libraries (mrlabctrl_Common
         juce::juce_recommended_warning_flags
         juce::juce_core
         juce::juce_gui_extra
+        juce::juce_osc
         civetweb-cpp
         liblo_static
 )

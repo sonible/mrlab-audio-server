@@ -30,6 +30,7 @@ target_link_libraries (mrlabctrl_UnitTest
 target_sources (mrlabctrl_UnitTest
     PRIVATE
         AppControllerTest.cpp
+        OSCTest.cpp
 )
 
 # Add Catch2 extras to module path such that we can include them.
