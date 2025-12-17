@@ -13,6 +13,7 @@
 #include "OscController.h"
 #include <iostream>
 #include <lo/lo_cpp.h>
+#include <util/Logger.h>
 
 namespace mrlab::controller
 {
@@ -94,7 +95,7 @@ bool WebServerController::handleConnection (CivetServer* server, const mg_connec
 
     jassertquiet (server == civetServer.get());
 
-    std::cout << "WebSocket connection request" << std::endl;
+    Logger::logInfo ("WebSocket connection request");
 
     return true;
 }
@@ -106,7 +107,7 @@ void WebServerController::handleReadyState (CivetServer* server, mg_connection* 
 
     clients.push_back (conn);
 
-    std::cout << "WebSocket connection ready" << std::endl;
+    Logger::logInfo ("WebSocket connection ready");
 }
 
 bool WebServerController::handleData (CivetServer* server, mg_connection* conn, int bits, char* data, size_t data_len)
@@ -119,14 +120,14 @@ bool WebServerController::handleData (CivetServer* server, mg_connection* conn, 
 
     if (opcode == MG_WEBSOCKET_OPCODE_CONNECTION_CLOSE)
     {
-        std::cout << "WebSocket connection close request received: " << data << std::endl;
+        Logger::logInfo (juce::String ("WebSocket connection close request received: ") + juce::String (data));
         return false;
     }
 
     jassert (opcode == MG_WEBSOCKET_OPCODE_BINARY); // We expect OSC messages to be sent in binary websocket frames.
 
     // when receiving OSC, the address will be zero-padded in any case.
-    std::cout << "WebSocket frame received: " << data << std::endl;
+    Logger::logInfo (juce::String ("WebSocket frame received: ") + juce::String (data));
 
     mainController.getOscController().dispatchRaw (std::span ((std::byte*) (data), data_len));
 
@@ -141,7 +142,7 @@ void WebServerController::handleClose (CivetServer* server, const mg_connection*
 
     jassertquiet (num > 0); // We don't know this client!
 
-    std::cout << "WebSocket connection closed" << std::endl;
+    Logger::logInfo ("WebSocket connection closed");
 }
 
 void WebServerController::appStateChanged (AppHandle& app, AppHandle::AppState newState)
