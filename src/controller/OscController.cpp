@@ -10,6 +10,7 @@
 #include "OscController.h"
 #include "MainController.h"
 #include <lo/lo_cpp.h>
+#include <util/MRLabLogger.h>
 
 namespace mrlab::controller
 {
@@ -41,8 +42,7 @@ bool OscController::addSubPathServer (const juce::Identifier& id, std::string su
     jassert (! subPath.ends_with ('/')); // OSC subpath must not have a trailing '/'!
 
     // Pattern-matching handler for transparent app-specific communication.
-    mainServer->add_method (subPath + "/*", nullptr, [&subServer, subPathLength = subPath.length(), dest = destination.toStdString(), destinationPort] (std::string_view path, const lo::Message& message)
-    {
+    mainServer->add_method (subPath + "/*", nullptr, [&subServer, subPathLength = subPath.length(), dest = destination.toStdString(), destinationPort] (std::string_view path, const lo::Message& message) {
         auto addr = lo::Address (dest, destinationPort);
 
         // Forward to subserver with subPath stripped from the path.
@@ -54,8 +54,7 @@ bool OscController::addSubPathServer (const juce::Identifier& id, std::string su
     });
 
     // Catch-all handler for return messages from app.
-    subServer->add_method (nullptr, nullptr, [this, sub = std::move (subPath)] (std::string_view path, const lo::Message& message)
-    {
+    subServer->add_method (nullptr, nullptr, [this, sub = std::move (subPath)] (std::string_view path, const lo::Message& message) {
         // Should be forwarded to main server with subPath added to app-local path.
         // For now, just send to WebSocket clients (webgui).
         auto fullPath = sub + std::string (path);
@@ -104,16 +103,14 @@ bool OscController::addMainServer (int port)
     auto& server = servers.at (mainServerId);
 
     // Pattern-matching handler for app-control messages.
-    server->add_method ("/app/*/control", "s", [this] (std::string_view path, const lo::Message& message)
-    {
+    server->add_method ("/app/*/control", "s", [this] (std::string_view path, const lo::Message& message) {
         handleIncomingAppControlMessage (path, message);
 
         return 1; // Continue searching for other handlers.
     });
 
     // Catch-all handler for log.
-    server->add_method (nullptr, nullptr, [this] (std::string_view path, const lo::Message& message)
-    {
+    server->add_method (nullptr, nullptr, [this] (std::string_view path, const lo::Message& message) {
         handleIncomingMessage (path, message);
 
         return 1; // Continue searching for other handlers.
@@ -135,18 +132,18 @@ bool OscController::addToServers (const juce::Identifier& id, int port)
 
 void OscController::handleIncomingMessage (std::string_view path, const lo::Message& message)
 {
-    std::cout << "OscController [catch-all]: received " << path << " with " << message.argc() << " args." << std::endl;
+    MRLabLogger::logInfo (juce::String ("OscController [catch-all]: received ") + std::string (path) + " with " + juce::String (message.argc()) + " args.");
 
     listeners.call (&Listener::messageReceived, path, message);
 }
 
 void OscController::handleIncomingAppControlMessage (std::string_view path, const lo::Message& message)
 {
-    std::cout << "OscController [app-ctrl]: received " << path << " with " << message.argc() << " args." << std::endl;
+    MRLabLogger::logInfo (juce::String ("OscController [app-ctrl]: received ") + std::string (path) + " with " + juce::String (message.argc()) + " args.");
 
     jassert (message.argc() == 1); // Unexpected number of message arguments!
 
-    path.remove_prefix (1); // strip initial '/'
+    path.remove_prefix (1);                                                      // strip initial '/'
     const auto pathElems = juce::StringArray::fromTokens (path.data(), "/", ""); // strip initial '/'
     const auto appId = juce::Identifier (pathElems[1]);
     const auto command = std::string_view (&message.argv()[0]->s);
@@ -163,6 +160,5 @@ void OscController::handleIncomingAppControlMessage (std::string_view path, cons
             juce::MessageManager::callAsync ([&] { handle.stop(); });
     }
 }
-
 
 } // namespace mrlab::controller
