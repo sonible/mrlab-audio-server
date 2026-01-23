@@ -16,6 +16,18 @@
           });
       };
 
+     function sendValue(address, value) {
+          oscPort.send({
+              address: address,
+	      args: [
+		  {
+		      type: "f",
+		      value: value
+		  }
+	      ]
+          });
+      };
+			
       function sendResponse(address) {
           oscPort.send({
               address: address,

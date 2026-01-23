@@ -94,7 +94,7 @@
 
 		<div class="slider-group">
 			<span>Volume</span><br>
-			<input type=range min="1" max="100" value="50" oninput="send('/app/pd-fly/osc/SetVol', this.value); document.getElementById('volume-box').innerText = this.value;" class="volume-slider">
+			<input type=range min="1" max="100" value="50" oninput="sendValue('/app/pd-fly/osc/SetVol', this.value); document.getElementById('volume-box').innerText = this.value;" class="volume-slider">
 			<div class="volume-box" id="volume-box">50</div>
 		</div>
 	</div>	
