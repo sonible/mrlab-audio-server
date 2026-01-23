@@ -97,17 +97,22 @@
 			<input type=range min="1" max="100" value="50" oninput="sendValue('/app/pd-fly/osc/SetVol', this.value); document.getElementById('volume-box').innerText = this.value;" class="volume-slider">
 			<div class="volume-box" id="volume-box">50</div>
 		</div>
-	</div>	
+		<div class="slider-group">
+			<span>Level</span><br>
+			<input type=range min="1" max="100" value="0" class="volume-slider" disabled id="level-slider">
+			<div class="volume-box" id="pd-fly_Level" onchange="document.getElementById('level-slider').value = this.value;">--</div>
+		</div>
+	</div>
 	
 	<div class="quit-container">
 		<button onClick="sendNoArgs('/app/pd-fly/osc/Control/Version')" class="small-button">Get Version</button>
-		Version: <b id="pd-fly_Version">unknown</b><br>
+		Version: <b id="pd-fly_Control-Version">unknown</b><br>
 		
 		<button onClick="sendNoArgs('/app/pd-fly/osc/Control/SampleRate')" class="small-button">Get Samplerate</button>
-		Samplerate: <b id="pd-fly_SampleRate">unknown</b><br>
+		Samplerate: <b id="pd-fly_Control-SampleRate">unknown</b><br>
 		
 		<button onClick="sendNoArgs('/app/pd-fly/osc/Control/CPULoad')" class="small-button">Get CPU</button>
-		CPU %: <b id="pd-fly_CPULoad">unknown</b><br>
+		CPU %: <b id="pd-fly_Control-CPULoad">unknown</b><br>
 		
 		<button onClick="quitApp('demo-fly', 'pd-fly', SceneModule.init)" class="big-button">Quit App</button>
 	</div>

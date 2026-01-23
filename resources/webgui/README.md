@@ -34,8 +34,8 @@ Buttons on the left side load a Scene. Technically, each button loads an HTML fi
 
 * To send a command: ` <button onClick="sendNoArgs('/app/%appName%/%command%')">Send %command%</button> `.
 
-* To send a command with a value: `<input type=range oninput="send('/app/pd-fly/osc/Control/Volume', this.value)">`
+* To send a command with a value: `<input type=range oninput="send('/app/%appName%/osc/%command%', this.value)">`
 
-* To receive a state of a %variable% from the app, create an element such as: ` <span id="%appName%_%variable%"></span> `. Currently, this works only for %appName% is pd-fly or pd-jungle and only for variables structured as /Control/%variable%. 
+* To receive a state of a %variable% from the app, create an element such as: ` <span id="%appName%_%variable%"></span> `. The innertext of this variable will be updated each time, when an OSC message with %command% == %variable% will be received. Note that all "/" in %command% will be translated to "-" in %variable%, e.g., for a %command% of `Control/SamplingRate`, the %variable% must be `Control-SamplingRate`. 
 
-* To receive the state of an app being loaded or killed, receive the state of the variable called `status`.
+* To receive the state of an app being loaded or killed, receive the state of the variable called `%appname%-status`.

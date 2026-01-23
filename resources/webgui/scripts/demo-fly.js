@@ -2,9 +2,9 @@ export function init()
 {
 	document.getElementById("pd-fly_status").innerText = "initialized";
 	document.getElementById("pd-fly_status").style.backgroundColor = "";	
-	document.getElementById("pd-fly_Version").innerText = "---";
-	document.getElementById("pd-fly_SampleRate").innerText = "---";
-	document.getElementById("pd-fly_CPULoad").innerText = "---";
+	document.getElementById("pd-fly_Control-Version").innerText = "---";
+	document.getElementById("pd-fly_Control-SampleRate").innerText = "---";
+	document.getElementById("pd-fly_Control-CPULoad").innerText = "---";
 }
 
 export function connect()
@@ -22,7 +22,7 @@ export function checkConnection()
 {
 	const timeout = 1000; // timeout in ms
 	secWaited += 100;
-	state = document.getElementById("pd-fly_Version");
+	state = document.getElementById("pd-fly_Control-Version");
 	console.log("waiting for " + secWaited/1000 + "s, version=" + state.innerText);
 	switch (state.innerText)
 	{
