@@ -1,0 +1,10 @@
+name: Amps Shutdown
+description: Shutdowns the spatial-audio amplifiers
+
+app:
+  startCommand:
+    - C:\MRLab\Tools\sonible\d24-shutdown.bat
+
+  stopCommand: []
+
+  workingDir: ""

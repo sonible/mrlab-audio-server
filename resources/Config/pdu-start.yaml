@@ -1,0 +1,10 @@
+name: PDU Start
+description: Starts the PDU of the audio system
+
+app:
+  startCommand:
+    - C:\MRLab\Tools\sonible\mr_pduStartup.bat
+
+  stopCommand: []
+
+  workingDir: ""

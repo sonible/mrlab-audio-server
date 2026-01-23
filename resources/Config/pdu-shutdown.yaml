@@ -1,0 +1,10 @@
+name: PDU Shutdown
+description: Shutdowns the PDU of the audio system
+
+app:
+  startCommand:
+    - C:\MRLab\Tools\sonible\mr_pduShutdown.bat
+
+  stopCommand: []
+
+  workingDir: ""

@@ -1,0 +1,10 @@
+name: Amps Unmute
+description: Unmute the spatial-audio amplifiers
+
+app:
+  startCommand:
+    - C:\MRLab\Tools\sonible\d24-unmute.bat
+
+  stopCommand: []
+
+  workingDir: ""

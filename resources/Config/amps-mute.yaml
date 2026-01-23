@@ -1,0 +1,10 @@
+name: Amps Mute
+description: Mute the spatial-audio amplifiers
+
+app:
+  startCommand:
+    - C:\MRLab\Tools\sonible\d24-mute.bat
+
+  stopCommand: []
+
+  workingDir: ""

@@ -239,10 +239,9 @@ header a + a {
 
 /* Sidebar with the Buttons activating the Scenes */
 .scenes-sidebar {
-    width: 200px; /* Fixed width for the button bar */
+    width: 300px; /* Fixed width for the button bar */
     background-color: #f4f4f4;
     padding: 20px;
-    
     display: flex;
     flex-direction: column; /* Stack the buttons vertically */
     gap: 10px; /* Space between the buttons */
@@ -251,11 +250,12 @@ header a + a {
 
 /* Button to activate a Scene */
 .scenes-sidebar button {
-    padding: 10px;
+    padding: 20px;
     border: 1px solid #ccc;
     background-color: #9da0a5;
     cursor: pointer;
-    text-align: left;
+    font-size: 20pt;
+    text-align: center;
 }
 /* Properties of the active */
 .scenes-sidebar .active-scene {
