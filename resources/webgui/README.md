@@ -16,8 +16,7 @@ Buttons on the left side load a Scene. Technically, each button loads an HTML fi
 
 * To start an app: ` <button onClick="launchApp(%SceneName%, %appName%)">Launch App</button>`. Server responses with the following states: 
   * `alive`: command acknowledged, launching the app.
-  * `ready`: App launched. Now commands can be sent to the app.
-  * `success`: ??? (appears when the App has been closed by the admin).
+  * `ready`: 3 seconds after `alive`. App is assumed to be launched, commands can be sent to the app.
 
 * To start an app and wait until the app has been launched: ` <button onClick="launchAppAndWait(%SceneName%, %appName%, %timeout%)">Launch App</button>`, which waits %timeout% seconds before creating an error. 
 
@@ -26,8 +25,9 @@ Buttons on the left side load a Scene. Technically, each button loads an HTML fi
 * To quit an app: ` <button onClick="quitApp(%SceneName%, %appName%)">Quit App</button>. Server responses with the following states: 
   * `quitting...`: command acknowledged, quitting the app.
   * `killed`: app killed.
-  * `error`: ??? (appears when the App has been killed).
- 
+  * `error`: app returns exit code <> 0 on exit. 
+  * `success`: app returns exit code 0 on exit.
+
 * To quit an app and execute a function right after the quit command has been sent to the server: `quitApp(%SceneName%, %appName%, SceneModule.%quitFunction%)`.
 
 * To connect to the app for a response channel: ` <button onClick="sendResponse('/app/%appName%/%pathToEstablishTheResponse%')">Establish Response</button> `.
