@@ -59,8 +59,8 @@ oscPort.on("message", function (oscMsg)
 	
 				case 'osc': // OSC message from the app received
 					commands = (pathstr.substring(path[0].length+path[1].length+path[2].length+3));
-						// Format of the variable: scenename-command1-command2-...-commandN
-					document.getElementById(path[1] + "_" + commands.replace("/", "-")).innerHTML = oscMsg.args[0].value;
+						// Format of the variable as scenename-command1_command2_..._commandN
+					document.getElementById(path[1] + "-" + commands.replace("/", "_")).innerHTML = oscMsg.args[0].value;
 					break;
 			};
 			break;

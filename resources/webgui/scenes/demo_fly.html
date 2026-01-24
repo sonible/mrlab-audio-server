@@ -1,4 +1,4 @@
-<div id="demo-fly" class="scene-main">
+<div id="demo_fly" class="scene-main">
 
 	<style>
 		.big-button {
@@ -85,36 +85,36 @@
 	<h2>Demo: Fly</h2>
 	<div class="start-container">
 		<div class="button-group">
-			<button onClick="launchAppAndWait('demo-fly', 'pd-fly', 5, SceneModule.init, SceneModule.connect)" class="big-button">Launch App</button>
-			<p>Status: <b id="pd-fly-status">unclear</b></p>
+			<button onClick="launchAppAndWait('demo_fly', 'pd_fly', 5, SceneModule.init, SceneModule.connect)" class="big-button">Launch App</button>
+			<p>Status: <b id="pd_fly-status">unclear</b></p>
 	
-			<button onClick="sendNoArgs('/app/pd-fly/osc/Play/Start')" class="big-button">Start</button>
-			<button onClick="sendNoArgs('/app/pd-fly/osc/Play/Stop')"class="big-button">Stop</button>
+			<button onClick="sendNoArgs('/app/pd_fly/osc/Play/Start')" class="big-button">Start</button>
+			<button onClick="sendNoArgs('/app/pd_fly/osc/Play/Stop')"class="big-button">Stop</button>
 		</div>
 
 		<div class="slider-group">
 			<span>Volume</span><br>
-			<input type=range min="1" max="100" value="50" oninput="sendValue('/app/pd-fly/osc/SetVol', this.value); document.getElementById('volume-box').innerText = this.value;" class="volume-slider">
+			<input type=range min="1" max="100" value="50" oninput="sendValue('/app/pd_fly/osc/SetVol', this.value); document.getElementById('volume-box').innerText = this.value;" class="volume-slider">
 			<div class="volume-box" id="volume-box">50</div>
 		</div>
 		<div class="slider-group">
 			<span>Level</span><br>
 			<input type=range min="1" max="100" value="0" class="volume-slider" disabled id="level-slider">
-			<div class="volume-box" id="pd-fly_Level" onchange="document.getElementById('level-slider').value = this.value;">--</div>
+			<div class="volume-box" id="pd_fly-Level" onchange="document.getElementById('level-slider').value = this.value;">--</div>
 		</div>
 	</div>
 	
 	<div class="quit-container">
-		<button onClick="sendNoArgs('/app/pd-fly/osc/Control/Version')" class="small-button">Get Version</button>
-		Version: <b id="pd-fly_Control-Version">unknown</b><br>
+		<button onClick="sendNoArgs('/app/pd_fly/osc/Control/Version')" class="small-button">Get Version</button>
+		Version: <b id="pd_fly-Control_Version">unknown</b><br>
 		
-		<button onClick="sendNoArgs('/app/pd-fly/osc/Control/SampleRate')" class="small-button">Get Samplerate</button>
-		Samplerate: <b id="pd-fly_Control-SampleRate">unknown</b><br>
+		<button onClick="sendNoArgs('/app/pd_fly/osc/Control/SampleRate')" class="small-button">Get Samplerate</button>
+		Samplerate: <b id="pd_fly-Control_SampleRate">unknown</b><br>
 		
-		<button onClick="sendNoArgs('/app/pd-fly/osc/Control/CPULoad')" class="small-button">Get CPU</button>
-		CPU %: <b id="pd-fly_Control-CPULoad">unknown</b><br>
+		<button onClick="sendNoArgs('/app/pd_fly/osc/Control/CPULoad')" class="small-button">Get CPU</button>
+		CPU %: <b id="pd_fly-Control_CPULoad">unknown</b><br>
 		
-		<button onClick="quitApp('demo-fly', 'pd-fly', SceneModule.init)" class="big-button">Quit App</button>
+		<button onClick="quitApp('demo_fly', 'pd_fly', SceneModule.init)" class="big-button">Quit App</button>
 	</div>
 </div>
 
