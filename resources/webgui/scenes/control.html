@@ -1,4 +1,4 @@
-<div id="demo-fly" class="scene-main">
+<div id="control" class="scene-main">
 
 	<style>
 		.big-button {
@@ -30,38 +30,38 @@
 	<h3>Start the system:</h3>
 	<div class="start-container">
 		<div>
-			<button onClick="send('/app/pdu-start/control', 'launch');" class="big-button">PDU: Start</button>
-			<p style="text-align: center;"> <b id="pdu-start-status">&nbsp;</b></p>
+			<button onClick="send('/app/pdu_start/control', 'launch');" class="big-button">PDU: Start</button>
+			<p style="text-align: center;"> <b id="pdu_start-status">&nbsp;</b></p>
 		</div>
 		<div>
-			<button onClick="send('/app/amps-unmute/control', 'launch');"class="big-button">Amps: Unmute</button>
-			<p style="text-align: center;"><b id="amps-unmute-status">&nbsp;</b></p>
+			<button onClick="send('/app/amps_unmute/control', 'launch');"class="big-button">Amps: Unmute</button>
+			<p style="text-align: center;"><b id="amps_unmute-status">&nbsp;</b></p>
 		</div>
 	</div>
 	<h3>Shutdown the system:</h3>
 	<div class="start-container">		
 		<div>
-			<button onClick="send('/app/amps-mute/control', 'launch');"class="big-button">Amps: Mute</button>
-			<p style="text-align: center;"><b id="amps-mute-status">&nbsp;</b></p>
+			<button onClick="send('/app/amps_mute/control', 'launch');"class="big-button">Amps: Mute</button>
+			<p style="text-align: center;"><b id="amps_mute-status">&nbsp;</b></p>
 		</div>
 		<div>
-			<button onClick="send('/app/amps-shutdown/control', 'launch');"class="big-button">Amps: Shutdown</button>
-			<p style="text-align: center;"><b id="amps-shutdown-status">&nbsp;</b></p>
+			<button onClick="send('/app/amps_shutdown/control', 'launch');"class="big-button">Amps: Shutdown</button>
+			<p style="text-align: center;"><b id="amps_shutdown-status">&nbsp;</b></p>
 		</div>
 		<div>
-			<button onClick="send('/app/pdu-shutdown/control', 'launch');" class="big-button">PDU Shutdown</button>
-			<p style="text-align: center;"><b id="pdu-shutdown-status">&nbsp;</b></p>
+			<button onClick="send('/app/pdu_shutdown/control', 'launch');" class="big-button">PDU Shutdown</button>
+			<p style="text-align: center;"><b id="pdu_shutdown-status">&nbsp;</b></p>
 		</div>
 	</div>
 	<h3>Special:</h3>
 	<div class="start-container">
 		<div>
-			<button onClick="send('/app/matrix-default/control', 'launch');" class="big-button">Matrix:<br>Load Default Routing</button>
-			<p style="text-align: center;"> <b id="matrix-default-status">&nbsp;</b></p>
+			<button onClick="send('/app/matrix_default/control', 'launch');" class="big-button">Matrix:<br>Load Default Routing</button>
+			<p style="text-align: center;"> <b id="matrix_default-status">&nbsp;</b></p>
 		</div>
 		<div>
-			<button onClick="send('/app/mixer-default/control', 'launch');" class="big-button">Mixer:<br>Load Default Routing</button>
-			<p style="text-align: center;"> <b id="mixer-default-status">&nbsp;</b></p>
+			<button onClick="send('/app/mixer_default/control', 'launch');" class="big-button">Mixer:<br>Load Default Routing</button>
+			<p style="text-align: center;"> <b id="mixer_default-status">&nbsp;</b></p>
 		</div>
 	</div>
 </div>
