@@ -13,76 +13,21 @@
 			cursor: pointer;
 		}
 		
-		.small-button {
-			width: 200px;
-			padding: 40px;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			text-align: center;
-			font-size: 18px;
-			font-weight: bold;			
-			cursor: pointer;
-		}
-
 		.start-container {
 			display: flex;
 			justify-content: space-between; /* Pushes content to far left and far right */
 			align-items: center;
-			height: 400px;
-			padding: 20px;
-			border: 1px solid #ccc;
-			width: 100%;
-		}
-
-		.quit-container {
-			display: block;
-			justify-content: center; 
-			align-items: center;
-			height: 300px;
+			// height: 400px;
 			padding: 20px;
 			border: 1px solid #ccc;
 			width: 100%;
 		}
 		
-		.button-group {
-			box-sizing: border-box;
-			display: flex;
-			flex-direction: column;
-			justify-content: center;
-			align-items: center;
-			gap: 10px;
-			width: 40%;
-		}
-
-		.slider-group { /* Group with the sliders, fills the entire vertical height */
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			justify-content: center;
-			width: 40%;
-			height: 100%;
-		}
-		.volume-slider { /* Style to make a vertical volume slider */
-			writing-mode: vertical-lr;
-			direction: rtl;
-			width: 20px;
-			height: 80%;
-		}
-		.volume-box {
-			font-family: monospace;
-			font-size: 1.2rem;
-			background: #007bff;
-			color: white;
-			padding: 5px 10px;
-			border-radius: 4px;
-			width: 100px;
-			text-align: center;
-		}		
 	</style>
 
 
-	<h2>Control the audio system:</h2>
+	<h2>Controls:</h2>
+	<h3>Start the system:</h3>
 	<div class="start-container">
 		<div>
 			<button onClick="send('/app/pdu-start/control', 'launch');" class="big-button">PDU: Start</button>
@@ -92,7 +37,9 @@
 			<button onClick="send('/app/amps-unmute/control', 'launch');"class="big-button">Amps: Unmute</button>
 			<p style="text-align: center;"><b id="amps-unmute_status">&nbsp;</b></p>
 		</div>
-		<br>
+	</div>
+	<h3>Shutdown the system:</h3>
+	<div class="start-container">		
 		<div>
 			<button onClick="send('/app/amps-mute/control', 'launch');"class="big-button">Amps: Mute</button>
 			<p style="text-align: center;"><b id="amps-mute_status">&nbsp;</b></p>
@@ -106,6 +53,16 @@
 			<p style="text-align: center;"><b id="pdu-shutdown_status">&nbsp;</b></p>
 		</div>
 	</div>
-
+	<h3>Special:</h3>
+	<div class="start-container">
+		<div>
+			<button onClick="send('/app/matrix-default/control', 'launch');" class="big-button">Matrix:<br>Load Default Routing</button>
+			<p style="text-align: center;"> <b id="matrix-default_status">&nbsp;</b></p>
+		</div>
+		<div>
+			<button onClick="send('/app/mixer-default/control', 'launch');" class="big-button">Mixer:<br>Load Default Routing</button>
+			<p style="text-align: center;"> <b id="mixer-default_status">&nbsp;</b></p>
+		</div>
+	</div>
 </div>
 

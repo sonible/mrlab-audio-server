@@ -1,0 +1,11 @@
+name: Mixer Default
+description: Load the default routing of the audio mixer (Totalmix)
+
+app:
+  startCommand:
+    - C:\Program Files\Totalmix oder so
+    - Mix 1 (192ch).tmws
+
+  stopCommand: []
+
+  workingDir: ""

@@ -1,0 +1,11 @@
+name: Matrix Default
+description: Load the default routing of the Audio Matrix
+
+app:
+  startCommand:
+    - C:\Program Files\globcon oder so
+    - test.routing
+
+  stopCommand: []
+
+  workingDir: ""

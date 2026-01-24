@@ -288,7 +288,7 @@ header a + a {
     border: 1px solid #ccc;
     background-color: #9da0a5;
     cursor: pointer;
-    text-align: left;
+    text-align: center;
 }
 #page-home {
     display: block; /* Default visible section */
