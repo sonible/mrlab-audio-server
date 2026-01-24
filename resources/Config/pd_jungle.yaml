@@ -3,7 +3,7 @@ description: Pd with Jungle demonstration
 
 app:
   startCommand:
-    - C:\PD\YAMI\JUNGLE.bat
+    - C:\MRLab\Audio-Apps\Demo-Jungle\_OPEN DEMO.bat
 
   stopCommand:
     - C:\Windows\System32\taskkill
