@@ -54,7 +54,7 @@ oscPort.on("message", function (oscMsg)
 			switch (path[2])
 			{
 				case 'state': // Launch status received 
-					document.getElementById(path[1] + "_status").innerHTML = oscMsg.args[1].value;
+					document.getElementById(path[1] + "-status").innerHTML = oscMsg.args[1].value;
 					break;
 	
 				case 'osc': // OSC message from the app received

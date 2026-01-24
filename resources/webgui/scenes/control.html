@@ -31,38 +31,37 @@
 	<div class="start-container">
 		<div>
 			<button onClick="send('/app/pdu-start/control', 'launch');" class="big-button">PDU: Start</button>
-			<p style="text-align: center;"> <b id="pdu-start_status">&nbsp;</b></p>
+			<p style="text-align: center;"> <b id="pdu-start-status">&nbsp;</b></p>
 		</div>
 		<div>
 			<button onClick="send('/app/amps-unmute/control', 'launch');"class="big-button">Amps: Unmute</button>
-			<p style="text-align: center;"><b id="amps-unmute_status">&nbsp;</b></p>
+			<p style="text-align: center;"><b id="amps-unmute-status">&nbsp;</b></p>
 		</div>
 	</div>
 	<h3>Shutdown the system:</h3>
 	<div class="start-container">		
 		<div>
 			<button onClick="send('/app/amps-mute/control', 'launch');"class="big-button">Amps: Mute</button>
-			<p style="text-align: center;"><b id="amps-mute_status">&nbsp;</b></p>
+			<p style="text-align: center;"><b id="amps-mute-status">&nbsp;</b></p>
 		</div>
 		<div>
 			<button onClick="send('/app/amps-shutdown/control', 'launch');"class="big-button">Amps: Shutdown</button>
-			<p style="text-align: center;"><b id="amps-shutdown_status">&nbsp;</b></p>
+			<p style="text-align: center;"><b id="amps-shutdown-status">&nbsp;</b></p>
 		</div>
 		<div>
 			<button onClick="send('/app/pdu-shutdown/control', 'launch');" class="big-button">PDU Shutdown</button>
-			<p style="text-align: center;"><b id="pdu-shutdown_status">&nbsp;</b></p>
+			<p style="text-align: center;"><b id="pdu-shutdown-status">&nbsp;</b></p>
 		</div>
 	</div>
 	<h3>Special:</h3>
 	<div class="start-container">
 		<div>
 			<button onClick="send('/app/matrix-default/control', 'launch');" class="big-button">Matrix:<br>Load Default Routing</button>
-			<p style="text-align: center;"> <b id="matrix-default_status">&nbsp;</b></p>
+			<p style="text-align: center;"> <b id="matrix-default-status">&nbsp;</b></p>
 		</div>
 		<div>
 			<button onClick="send('/app/mixer-default/control', 'launch');" class="big-button">Mixer:<br>Load Default Routing</button>
-			<p style="text-align: center;"> <b id="mixer-default_status">&nbsp;</b></p>
+			<p style="text-align: center;"> <b id="mixer-default-status">&nbsp;</b></p>
 		</div>
 	</div>
 </div>
-

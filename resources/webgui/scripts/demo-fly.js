@@ -1,7 +1,7 @@
 export function init()
 {
-	document.getElementById("pd-fly_status").innerText = "initialized";
-	document.getElementById("pd-fly_status").style.backgroundColor = "";	
+	document.getElementById("pd-fly-status").innerText = "initialized";
+	document.getElementById("pd-fly-status").style.backgroundColor = "";	
 	document.getElementById("pd-fly_Control-Version").innerText = "---";
 	document.getElementById("pd-fly_Control-SampleRate").innerText = "---";
 	document.getElementById("pd-fly_Control-CPULoad").innerText = "---";
@@ -9,7 +9,7 @@ export function init()
 
 export function connect()
 {
-	state = document.getElementById("pd-fly_status");
+	state = document.getElementById("pd-fly-status");
 	state.innerText = "connecting...";
 	state.style.backgroundColor = "blue";
 	sendResponse('/app/pd-fly/osc/Control/Response');
@@ -35,7 +35,7 @@ export function checkConnection()
 			}
 			break;
 		default: // done!
-			state = document.getElementById("pd-fly_status");
+			state = document.getElementById("pd-fly-status");
 			state.innerText = "connected";
 			state.style.backgroundColor = "";
 			sendNoArgs('/app/pd-fly/osc/Control/CPULoad');		
@@ -44,7 +44,7 @@ export function checkConnection()
 	}
 	if (secWaited > timeout)
 	{ 	// time out -> clean up
-		state = document.getElementById("pd-fly_status");
+		state = document.getElementById("pd-fly-status");
 		state.innerText = "time out while connecting";
 		state.style.backgroundColor = "red";
 	}

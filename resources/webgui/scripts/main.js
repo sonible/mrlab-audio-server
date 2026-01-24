@@ -71,7 +71,7 @@ function quitApp(scene, app, quitFun)
 	launchedButton.classList.remove('launched-scene');
 	launchedButton.classList.add('active-scene');
 	secWaited = 0;
-	state = document.getElementById(app + "_status");
+	state = document.getElementById(app + "-status");
 	state.style.backgroundColor = "";
 	if (quitFun != null) quitFun();
 }
@@ -81,7 +81,7 @@ function quitApp(scene, app, quitFun)
 //   initFun and readyFun: optional functions executed before and after successful launch, respectively
 function launchAppAndWait(scene, app, timeout, initFun, readyFun)
 {
-	state = document.getElementById(app + "_status");
+	state = document.getElementById(app + "-status");
 	state.innerText = "unclear";
 	state.style.backgroundColor = "red";
 	if (initFun != null) initFun();
@@ -92,7 +92,7 @@ function launchAppAndWait(scene, app, timeout, initFun, readyFun)
 function checkStateLaunched(scene, app, timeout, readyFun)
 {
 	secWaited += 100;
-	state = document.getElementById(app + "_status");
+	state = document.getElementById(app + "-status");
 	console.log("waiting for " + secWaited/1000 + "s, status=" + state.innerText);
 	switch (state.innerText)
 	{
