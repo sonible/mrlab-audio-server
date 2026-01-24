@@ -1,9 +1,39 @@
 <div id="demo-reverb" class="scene-main">
-	<h2>Demo: Jungle</h2>
-	<button onClick="send('/app/reaper-reverb/control', 'launch')">Launch Reaper</button>
-	<button onClick="send('/app/reaper-reverb/control', 'quit')">Quit Reaper</button>
-	<button onClick="sendNoArgs('/app/reaper-reverb/osc/play')">Play</button>
-	<button onClick="sendNoArgs('/app/reaper-reverb/osc/pause')">Pause</button>
-	<button onClick="sendNoArgs('/app/reaper-reverb/osc/stop')">Stop</button>
-	Status: <b id="reaper-reverb-status">unclear</b>
+
+	<style>
+		.big-button {
+			width: 600px;
+			padding: 40px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			text-align: center;
+			font-size: 24px;
+			font-weight: bold;			
+			cursor: pointer;
+		}
+		
+		.start-container {
+			display: flex;
+			justify-content: space-between; /* Pushes content to far left and far right */
+			align-items: center;
+			// height: 400px;
+			padding: 20px;
+			border: 1px solid #ccc;
+			width: 100%;
+		}		
+	</style>
+
+	<h2>Demo: Artificial Revberb</h2>
+	<div class="start-container">
+		<div>
+			<button onClick="send('/app/reaper_reverb/control', 'launch');" class="big-button">Launch Reaper and active reverb</button>
+		</div>
+		<div>
+			<button onClick="send('/app/reaper_reverb/control', 'quit');"class="big-button">Quit Reaper</button>
+		</div>
+	</div>
+
+	<p style="text-align: center;"><b id="reaper_reverb-status">&nbsp;</b></p>
+	
 </div>
