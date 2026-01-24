@@ -4,7 +4,7 @@ description: Reaper DAW with music example
 app:
   startCommand:
     - C:\Program Files\REAPER (x64)\reaper
-    - music.rpp
+    - C:\MRLab\Audio-Apps\Demo-Music\music.rpp
 
   stopCommand: []
 

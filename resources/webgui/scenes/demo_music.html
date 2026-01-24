@@ -1,8 +1,38 @@
-<div id="demo-music" class="scene-main">
-	<button onClick="send('/app/reaper-music/control', 'launch')">Launch Reaper</button>
-	<button onClick="send('/app/reaper-music/control', 'quit')">Quit Reaper</button>
-	<button onClick="sendNoArgs('/app/reaper-music/osc/play')">Play</button>
-	<button onClick="sendNoArgs('/app/reaper-music/osc/pause')">Pause</button>
-	<button onClick="sendNoArgs('/app/reaper-music/osc/stop')">Stop</button>
-	Status: <b id="reaper-music-status">null</b>
+<div id="demo_music" class="scene-main">
+
+	<style>
+		.big-button {
+			width: 300px;
+			padding: 40px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			text-align: center;
+			font-size: 24px;
+			font-weight: bold;			
+			cursor: pointer;
+		}
+		
+		.start-container {
+			display: flex;
+			justify-content: space-between; /* Pushes content to far left and far right */
+			align-items: center;
+			// height: 400px;
+			padding: 20px;
+			border: 1px solid #ccc;
+			width: 100%;
+		}		
+	</style>
+
+	<h2>Demo: Party Music</h2>
+	<div class="start-container">
+		<button onClick="launchApp('demo_music','reaper_music');" class="big-button">Launch Reaper</button>
+		<button onClick="sendNoArgs('/app/reaper-music/osc/play')" class="big-button">Play</button>
+		<button onClick="sendNoArgs('/app/reaper-music/osc/pause')" class="big-button">Pause</button>
+		<button onClick="sendNoArgs('/app/reaper-music/osc/stop')" class="big-button">Stop</button>
+		<button onClick="quitApp('demo_music','reaper_music');"class="big-button">Quit Reaper</button>
+	</div>
+
+	<p style="text-align: center;"><b id="reaper_music-status">&nbsp;</b></p>
+	
 </div>
