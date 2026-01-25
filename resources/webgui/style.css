@@ -12,8 +12,8 @@ body, html {
     height: 100vh;
 		font: 100% sans-serif;
 		word-wrap: break-word;
-		padding: 1.5em;
-    overflow: hidden; /* Prevents unwanted scrolling */
+		//padding: 1.5em;
+    overflow-x: hidden; /* Prevents unwanted horizontal scrolling */
 }
 
 @media (min-width: 768px) 
@@ -230,6 +230,7 @@ header a + a {
 /* Sidebar with the Buttons activating the Scenes */
 .scenes-sidebar {
     width: 300px; /* Fixed width for the button bar */
+		min-width: 300px;
     background-color: #f4f4f4;
     padding: 20px;
     display: flex;
