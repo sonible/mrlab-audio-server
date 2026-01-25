@@ -5,6 +5,17 @@ export function init()
 	document.getElementById("pd_fly-Control_Version").innerText = "---";
 	document.getElementById("pd_fly-Control_SampleRate").innerText = "---";
 	document.getElementById("pd_fly-Control_CPULoad").innerText = "---";
+	var level = document.getElementById("pd_fly-Level");
+	console.log(level);
+	document.getElementById("pd_fly-Level").addEventListener(
+		"change",
+		(e) => {
+			console.log("Level: change registered");
+		},
+		false,
+	);			
+	console.log("Level on change listener added");
+	console.log(level);
 }
 
 export function connect()
