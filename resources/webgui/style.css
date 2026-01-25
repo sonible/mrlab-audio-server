@@ -112,16 +112,6 @@ table td, table th {
     padding: 0.25em;
  }
 
-table, .highlight > pre, pre.example {
-    max-height: 70vh;
-    margin: 1em 0;
-    padding: 1em;
-    overflow: auto;
-    font-size: 0.85rem;
-    font-family: monospace, monospace;
-    border: 1px dashed rgba(250, 100, 50, 0.5);
-}
-
 .title {
     font-size: 2.5em;
 }

@@ -22,7 +22,18 @@
 			border: 1px solid #ccc;
 			width: 100%;
 		}
-		
+
+		.small-button {
+			width: 200px;
+			padding: 40px;
+			display: inline;
+			align-items: center;
+			justify-content: center;
+			text-align: center;
+			font-size: 18px;
+			font-weight: bold;			
+			cursor: pointer;
+		}		
 	</style>
 
 
@@ -33,6 +44,28 @@
 			<button onClick="send('/app/pdu_start/control', 'launch');" class="big-button">PDU: Start</button>
 			<p style="text-align: center;"> <b id="pdu_start-status">&nbsp;</b></p>
 		</div>
+		
+		<div style="display: inline; width: 40%; font-size: 24px; text-align: center; font-weight: bold;">
+			Amplifier Status<br>
+			<table style="text-align: center;">
+				<thead style="font-weight: bold;">
+					<th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th>
+				</thead>
+				<tr>
+					<td id="amp1-status">-</td>
+					<td id="amp2-status">-</td>
+					<td id="amp3-status">-</td>
+					<td id="amp4-status">-</td>
+					<td id="amp5-status">-</td>
+					<td id="amp6-status">-</td>
+					<td id="amp7-status">-</td>
+					<td id="amp8-status">-</td>
+				</tr>
+			</table>
+			<button onClick="sendNoArgs('/app/pd_fly/osc/Control/Version')" class="small-button">Update Status</button>
+
+		</div>
+		
 		<div>
 			<button onClick="send('/app/amps_unmute/control', 'launch');"class="big-button">Amps: Unmute</button>
 			<p style="text-align: center;"><b id="amps_unmute-status">&nbsp;</b></p>
