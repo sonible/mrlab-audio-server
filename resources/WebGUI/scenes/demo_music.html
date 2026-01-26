@@ -27,12 +27,16 @@
 	<h2>Demo: Party Music</h2>
 	<div class="start-container">
 		<button onClick="launchApp('demo_music','reaper_music');" class="big-button">Launch Reaper</button>
-		<button onClick="sendNoArgs('/app/reaper-music/osc/play')" class="big-button">Play</button>
-		<button onClick="sendNoArgs('/app/reaper-music/osc/pause')" class="big-button">Pause</button>
-		<button onClick="sendNoArgs('/app/reaper-music/osc/stop')" class="big-button">Stop</button>
+		<button onClick="sendNoArgs('/app/reaper_music/osc/play')" class="big-button">Play/Pause</button>
+		<button onClick="sendValue('/app/reaper_music/osc/time', 0)" class="big-button">Rewind</button>
+		<button onClick="sendNoArgs('/app/reaper_music/osc/stop')" class="big-button">Stop</button>
 		<button onClick="quitApp('demo_music','reaper_music');"class="big-button">Quit Reaper</button>
 	</div>
 
 	<p style="text-align: center;"><b id="reaper_music-status">&nbsp;</b></p>
+	<br>
+	Time: <b id="reaper_music-time_str">&nbsp;</b>
+	<br>
+	VU: <b id="reaper_music-master_vu">&nbsp;</b>
 	
 </div>
