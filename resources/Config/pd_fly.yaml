@@ -12,4 +12,4 @@ app:
     - /T
     - /F
 
-  workingDir: C:\PD\YAMI
+  workingDir: C:\MRLab\Audio-Apps\Demo-Fly
