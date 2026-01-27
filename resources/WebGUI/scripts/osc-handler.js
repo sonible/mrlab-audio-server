@@ -20,14 +20,14 @@ function sendValue(address, value)
 	});
 }
 			
-function sendResponse(address) 
+function sendResponse(address,port) 
 {
 	oscPort.send({
 		address: address,
 		args: [
 			{ type: "s", value: "connect" },
 			{ type: "s", value: "localhost" },
-			{ type: "i", value: 9336 }
+			{ type: "i", value: port }
 		]
 	});
 }

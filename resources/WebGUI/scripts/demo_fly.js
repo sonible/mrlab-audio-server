@@ -23,7 +23,7 @@ export function connect()
 	state = document.getElementById("pd_fly-status");
 	state.innerText = "connecting...";
 	state.style.backgroundColor = "blue";
-	sendResponse('/app/pd_fly/osc/Control/Response');
+	sendResponse('/app/pd_fly/osc/Control/Response', 9336);
 	sendNoArgs('/app/pd_fly/osc/Control/Version');
 	secWaited = 0;
 	setTimeout(() => { checkConnection(); }, 100);
