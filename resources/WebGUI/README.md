@@ -1,4 +1,4 @@
-# WebGUI
+# WebGUI 
 
 Buttons on the left side load a Scene. Technically, each button loads an HTML file `scenes/%SceneName%.html` and optionally a Javascript module `scripts/%SceneName%.js`.
 
