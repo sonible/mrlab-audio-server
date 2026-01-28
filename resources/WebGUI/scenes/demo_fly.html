@@ -29,17 +29,7 @@
 			display: flex;
 			justify-content: space-between; /* Pushes content to far left and far right */
 			align-items: center;
-			height: 400px;
-			padding: 20px;
-			border: 1px solid #ccc;
-			width: 100%;
-		}
-
-		.quit-container {
-			display: block;
-			justify-content: center; 
-			align-items: center;
-			height: 300px;
+			height: 60%;
 			padding: 20px;
 			border: 1px solid #ccc;
 			width: 100%;
@@ -49,10 +39,11 @@
 			box-sizing: border-box;
 			display: flex;
 			flex-direction: column;
-			justify-content: center;
+			justify-content: space-evenly;
 			align-items: center;
-			gap: 10px;
-			width: 40%;
+			gap: 50px;
+			width: 80%;
+			height: 60%;
 		}
 
 		.slider-group { /* Group with the sliders, fills the entire vertical height */
@@ -67,7 +58,7 @@
 			writing-mode: vertical-lr;
 			direction: rtl;
 			width: 20px;
-			height: 80%;
+			height: 60%;
 		}
 		.volume-box {
 			font-family: monospace;
@@ -84,12 +75,20 @@
 
 	<h2>Demo: Fly</h2>
 	<div class="start-container">
-		<div class="button-group">
-			<button onClick="launchAppAndWait('demo_fly', 'pd_fly', 5, SceneModule.init, SceneModule.connect)" class="big-button">Launch App</button>
-			<p>Status: <b id="pd_fly-status">unclear</b></p>
 	
-			<button onClick="sendNoArgs('/app/pd_fly/osc/Play/Start')" class="big-button">Start</button>
+		<div class="button-group">
+			<div style="gap: 10px;">
+				<button onClick="launchAppAndWait('demo_fly', 'pd_fly', 5, SceneModule.init, SceneModule.connect)" class="big-button">Launch App</button>
+				<p style="text-align: center;">Status: <b id="pd_fly-status">unclear</b></p>
+			</div>
+
+			<button onClick="sendNoArgs('/app/pd_fly/osc/Play/Start')" class="big-button">Play</button>
 			<button onClick="sendNoArgs('/app/pd_fly/osc/Play/Stop')"class="big-button">Stop</button>
+			<div style="gap: 10px;">
+				<p style="text-align: center;">Version: <b id="pd_fly-Control_Version">unknown</b></p>	
+				<p style="text-align: center;">Sample rate: <b id="pd_fly-Control_SampleRate">unknown</b> Hz</p>
+			</div>
+			<button onClick="quitApp('demo_fly', 'pd_fly', SceneModule.init)" class="big-button">Quit App</button>
 		</div>
 
 		<div class="slider-group">
@@ -104,17 +103,5 @@
 		</div>
 	</div>
 	
-	<div class="quit-container">
-		<button onClick="sendNoArgs('/app/pd_fly/osc/Control/Version')" class="small-button">Get Version</button>
-		Version: <b id="pd_fly-Control_Version">unknown</b><br>
-		
-		<button onClick="sendNoArgs('/app/pd_fly/osc/Control/SampleRate')" class="small-button">Get Samplerate</button>
-		Samplerate: <b id="pd_fly-Control_SampleRate">unknown</b><br>
-		
-		<button onClick="sendNoArgs('/app/pd_fly/osc/Control/CPULoad')" class="small-button">Get CPU</button>
-		CPU %: <b id="pd_fly-Control_CPULoad">unknown</b><br>
-		
-		<button onClick="quitApp('demo_fly', 'pd_fly', SceneModule.init)" class="big-button">Quit App</button>
-	</div>
 </div>
 
