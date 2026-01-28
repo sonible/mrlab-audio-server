@@ -4,19 +4,14 @@ export function init()
 	document.getElementById("pd_fly-status").style.backgroundColor = "";	
 	document.getElementById("pd_fly-Control_Version").innerText = "---";
 	document.getElementById("pd_fly-Control_SampleRate").innerText = "---";
-	document.getElementById("pd_fly-Control_CPULoad").innerText = "---";
-	var level = document.getElementById("pd_fly-Level");
-	console.log(level);
-	document.getElementById("pd_fly-Level").addEventListener(
-		"change",
-		(e) => {
-			console.log("Level: change registered");
-		},
-		false,
-	);			
-	console.log("Level on change listener added");
-	console.log(level);
 }
+
+document.getElementById('pd_fly-Play_VU').addEventListener('updated', (e) => 
+{
+	document.getElementById('pd_fly-Play_VU-bar').style.height = document.getElementById('pd_fly-Play_VU').innerText + '%';
+	console.log('level received:' + document.getElementById('pd_fly-status').innerText + '%');
+});			
+
 
 export function connect()
 {
@@ -49,8 +44,9 @@ export function checkConnection()
 			state = document.getElementById("pd_fly-status");
 			state.innerText = "connected";
 			state.style.backgroundColor = "";
-			sendNoArgs('/app/pd_fly/osc/Control/CPULoad');		
-			sendNoArgs('/app/pd_fly/osc/Control/SampleRate');		
+			sendNoArgs('/app/pd_fly/osc/Control/SampleRate');
+			sendNoArgs('/app/pd_fly/osc/Play/Volume');
+			sendNoArgs('/app/pd_fly/osc/Play/Duration');
 			break;
 	}
 	if (secWaited > timeout)

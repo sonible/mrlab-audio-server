@@ -44,7 +44,7 @@ oscPort.on("ready", function ()
 
 oscPort.on("message", function (oscMsg) 
 {
-	// console.log("OSC message received: ", oscMsg);
+	//console.log("OSC message received: ", oscMsg);
 	pathstr= oscMsg.address.substring(1);
 	path = pathstr.split("/");
 		// Format of the message: device/scenename/osc/command1/command2/.../commandN
@@ -54,16 +54,20 @@ oscPort.on("message", function (oscMsg)
 			switch (path[2])
 			{
 				case 'state': // Launch status received 
-					const el = document.getElementById(path[1] + "-status");
-					el.innerHTML = oscMsg.args[1].value;
-					const event = new CustomEvent('updated', { detail: { time: Date.now() } });
-					el.dispatchEvent(event);
+					const st = document.getElementById(path[1] + "-status");
+					st.innerHTML = oscMsg.args[1].value;
+					const statusEvent = new CustomEvent('updated', { detail: { time: Date.now() } });
+					st.dispatchEvent(statusEvent); // dispatch an event that the status has changed
 					break;
 	
 				case 'osc': // OSC message from the app received
 					commands = (pathstr.substring(path[0].length+path[1].length+path[2].length+3));
 						// Format of the variable as scenename-command1_command2_..._commandN
-					document.getElementById(path[1] + "-" + commands.replace("/", "_")).innerHTML = oscMsg.args[0].value;
+					const el = document.getElementById(path[1] + "-" + commands.replace("/", "_"))
+					el.innerHTML = oscMsg.args[0].value;
+					console.log(path[1] + "-" + commands.replace("/", "_"));
+					const elementEvent = new CustomEvent('updated', { detail: { time: Date.now() } });
+					el.dispatchEvent(elementEvent); // dispatch an event that the variable has changed
 					break;
 			};
 			break;

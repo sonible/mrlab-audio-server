@@ -38,4 +38,4 @@ Buttons on the left side load a Scene. Technically, each button loads an HTML fi
 
 * To receive a state of a %variable% from the app, create an element such as: ` <span id="%appName%_%variable%"></span> `. The innertext of this variable will be updated each time, when an OSC message with %command% == %variable% will be received. Note that all "/" in %command% will be translated to "-" in %variable%, e.g., for a %command% of `Control/SamplingRate`, the %variable% must be `Control-SamplingRate`. 
 
-* To receive the state of an app being loaded or killed, receive the state of the variable called `%appname%-status`.
+* To react to a change of the status or variable received via OSC, add an event listener to the event 'updated'. 

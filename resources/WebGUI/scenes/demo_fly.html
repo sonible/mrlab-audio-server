@@ -58,9 +58,9 @@
 			writing-mode: vertical-lr;
 			direction: rtl;
 			width: 20px;
-			height: 60%;
+			height: 600px;
 		}
-		.volume-box {
+		.level-box { /* Style to display a level */
 			font-family: monospace;
 			font-size: 1.2rem;
 			background: #007bff;
@@ -69,7 +69,29 @@
 			border-radius: 4px;
 			width: 100px;
 			text-align: center;
+		}
+		.vu-meter {
+			transform: rotate(-90deg);
+			width: 150px; /* This becomes the height */
+			height: 20px; /* This becomes the thickness */
+		}
+		.meter-container {
+			width: 30px;
+			height: 600px;
+			background-color: #333;
+			border: 2px solid #000;
+			position: relative;
+			display: flex;
+			align-items: flex-end; /* Ensures the bar "grows" from the bottom */
+		}
+
+		.meter-bar {
+			width: 100%;
+			height: 60%; /* Change this percentage to move the meter */
+			background: linear-gradient(to top, green 0%, yellow 70%, red 100%);
+			transition: height 0.1s ease; /* Smooth movement */
 		}		
+  }
 	</style>
 
 
@@ -78,28 +100,41 @@
 	
 		<div class="button-group">
 			<div style="gap: 10px;">
-				<button onClick="launchAppAndWait('demo_fly', 'pd_fly', 5, SceneModule.init, SceneModule.connect)" class="big-button">Launch App</button>
-				<p style="text-align: center;">Status: <b id="pd_fly-status">unclear</b></p>
+				<button onClick="launchAppAndWait('demo_fly', 'pd_fly', 5, SceneModule.init, SceneModule.connect);" class="big-button">Launch App</button>
+				<p style="text-align: center;">Status: <b id="pd_fly-status">unclear</b></p>		
+				<p style="text-align: center;">
+					Version: <b id="pd_fly-Control_Version">unknown</b>
+					<br>
+					Sample rate: <b id="pd_fly-Control_SampleRate">unknown</b> Hz
+				</p>				
+			</div>
+			
+			<div style="gap: 10px;">
+				<button onClick="sendNoArgs('/app/pd_fly/osc/Play/Start')" class="big-button">Play</button>
+				<p style="text-align: center;"><b id="pd_fly-Play_Timecode">0:0.0</b> of <b id="pd_fly-Play_Duration">0:0.0</b></p>
+				<button onClick="sendNoArgs('/app/pd_fly/osc/Play/Stop')"class="big-button">Stop</button>
 			</div>
 
-			<button onClick="sendNoArgs('/app/pd_fly/osc/Play/Start')" class="big-button">Play</button>
-			<button onClick="sendNoArgs('/app/pd_fly/osc/Play/Stop')"class="big-button">Stop</button>
-			<div style="gap: 10px;">
-				<p style="text-align: center;">Version: <b id="pd_fly-Control_Version">unknown</b></p>	
-				<p style="text-align: center;">Sample rate: <b id="pd_fly-Control_SampleRate">unknown</b> Hz</p>
-			</div>
+			<br>
+			<br>
 			<button onClick="quitApp('demo_fly', 'pd_fly', SceneModule.init)" class="big-button">Quit App</button>
 		</div>
 
 		<div class="slider-group">
-			<span>Volume</span><br>
-			<input type=range min="1" max="100" value="60" oninput="sendValue('/app/pd_fly/osc/SetVol', this.value); document.getElementById('volume-box').innerText = this.value;" class="volume-slider">
-			<div class="volume-box" id="volume-box">60</div>
+			<span>Volume</span>
+			<br>
+			<input type=range min="0" max="100" value="0" oninput="sendValue('/app/pd_fly/osc/Play/Volume/Set', this.value); document.getElementById('volume-box').innerText = this.value;" class="volume-slider">
+			<br>
+			<div class="level-box" id="volume-box">--</div>
 		</div>
 		<div class="slider-group">
-			<span>Level</span><br>
-			<input type=range min="1" max="100" value="0" class="volume-slider" disabled id="pd_fly-Level-slider">
-			<div class="volume-box" id="pd_fly-Level">--</div>
+			<span>Level</span>
+			<br>
+			<div class="meter-container">
+				<div class="meter-bar" id="pd_fly-Play_VU-bar"></div>
+			</div>
+			<br>
+			<div class="level-box" id="pd_fly-Play_VU">--</div>
 		</div>
 	</div>
 	
