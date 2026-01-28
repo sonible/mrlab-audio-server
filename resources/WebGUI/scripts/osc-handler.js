@@ -44,7 +44,7 @@ oscPort.on("ready", function ()
 
 oscPort.on("message", function (oscMsg) 
 {
-	console.log("OSC message received: ", oscMsg);
+	// console.log("OSC message received: ", oscMsg);
 	pathstr= oscMsg.address.substring(1);
 	path = pathstr.split("/");
 		// Format of the message: device/scenename/osc/command1/command2/.../commandN
@@ -54,7 +54,10 @@ oscPort.on("message", function (oscMsg)
 			switch (path[2])
 			{
 				case 'state': // Launch status received 
-					document.getElementById(path[1] + "-status").innerHTML = oscMsg.args[1].value;
+					const el = document.getElementById(path[1] + "-status");
+					el.innerHTML = oscMsg.args[1].value;
+					const event = new CustomEvent('updated', { detail: { time: Date.now() } });
+					el.dispatchEvent(event);
 					break;
 	
 				case 'osc': // OSC message from the app received

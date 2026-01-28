@@ -42,7 +42,7 @@
 	<div class="start-container">
 		<div>
 			<button onClick="send('/app/pdu_start/control', 'launch');" class="big-button">PDU: Start</button>
-			<p style="text-align: center;"> <b id="pdu_start-status">&nbsp;</b></p>
+			<p style="text-align: center; color: white;"> <b id="pdu_start-status">&nbsp;</b></p>
 		</div>
 		
 		<div style="display: inline; width: 40%; font-size: 24px; text-align: center; font-weight: bold;">
@@ -52,14 +52,14 @@
 					<th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th>
 				</thead>
 				<tr>
-					<td id="amp1-status">-</td>
-					<td id="amp2-status">-</td>
-					<td id="amp3-status">-</td>
-					<td id="amp4-status">-</td>
-					<td id="amp5-status">-</td>
-					<td id="amp6-status">-</td>
-					<td id="amp7-status">-</td>
-					<td id="amp8-status">-</td>
+					<td id="amp1-status">&#9711;</td>
+					<td id="amp2-status">&#9711;</td>
+					<td id="amp3-status">&#9711;</td>
+					<td id="amp4-status">&#9711;</td>
+					<td id="amp5-status">&#9711;</td>
+					<td id="amp6-status">&#9711;</td>
+					<td id="amp7-status">&#9711;</td>
+					<td id="amp8-status">&#9711;</td>
 				</tr>
 			</table>
 			<button id="control-Update_Status" class="small-button">Update Status</button>
@@ -68,22 +68,22 @@
 		
 		<div>
 			<button onClick="send('/app/amps_unmute/control', 'launch');"class="big-button">Amps: Unmute</button>
-			<p style="text-align: center;"><b id="amps_unmute-status">&nbsp;</b></p>
+			<p style="text-align: center; color: white;"><b id="amps_unmute-status">&nbsp;</b></p>
 		</div>
 	</div>
 	<h3>Shutdown the system:</h3>
 	<div class="start-container">		
 		<div>
 			<button onClick="send('/app/amps_mute/control', 'launch');"class="big-button">Amps: Mute</button>
-			<p style="text-align: center;"><b id="amps_mute-status">&nbsp;</b></p>
+			<p style="text-align: center; color: white;"><b id="amps_mute-status">&nbsp;</b></p>
 		</div>
 		<div>
 			<button onClick="send('/app/amps_shutdown/control', 'launch');"class="big-button">Amps: Shutdown</button>
-			<p style="text-align: center;"><b id="amps_shutdown-status">&nbsp;</b></p>
+			<p style="text-align: center; color: white;"><b id="amps_shutdown-status">&nbsp;</b></p>
 		</div>
 		<div>
 			<button onClick="send('/app/pdu_shutdown/control', 'launch');" class="big-button">PDU Shutdown</button>
-			<p style="text-align: center;"><b id="pdu_shutdown-status">&nbsp;</b></p>
+			<p style="text-align: center; color: white;"><b id="pdu_shutdown-status">&nbsp;</b></p>
 		</div>
 	</div>
 	<h3>Special:</h3>

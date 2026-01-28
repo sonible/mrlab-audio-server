@@ -121,3 +121,27 @@ function checkStateLaunched(scene, app, timeout, readyFun)
 	}
 }
 
+/*	Fetches a response from an URL with a timeout. 
+		Returns response and error. error is null when no error happened 
+			error.name: 
+				'TypeError': e.g., if CORS policy blocks access. Install Add-on "Allow CORS"
+				'TimeoutError': time out happened, device not reachable
+*/
+async function fetchHttpResponse (url, timeout)
+{
+	try 
+  {
+    const x = await fetch(url, { signal: AbortSignal.timeout(timeout) } );
+    if (!x.ok) 
+		{
+			throw new Error(`Error: ${x.status}`);
+    }
+    response = await x.text();
+		return { response, error: null };
+  } 
+  catch (error)
+  {
+		return {response:null, error};
+  }
+}
+	
