@@ -8,10 +8,29 @@ export function init()
 
 document.getElementById('pd_fly-Play_VU').addEventListener('updated', (e) => 
 {
-	document.getElementById('pd_fly-Play_VU-bar').style.height = document.getElementById('pd_fly-Play_VU').innerText + '%';
-	console.log('level received:' + document.getElementById('pd_fly-status').innerText + '%');
+	const vu = document.getElementById('pd_fly-Play_VU');
+	document.getElementById('pd_fly-Play_VU-bar').style.height = vu.innerText + '%';
+	document.getElementById('pd_fly-Play_VU-number').innerText = Math.round(vu.innerText) + ' dB';
 });			
 
+document.getElementById('pd_fly-Play_Volume').addEventListener('updated', (e) => 
+{
+	const vol = document.getElementById('pd_fly-Play_Volume');
+	document.getElementById('volume-slider').value = Math.round(vol.innerText);
+	document.getElementById('volume-number').innerText = Math.round(vol.innerText) + " dB";
+});	
+
+document.getElementById('pd_fly-Play_Duration').addEventListener('updated', (e) => 
+{
+	const dur = document.getElementById('pd_fly-Play_Duration').innerText;
+	document.getElementById('duration').innerText = Math.round(dur / 60) + ":" + (Math.round(dur % 60) + Math.round((dur % 1)*10)/10);
+});
+
+document.getElementById('pd_fly-Play_Timecode').addEventListener('updated', (e) => 
+{
+	const dur = document.getElementById('pd_fly-Play_Timecode').innerText;
+	document.getElementById('timecode').innerText = Math.round(dur / 60) + ":" + (Math.round(dur % 60) + Math.round((dur % 1)*10)/10);
+});
 
 export function connect()
 {

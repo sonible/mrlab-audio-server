@@ -111,21 +111,22 @@
 			
 			<div style="gap: 10px;">
 				<button onClick="sendNoArgs('/app/pd_fly/osc/Play/Start')" class="big-button">Play</button>
-				<p style="text-align: center;"><b id="pd_fly-Play_Timecode">0:0.0</b> of <b id="pd_fly-Play_Duration">0:0.0</b></p>
+				<p style="text-align: center;"><b id="timecode">0:0.0</b> of <b id="duration">0:0.0</b></p>
 				<button onClick="sendNoArgs('/app/pd_fly/osc/Play/Stop')"class="big-button">Stop</button>
 			</div>
 
 			<br>
-			<br>
+			<p style="text-align: center; color: white;"><b id="pd_fly-Play_Timecode">0</b><b id="pd_fly-Play_Duration">0</b></p>
 			<button onClick="quitApp('demo_fly', 'pd_fly', SceneModule.init)" class="big-button">Quit App</button>
 		</div>
 
 		<div class="slider-group">
 			<span>Volume</span>
 			<br>
-			<input type=range min="0" max="100" value="0" oninput="sendValue('/app/pd_fly/osc/Play/Volume/Set', this.value); document.getElementById('volume-box').innerText = this.value;" class="volume-slider">
+			<input type=range min="0" max="100" value="0" oninput="sendValue('/app/pd_fly/osc/Play/Volume/Set', this.value); document.getElementById('volume-number').innerText = this.value + ' dB';" class="volume-slider" id="volume-slider">
 			<br>
-			<div class="level-box" id="volume-box">--</div>
+			<div class="level-box" id="volume-number">--</div>
+			<p style="text-align: center; color: white;"><b id="pd_fly-Play_Volume">&nbsp;</b></p>
 		</div>
 		<div class="slider-group">
 			<span>Level</span>
@@ -134,7 +135,8 @@
 				<div class="meter-bar" id="pd_fly-Play_VU-bar"></div>
 			</div>
 			<br>
-			<div class="level-box" id="pd_fly-Play_VU">--</div>
+			<div class="level-box" id="pd_fly-Play_VU-number">--</div>
+			<p style="text-align: center; color: white;"><b id="pd_fly-Play_VU">&nbsp;</b></p>
 		</div>
 	</div>
 	
