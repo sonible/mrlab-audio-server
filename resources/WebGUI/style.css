@@ -281,6 +281,25 @@ header a + a {
     cursor: pointer;
     text-align: center;
 }
+
+#confirmDialog {
+   padding: 20px;
+	 text-align: center;
+}
+#confirmDialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.6); 
+  backdrop-filter: blur(4px);           
+}
+#confirmDialog button {
+	padding: 20px;
+	border: 1px solid #ccc;
+	background-color: #9da0a5;
+	cursor: pointer;
+	font-size: 20pt;
+	text-align: center;
+	width: 300px; 
+}
+
 #page-home {
     display: block; /* Default visible section */
 }

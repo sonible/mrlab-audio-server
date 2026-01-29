@@ -178,3 +178,44 @@ document.querySelector('#control-Update_Status').addEventListener('click', async
 	}
 	
 });
+
+export function AmpsShutdown()
+{
+	const dialog = document.getElementById('confirmDialog');
+	document.getElementById('confirmTitle').innerText = "Shutdown the Amplifiers?";
+	document.getElementById('confirmText').innerText = "This will shutdown the audio amplifiers. If they are unmuted, this will create a loud 'pop'. \n\nIf the amplifiers are unmuted, press Cancel and mute the amplifiers.\n\n. To shutdown the amplifiers, press OK.";
+	dialog.showModal();
+
+	document.getElementById('okBtn').onclick = () => 
+	{
+		send('/app/amps_shutdown/control', 'launch');
+		dialog.close();
+	};
+
+	document.getElementById('cancelBtn').onclick = () => 
+	{
+		dialog.close();
+	};
+}
+
+export function PduShutdown()
+{
+	const dialog = document.getElementById('confirmDialog');
+	document.getElementById('confirmTitle').innerText = "Shutdown the Audio System?";
+	document.getElementById('confirmText').innerText = "This will shutdown the audio system. If the amplifiers are unmuted, this will create a loud 'pop'. If the amplifiers have not been shutdown, this might create a damage in their configuration.\n\nIf the amplifiers are not muted or shutdown, press Cancel and mute and shutdown them.\n\n. To shutdown the audio system, press OK.";
+	dialog.showModal();
+
+	document.getElementById('okBtn').onclick = () => 
+	{
+		send('/app/pdu_shutdown/control', 'launch');
+		dialog.close();
+	};
+
+	document.getElementById('cancelBtn').onclick = () => 
+	{
+		dialog.close();
+	};
+	
+}
+
+
