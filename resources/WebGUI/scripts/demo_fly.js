@@ -23,13 +23,13 @@ document.getElementById('pd_fly-Play_Volume').addEventListener('updated', (e) =>
 document.getElementById('pd_fly-Play_Duration').addEventListener('updated', (e) => 
 {
 	const dur = document.getElementById('pd_fly-Play_Duration').innerText;
-	document.getElementById('duration').innerText = Math.round(dur / 60) + ":" + (Math.round(dur % 60) + Math.round((dur % 1)*10)/10);
+	document.getElementById('duration').innerText = Math.round(dur / 60) + ":" + (dur % 60).toFixed(1);
 });
 
 document.getElementById('pd_fly-Play_Timecode').addEventListener('updated', (e) => 
 {
 	const dur = document.getElementById('pd_fly-Play_Timecode').innerText;
-	document.getElementById('timecode').innerText = Math.round(dur / 60) + ":" + (Math.round(dur % 60) + Math.round((dur % 1)*10)/10);
+	document.getElementById('timecode').innerText = Math.round(dur / 60) + ":" + (dur % 60).toFixed(1);
 });
 
 export function connect()
@@ -40,7 +40,7 @@ export function connect()
 	sendResponse('/app/pd_fly/osc/Control/Response', 9336);
 	sendNoArgs('/app/pd_fly/osc/Control/Version');
 	secWaited = 0;
-	setTimeout(() => { checkConnection(); }, 100);
+	setTimeout(() => { checkConnection(); }, 300);
 }
 
 export function checkConnection()

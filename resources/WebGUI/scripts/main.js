@@ -112,6 +112,10 @@ function checkStateLaunched(scene, app, timeout, readyFun)
 		case "error":
 			state.style.backgroundColor = "red";
 			break;
+		case "initialized": // unclear, but the app might have been started, let's act as ready
+			state.style.backgroundColor = "";
+			if (readyFun != null) readyFun(); 
+			break;
 	}
 	if (secWaited > timeout*1000)
 	{
