@@ -33,7 +33,7 @@ async function loadScene(scene, clickedButton)
 	}
 	catch (error)
 	{
-		activeScene.innerHTML = `<h2>Error</h2><p>The scene ${scene} could not be loaded.</p>`;
+		activeScene.innerHTML = `<h2>Error</h2><p>The scene "${scene}" could not be loaded.</p>`;
 	}
 		// Load Scene-specific scripts, if any
 	try
