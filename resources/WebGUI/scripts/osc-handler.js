@@ -63,9 +63,9 @@ oscPort.on("message", function (oscMsg)
 				case 'osc': // OSC message from the app received
 					commands = (pathstr.substring(path[0].length+path[1].length+path[2].length+3));
 						// Format of the variable as scenename-command1_command2_..._commandN
-					const el = document.getElementById(path[1] + "-" + commands.replace("/", "_"))
+					const el = document.getElementById(path[1] + "-" + commands.replaceAll("/", "_"));
+					//console.log(path[1] + "-" + commands.replace("/", "_"));
 					el.innerHTML = oscMsg.args[0].value;
-					console.log(path[1] + "-" + commands.replace("/", "_"));
 					const elementEvent = new CustomEvent('updated', { detail: { time: Date.now() } });
 					el.dispatchEvent(elementEvent); // dispatch an event that the variable has changed
 					break;
