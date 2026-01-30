@@ -38,7 +38,7 @@ document.querySelector('#control-Update_Status').addEventListener('click', async
 
 	for (var i=1; i<=8; i++)
 	{
-		x = await fetchHttpResponse('http://172.16.60.11' + i + '/api/get/system/mute', 100);
+		x = await fetchHttpResponse('http://172.16.60.11' + i + '/api/get/system/mute', 200);
 		console.log("Mute", x);
 		if(x.error)
 		{
