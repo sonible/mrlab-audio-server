@@ -31,6 +31,9 @@ include (CTest)
 # JUCE dependency
 CPMAddPackage ("gh:juce-framework/JUCE#8.0.12")
 
+# nlohmann json
+CPMAddPackage("gh:nlohmann/json@3.12.0")
+
 # yaml-cpp
 set (CMAKE_POLICY_VERSION_MINIMUM "3.5")
 CPMAddPackage (
@@ -121,6 +124,7 @@ target_link_libraries (mrlabctrl_Common
         civetweb-cpp
         liblo_static
         yaml-cpp::yaml-cpp
+        nlohmann_json::nlohmann_json
 )
 
 target_link_libraries (mrlabctrl_App
