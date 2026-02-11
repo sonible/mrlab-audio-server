@@ -88,7 +88,7 @@ bool OscController::addSubPathServer (const juce::Identifier& id, std::string su
         std::vector<std::byte> serialised;
         serialised.resize (size);
         message.serialise (fullPath, serialised.data(), nullptr);
-        auto result = mainController.getWebServerController().sendToAll (serialised);
+        const auto result = mainController.getWebServerController().sendToAll (serialised);
         jassertquiet (result);
     });
 
@@ -148,6 +148,18 @@ bool OscController::addMainServer (int port)
         return 1; // Continue searching for other handlers.
     });
 
+    server->add_method ("/config/*/reload", nullptr, [this] (std::string_view path, const lo::Message& message) {
+        handleIncomingReloadConfigMessage (path, message);
+
+        return 0; // Don't continue searching for other handlers.
+    });
+
+    server->add_method ("/configinfo/list", nullptr, [this] (std::string_view /*path*/, const lo::Message& message) {
+        sendAvailableConfigs (message);
+
+        return 0; // Don't continue to search for other handlers.
+    });
+
     // Catch-all handler for log.
     server->add_method (nullptr, nullptr, [this] (std::string_view path, const lo::Message& message) {
         handleIncomingMessage (path, message);
@@ -167,6 +179,25 @@ bool OscController::addToServers (const juce::Identifier& id, int port)
     jassert (success); // A server with this key already exists!
 
     return success;
+}
+
+void OscController::sendAvailableConfigs (const lo::Message& /*message*/)
+{
+    Logger::logInfo ("OscController: send all available app configs");
+
+    auto msg = lo_message_new();
+    const auto& appsMap = mainController.getConfigController().getConfigurations();
+    for (const auto& [id, yaml] : appsMap)
+        lo_message_add_string (msg, id.getCharPointer());
+
+    const auto path = std::string ("/configinfo/list");
+    auto size = lo_message_length (msg, path.c_str());
+
+    std::vector<std::byte> serialised;
+    serialised.resize (size);
+    lo_message_serialise (msg, path.c_str(), (void*) serialised.data(), &size);
+    const auto result = mainController.getWebServerController().sendToAll (serialised);
+    jassertquiet (result);
 }
 
 void OscController::handleIncomingMessage (std::string_view path, const lo::Message& message)
@@ -198,6 +229,19 @@ void OscController::handleIncomingAppControlMessage (std::string_view path, cons
         else if (command == "quit")
             juce::MessageManager::callAsync ([&] { handle.stop(); });
     }
+}
+
+void OscController::handleIncomingReloadConfigMessage (std::string_view path, const lo::Message& /*message*/)
+{
+    Logger::logInfo (juce::String ("OscController [config/*/reload]: received ") + std::string (path));
+
+    path.remove_prefix (1);                                                      // strip initial '/'
+    const auto pathElems = juce::StringArray::fromTokens (path.data(), "/", ""); // strip initial '/'
+    const auto id = juce::Identifier (pathElems[1]);
+
+    const auto result = mainController.getConfigController().loadConfig (id);
+
+    jassertquiet (result);
 }
 
 } // namespace mrlab::controller

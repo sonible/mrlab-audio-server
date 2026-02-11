@@ -20,7 +20,7 @@ namespace lo
 class ServerThread;
 class Message;
 class Method;
-}
+} // namespace lo
 
 namespace mrlab::controller
 {
@@ -94,10 +94,14 @@ private:
      */
     void handleIncomingAppControlMessage (std::string_view path, const lo::Message& message);
 
+    void handleIncomingReloadConfigMessage (std::string_view path, const lo::Message& message);
+
+    void sendAvailableConfigs (const lo::Message& message);
+
     //==============================================================================
     MainController& mainController;
     std::map<juce::Identifier, std::unique_ptr<lo::ServerThread>> servers; ///< Managed server instances.
-    std::map<juce::Identifier, lo::Method> mainServerMethods; ///< OSC methods added to main server per id.
+    std::map<juce::Identifier, lo::Method> mainServerMethods;              ///< OSC methods added to main server per id.
 
     MRLAB_IMPLEMENT_LISTENER_INTERFACE
 
