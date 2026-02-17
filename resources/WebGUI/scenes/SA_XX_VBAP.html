@@ -6,7 +6,14 @@
 		<div class="button-group">
 			<div style="gap: 10px;">
 				<button onClick="launchAppAndWait('SA_XX_VBAP', 'SA_XX_VBAP', 5, SceneModule.init, SceneModule.connect);" class="big-button">Launch App</button>
-				<p style="text-align: center;">Status: <b id="SA_XX_VBAP-status">unclear</b></p>		
+				<p style="text-align: center;">Status: <b id="SA_XX_VBAP-status">unclear</b></p>	
+        <br>	
+				<p style="text-align: center; font-weight: bold;">Doors:</p>
+				<button onClick="sendValue('/app/SA_XX_VBAP/osc/Control/Door/Set', 'OO')" class="big-button">OO</button>
+				<button onClick="sendValue('/app/SA_XX_VBAP/osc/Control/Door/Set', 'OC')" class="big-button">OC</button>
+				<button onClick="sendValue('/app/SA_XX_VBAP/osc/Control/Door/Set', 'CO')" class="big-button">CO</button>
+				<button onClick="sendValue('/app/SA_XX_VBAP/osc/Control/Door/Set', 'CC')"class="big-button">CC</button>
+
 				<p style="text-align: center;">
 					Version: <b id="SA_XX_VBAP-Control_Version">unknown</b>
 					<br>
@@ -14,13 +21,6 @@
 				</p>				
 			</div>
 			
-			<div style="gap: 10px;">
-				<button onClick="sendValue('/app/SA_XX_VBAP/osc/Control/Door/Set', 'OO')" class="big-button">OO</button>
-				<button onClick="sendValue('/app/SA_XX_VBAP/osc/Control/Door/Set', 'OC')" class="big-button">OC</button>
-				<button onClick="sendValue('/app/SA_XX_VBAP/osc/Control/Door/Set', 'CO')" class="big-button">CO</button>
-				<button onClick="sendValue('/app/SA_XX_VBAP/osc/Control/Door/Set', 'CC')"class="big-button">CC</button>
-			</div>
-
 			<div id="input-buttons-container" style="gap: 10px;">
         <!-- Input buttons will be injected here by input-controls.js -->
 			</div>

@@ -28,7 +28,7 @@ const inputLabels = {
 export function renderInputControls(buttonContainerId, groupContainerId, sceneName) {
     const btnContainer = document.getElementById(buttonContainerId);
     if (btnContainer) {
-        let html = '';
+        let html = '<p style="text-align: center; font-weight: bold;">Inputs:</p>';
         inputNames.forEach(id => {
              html += `<button id="btn-${id}" onClick="SceneModule.showInputSection('${id}')" class="big-button">${inputLabels[id]}</button> `;
         });
@@ -60,7 +60,6 @@ export function renderInputControls(buttonContainerId, groupContainerId, sceneNa
 
 export function showInputSection(id)
 {
-	console.log('showInputSection: ' + id);
 	// hide all input sections
 	const allSections = document.querySelectorAll('.input-section');
 	allSections.forEach(section => { section.style.display = 'none'; });
@@ -71,9 +70,7 @@ export function showInputSection(id)
 }
 
 export function toggleInputState(id)
-{
-	console.log('toggleInputState: ' + id);
-	
+{	
 	const smallBtn = document.getElementById('btn-input-' + id);
 	const bigBtn = document.getElementById('btn-' + id);
 	const slider = document.getElementById('slider-input-' + id);

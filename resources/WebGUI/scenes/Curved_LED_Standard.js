@@ -7,7 +7,6 @@ export function init()
 	document.getElementById("Curved_LED_Standard-status").style.backgroundColor = "";	
 	document.getElementById("Curved_LED_Standard-Control_Version").innerText = "---";
 	document.getElementById("Curved_LED_Standard-Control_SampleRate").innerText = "---";
-    
     // Inject input controls
     renderInputControls('input-buttons-container', 'input-group-container', 'Curved_LED_Standard');
 }
