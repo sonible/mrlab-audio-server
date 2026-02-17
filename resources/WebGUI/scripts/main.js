@@ -38,7 +38,7 @@ async function loadScene(scene, clickedButton)
 		// Load Scene-specific scripts, if any
 	try
 	{
-		SceneModule = await import('./' + scene + '.js');
+		SceneModule = await import('../scenes/' + scene + '.js');
 		SceneModule.init();	// must have an init
 		console.log('Script ' + scene + '.js loaded.');
 	}

@@ -1,14 +1,14 @@
 # WebGUI 
 
-Buttons on the left side load a Scene. Technically, each button loads an HTML file `scenes/%SceneName%.html` and optionally a Javascript module `scripts/%SceneName%.js`.
+Buttons on the left side load a Scene. Technically, each button loads an HTML file `scenes/%SceneName%.html` and optionally a Javascript module `scenes/%SceneName%.js`.
 
 ## A Scene
 
 * Must start with `<div id="%SceneName%" class="scene-main">` and end with `</div>`.
 
 * No scripts allowed. If scripts are required: 
-  * Create a JS file in `scripts/%SceneName%.js`.
-	* Use `export function` instead of `function`, 
+  * Create a JS called `%SceneName%.js` in the same directory as the `%SceneName%.html` file.
+	* Use `export function` instead of `function`.
 	* Include a function called `init`. This function is obligatory and will be executed before the scene will be shown. 
 	* Functions within that script can be accessed as `SceneModule.%someFunction%`, e.g., `SceneModule.init()`. 
 

@@ -1,40 +1,6 @@
 <div id="control" class="scene-main">
 
 	<style>
-		.big-button {
-			width: 300px;
-			padding: 40px;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			text-align: center;
-			font-size: 24px;
-			font-weight: bold;			
-			cursor: pointer;
-		}
-		
-		.start-container {
-			display: flex;
-			justify-content: space-between; /* Pushes content to far left and far right */
-			align-items: center;
-			// height: 400px;
-			padding: 20px;
-			border: 1px solid #ccc;
-			width: 100%;
-		}
-
-		.small-button {
-			width: 200px;
-			padding: 40px;
-			display: inline;
-			align-items: center;
-			justify-content: center;
-			text-align: center;
-			font-size: 18px;
-			font-weight: bold;			
-			cursor: pointer;
-		}	
-
 	</style>
 
 
@@ -46,12 +12,19 @@
 			<button onClick="send('/app/pdu_start/control', 'launch');" class="big-button">PDU: Start</button>
 			<p style="text-align: center; color: white;"> <b id="pdu_start-status">&nbsp;</b></p>
 		</div>
-		
+
 		<div style="display: inline; width: 40%; font-size: 24px; text-align: center; font-weight: bold;">
 			Amplifier Status<br>
 			<table style="text-align: center;">
 				<thead style="font-weight: bold;">
-					<th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th>
+					<th>1</th>
+					<th>2</th>
+					<th>3</th>
+					<th>4</th>
+					<th>5</th>
+					<th>6</th>
+					<th>7</th>
+					<th>8</th>
 				</thead>
 				<tr>
 					<td id="amp1-status">&#9711;</td>
@@ -67,15 +40,15 @@
 			<button id="control-Update_Status" class="small-button">Update Status</button>
 
 		</div>
-		
+
 		<div>
 			<p style="text-align: center;">Step #2:</p>
-			<button onClick="send('/app/amps_unmute/control', 'launch');"class="big-button">Amps: Unmute</button>
+			<button onClick="send('/app/amps_unmute/control', 'launch');" class="big-button">Amps: Unmute</button>
 			<p style="text-align: center; color: white;"><b id="amps_unmute-status">&nbsp;</b></p>
 		</div>
 	</div>
 	<h3>Shutdown the system:</h3>
-	<div class="start-container">		
+	<div class="start-container">
 		<div>
 			<p style="text-align: center;">Step #1:</p>
 			<button onClick="send('/app/amps_mute/control', 'launch');" class="big-button">Amps: Mute</button>
@@ -83,7 +56,7 @@
 		</div>
 		<div>
 			<p style="text-align: center;">Step #2:</p>
-			<button onClick="SceneModule.AmpsShutdown();"class="big-button">Amps: Shutdown</button>
+			<button onClick="SceneModule.AmpsShutdown();" class="big-button">Amps: Shutdown</button>
 			<p style="text-align: center; color: white;"><b id="amps_shutdown-status">&nbsp;</b></p>
 		</div>
 		<div>
@@ -95,11 +68,13 @@
 	<h3>Special:</h3>
 	<div class="start-container">
 		<div>
-			<button onClick="send('/app/matrix_default/control', 'launch');" class="big-button" disabled>Matrix:<br>Load Default Routing</button>
+			<button onClick="send('/app/matrix_default/control', 'launch');" class="big-button" disabled>Matrix:<br>Load
+				Default Routing</button>
 			<p style="text-align: center;"> <b id="matrix_default-status">&nbsp;</b></p>
 		</div>
 		<div>
-			<button onClick="send('/app/mixer_default/control', 'launch');" class="big-button" disabled>Mixer:<br>Load Default Routing</button>
+			<button onClick="send('/app/mixer_default/control', 'launch');" class="big-button" disabled>Mixer:<br>Load
+				Default Routing</button>
 			<p style="text-align: center;"> <b id="mixer_default-status">&nbsp;</b></p>
 		</div>
 		<div>
@@ -107,7 +82,7 @@
 			<p style="text-align: center;"> <b id="kill-status">&nbsp;</b></p>
 		</div>
 	</div>
-	
+
 
 
 </div>
