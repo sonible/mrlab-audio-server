@@ -1,0 +1,70 @@
+<div id="Curved_LED_Standard" class="scene-main">
+
+	<h2>Spatial Audio: VBAP</h2>
+	<div class="start-container">
+	
+		<div class="button-group">
+			<div style="gap: 10px;">
+				<button onClick="lockScene('Curved_LED_Standard');" class="big-button">Lock</button>
+				<p style="text-align: center;">Status: <b id="Curved_LED_Standard-status">unclear</b></p>		
+				<p style="text-align: center;">
+					Version: <b id="Curved_LED_Standard-Control_Version">unknown</b>
+					<br>
+					Sample rate: <b id="Curved_LED_Standard-Control_SampleRate">unknown</b> Hz
+				</p>				
+			</div>
+			
+			<div style="gap: 10px;">
+				<button class="big-button">DANTE.Mono.1</button>
+				<button class="big-button">DANTE.Mono.2</button>
+				<button class="big-button">DANTE.Stereo.1</button>
+				<button class="big-button">DANTE.Bluetooth</button>
+        <button class="big-button">DANTE.HDMI</button>
+        <button class="big-button">DANTE.GCPU</button>
+        <button class="big-button">DANTE.CurvedLEDPC</button>
+        <button class="big-button">Mic.Beam.1</button>
+        <button class="big-button">Mic.Beam.2</button>
+        <button class="big-button">Mic.Wireless.1</button>
+        <button class="big-button">Mic.Wireless.2</button>
+        <button class="big-button">Mic.Array</button>
+        <button class="big-button">Analog.Mono.1</button>
+        <button class="big-button">Analog.Mono.2</button>
+        <button class="big-button">Analog.Mono.3</button>
+        <button class="big-button">Analog.Mono.4</button>
+        <button class="big-button">Analog.Mono.5</button>
+        <button class="big-button">Analog.Mono.6</button>
+        <button class="big-button">Analog.Mono.7</button>
+        <button class="big-button">Analog.Mono.8</button>
+        <button class="big-button">Analog.Stereo.1</button>
+        <button class="big-button">Analog.Stereo.2</button>
+        <button class="big-button">Analog.Stereo.3</button>
+        <button class="big-button">Analog.Stereo.4</button>        
+			</div>
+
+			<br>
+			
+			<button onClick="unlockScene('Curved_LED_Standard');" class="big-button">Reset and Unlock</button>
+		</div>
+
+		<div class="slider-group">
+			<span>Volume</span>
+			<br>
+			<input type=range min="0" max="100" value="0" oninput="sendValue('/app/Curved_LED_Standard/osc/Play/Volume/Set', this.value); document.getElementById('volume-number').innerText = this.value + ' dB';" class="volume-slider" id="volume-slider">
+			<br>
+			<div class="level-box" id="volume-number">--</div>
+			<p style="text-align: center; color: white;"><b id="Curved_LED_Standard-Play_Volume">&nbsp;</b></p>
+		</div>
+		<div class="slider-group">
+			<span>Level</span>
+			<br>
+			<div class="meter-container">
+				<div class="meter-bar" id="Curved_LED_Standard-Play_VU-bar"></div>
+			</div>
+			<br>
+			<div class="level-box" id="Curved_LED_Standard-Play_VU-number">--</div>
+			<p style="text-align: center; color: white;"><b id="Curved_LED_Standard-Play_VU">&nbsp;</b></p>
+		</div>
+	</div>
+	
+</div>
+

@@ -63,6 +63,22 @@ function launchApp(scene, app)
 	secWaited = 0;
 }
 
+// Lock a scene, consider interface functionality
+function lockScene(scene)
+{
+	const activeButton = document.getElementById('button-' + scene);
+	activeButton.classList.remove('active-scene');	
+	activeButton.classList.add('launched-scene');
+}
+
+// Unlock a scene, consider interface functionality
+function unlockScene(scene)
+{
+	const activeButton = document.getElementById('button-' + scene);
+	activeButton.classList.remove('launched-scene');	
+	activeButton.classList.add('active-scene');
+}
+
 // Quit an app of a scene, consider interface functionality
 function quitApp(scene, app, quitFun)
 {
