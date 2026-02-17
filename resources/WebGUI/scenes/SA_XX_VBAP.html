@@ -29,20 +29,20 @@
 		<div class="slider-group">
 			<span>Volume</span>
 			<br>
-			<input type=range min="0" max="100" value="0" oninput="sendValue('/app/SA_XX_VBAP/osc/Play/Volume/Set', this.value); document.getElementById('volume-number').innerText = this.value + ' dB';" class="volume-slider" id="volume-slider">
+			<input type=range min="0" max="100" value="0" oninput="sendValue('/app/SA_XX_VBAP/osc/Total/Volume/Set', this.value); document.getElementById('volume-number').innerText = this.value + ' dB';" class="volume-slider" id="volume-slider">
 			<br>
 			<div class="level-box" id="volume-number">--</div>
-			<p style="text-align: center; color: white;"><b id="SA_XX_VBAP-Play_Volume">&nbsp;</b></p>
+			<p style="text-align: center; color: white;"><b id="SA_XX_VBAP-Total_Volume">&nbsp;</b></p>
 		</div>
 		<div class="slider-group">
 			<span>Level</span>
 			<br>
 			<div class="meter-container">
-				<div class="meter-bar" id="SA_XX_VBAP-Play_VU-bar"></div>
+				<div class="meter-bar" id="SA_XX_VBAP-Total_VU-bar"></div>
 			</div>
 			<br>
-			<div class="level-box" id="SA_XX_VBAP-Play_VU-number">--</div>
-			<p style="text-align: center; color: white;"><b id="SA_XX_VBAP-Play_VU">&nbsp;</b></p>
+			<div class="level-box" id="SA_XX_VBAP-Total_VU-number">--</div>
+			<p style="text-align: center; color: white;"><b id="SA_XX_VBAP-Total_VU">&nbsp;</b></p>
 		</div>
 	</div>
 	
