@@ -1,9 +1,15 @@
+import { renderInputControls, showInputSection, toggleInputState } from '../scripts/input-controls.js';
+export { showInputSection, toggleInputState };
+
 export function init()
 {
 	document.getElementById("Curved_LED_Standard-status").innerText = "initialized";
 	document.getElementById("Curved_LED_Standard-status").style.backgroundColor = "";	
 	document.getElementById("Curved_LED_Standard-Control_Version").innerText = "---";
 	document.getElementById("Curved_LED_Standard-Control_SampleRate").innerText = "---";
+    
+    // Inject input controls
+    renderInputControls('input-buttons-container', 'input-group-container', 'Curved_LED_Standard');
 }
 
 document.getElementById('Curved_LED_Standard-Total_VU').addEventListener('updated', (e) => 
@@ -62,51 +68,3 @@ export function checkConnection()
 		state.style.backgroundColor = "red";
 	}
 }		
-
-
-export function showInputSection(id)
-{
-	console.log('showInputSection: ' + id);
-	// hide all input sections
-	const allSections = document.querySelectorAll('.input-section');
-	allSections.forEach(section => { section.style.display = 'none'; });
-
-	// show the selected input section
-	const section = document.getElementById('input-section-' + id);
-	if (section) section.style.display = 'block';
-}
-
-export function toggleInputState(id)
-{
-	console.log('toggleInputState: ' + id);
-	
-	const smallBtn = document.getElementById('btn-input-' + id);
-	const bigBtn = document.getElementById('btn-' + id);
-	const slider = document.getElementById('slider-input-' + id);
-
-	if (!smallBtn || !bigBtn || !slider) return;
-
-	// Check if currently active by class
-	const isActive = smallBtn.classList.contains('active-input');
-
-	if (!isActive) // User wants to turn it ON
-	{
-		smallBtn.classList.add('active-input');
-		smallBtn.innerText = "Input: On";
-		
-		bigBtn.classList.add('active-input');
-		
-		slider.disabled = false;
-		slider.style.opacity = "1.0";
-	}
-	else // Turn OFF
-	{
-		smallBtn.classList.remove('active-input');
-		smallBtn.innerText = "Input: Off";
-
-		bigBtn.classList.remove('active-input');
-
-		slider.disabled = true;
-		slider.style.opacity = "0.5";
-	}
-}

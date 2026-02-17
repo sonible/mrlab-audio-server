@@ -1,9 +1,15 @@
+import { renderInputControls, showInputSection, toggleInputState } from '../scripts/input-controls.js';
+export { showInputSection, toggleInputState };
+
 export function init()
 {
 	document.getElementById("SA_XX_VBAP-status").innerText = "initialized";
 	document.getElementById("SA_XX_VBAP-status").style.backgroundColor = "";	
 	document.getElementById("SA_XX_VBAP-Control_Version").innerText = "---";
 	document.getElementById("SA_XX_VBAP-Control_SampleRate").innerText = "---";
+    
+    // Inject input controls
+    renderInputControls('input-buttons-container', 'input-group-container', 'SA_XX_VBAP');
 }
 
 document.getElementById('SA_XX_VBAP-Total_VU').addEventListener('updated', (e) => 
@@ -62,4 +68,3 @@ export function checkConnection()
 		state.style.backgroundColor = "red";
 	}
 }		
-
