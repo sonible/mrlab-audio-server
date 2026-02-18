@@ -1,0 +1,57 @@
+<div id="SA_VBAP" class="scene-main">
+
+	<h2>Spatial Audio: VBAP</h2>
+	<div class="start-container">
+	
+		<div class="button-group">
+			<div style="gap: 10px;">
+				<button onClick="launchAppAndWait('SA_VBAP', 'SA_VBAP', 5, SceneModule.init, SceneModule.connect);" class="big-button">Launch App</button>
+				<p style="text-align: center;">Status: <b id="SA_VBAP-status">unclear</b></p>	
+        <br>	
+				<p style="text-align: center; font-weight: bold;">Doors:</p>
+				<button onClick="send('/app/SA_VBAP/osc/Control/Door/Set', 'OO')" class="big-button">OO</button>
+				<button onClick="send('/app/SA_VBAP/osc/Control/Door/Set', 'OC')" class="big-button">OC</button>
+				<button onClick="send('/app/SA_VBAP/osc/Control/Door/Set', 'CO')" class="big-button">CO</button>
+				<button onClick="send('/app/SA_VBAP/osc/Control/Door/Set', 'CC')"class="big-button">CC</button>
+
+				<p style="text-align: center;">
+					Version: <b id="SA_VBAP-Control_Version">unknown</b>
+					<br>
+					Sample rate: <b id="SA_VBAP-Control_SampleRate">unknown</b> Hz
+				</p>				
+			</div>
+			
+			<div id="input-buttons-container" style="gap: 10px;">
+        <!-- Input buttons will be injected here by input-controls.js -->
+			</div>
+
+			<br>
+			
+			<button onClick="quitApp('SA_VBAP', 'SA_VBAP', SceneModule.init)" class="big-button">Quit App</button>
+		</div>
+
+		<div id="input-group-container" class="input-group">
+      <!-- Input sections will be injected here by input-controls.js -->
+		</div>
+
+		<div class="slider-group">
+			<span>Volume</span>
+			<br>
+			<input type=range min="0" max="100" value="0" oninput="sendValue('/app/SA_VBAP/osc/Total/Volume/Set', this.value); document.getElementById('volume-number').innerText = this.value + ' dB';" class="volume-slider" id="volume-slider">
+			<br>
+			<div class="level-box" id="volume-number">--</div>
+			<p style="text-align: center; color: white;"><b id="SA_VBAP-Total_Volume">&nbsp;</b></p>
+		</div>
+		<div class="slider-group">
+			<span>Level</span>
+			<br>
+			<div class="meter-container">
+				<div class="meter-bar" id="SA_VBAP-Total_VU-bar"></div>
+			</div>
+			<br>
+			<div class="level-box" id="SA_VBAP-Total_VU-number">--</div>
+			<p style="text-align: center; color: white;"><b id="SA_VBAP-Total_VU">&nbsp;</b></p>
+		</div>
+	</div>
+	
+</div>

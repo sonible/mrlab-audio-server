@@ -1,0 +1,21 @@
+name: SA-VBAP
+description: Pd with VBAP for virtual sources
+
+app:
+  startCommand:
+    - C:\MRLab\Audio-Apps\SA-VBAP\_LAUNCH SCENE.bat
+
+  stopCommand:
+    - C:\Windows\System32\taskkill
+    - /IM
+    - pd.com
+    - /T
+    - /F
+
+  workingDir: C:\MRLab\Audio-Apps\SA-VBAP
+
+  oscClients:
+    - id: sa_vbap
+      subPath: osc
+      listenPort: 9336
+      destination: [ localhost, 10003 ]
