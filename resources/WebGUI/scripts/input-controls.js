@@ -1,5 +1,6 @@
 
 const inputNames = [
+    "DANTE_CurvedLEDPC",
     "DANTE_Mono_1", "DANTE_Mono_2", "DANTE_Mono_3", "DANTE_Mono_4",
     "DANTE_Mono_5", "DANTE_Mono_6", "DANTE_Mono_7", "DANTE_Mono_8",
     "DANTE_Stereo_1", "DANTE_Stereo_2", "DANTE_Stereo_3", "DANTE_Stereo_4",
@@ -11,6 +12,7 @@ const inputNames = [
 ];
 
 const inputLabels = {
+    "DANTE_CurvedLEDPC": "Curved LED PC",
     "DANTE_Mono_1": "DANTE: Mono #1", "DANTE_Mono_2": "DANTE: Mono #2",
     "DANTE_Mono_3": "DANTE: Mono #3", "DANTE_Mono_4": "DANTE: Mono #4",
     "DANTE_Mono_5": "DANTE: Mono #5", "DANTE_Mono_6": "DANTE: Mono #6",
