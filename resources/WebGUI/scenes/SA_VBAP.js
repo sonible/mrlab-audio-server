@@ -6,8 +6,8 @@ export function init()
 	document.getElementById("SA_VBAP-status").innerText = "initialized";
 	document.getElementById("SA_VBAP-status").style.backgroundColor = "";	
 	document.getElementById("SA_VBAP-Control_Version").innerText = "---";
-	document.getElementById("SA_VBAP-Control_SampleRate").innerText = "---";
-    
+	document.getElementById("SA_VBAP-Control_SampleRate").innerText = "---"; 
+	document.getElementById("SA_VBAP-Control_Door").innerText = "---";
     // Inject input controls
     renderInputControls('input-buttons-container', 'input-group-container', 'SA_VBAP');
 }
@@ -59,6 +59,7 @@ export function checkConnection()
 			state.style.backgroundColor = "";
 			sendNoArgs('/app/SA_VBAP/osc/Control/SampleRate');
 			sendNoArgs('/app/SA_VBAP/osc/Total/Volume');
+      sendNoArgs('/app/SA_VBAP/osc/Control/Door');
 			break;
 	}
 	if (secWaited > timeout)
@@ -68,3 +69,71 @@ export function checkConnection()
 		state.style.backgroundColor = "red";
 	}
 }		
+
+export function Door_Left()
+{
+  send('/app/SA_VBAP/osc/Control/Door/Set', 'OO');
+}
+
+export function Door_Right()
+{
+  send('/app/SA_VBAP/osc/Control/Door/Set', 'OC');
+}
+
+export function Door_Status()
+{
+  state = document.getElementById("SA_VBAP-Control_Door");
+  switch (state.innerText)
+  {
+    case "OO":
+      document.getElementById("SA_VBAP-Door_Left_Open").innerText = "Open";
+      document.getElementById("SA_VBAP-Door_Left_Open").disabled = true;
+      document.getElementById("SA_VBAP-Door_Left_Close").innerText = "Close";
+      document.getElementById("SA_VBAP-Door_Left_Close").disabled = false;
+      document.getElementById("SA_VBAP-Door_Right_Open").innerText = "Open";
+      document.getElementById("SA_VBAP-Door_Right_Open").disabled = true;
+      document.getElementById("SA_VBAP-Door_Right_Close").innerText = "Close";
+      document.getElementById("SA_VBAP-Door_Right_Close").disabled = false;
+      break;
+    case "OC":
+      document.getElementById("SA_VBAP-Door_Left_Open").innerText = "Open";
+      document.getElementById("SA_VBAP-Door_Left_Open").disabled = true;
+      document.getElementById("SA_VBAP-Door_Left_Close").innerText = "Close";
+      document.getElementById("SA_VBAP-Door_Left_Close").disabled = false;
+      document.getElementById("SA_VBAP-Door_Right_Open").innerText = "Open";
+      document.getElementById("SA_VBAP-Door_Right_Open").disabled = false;
+      document.getElementById("SA_VBAP-Door_Right_Close").innerText = "Close";
+      document.getElementById("SA_VBAP-Door_Right_Close").disabled = true;
+      break;
+    case "CO":
+      document.getElementById("SA_VBAP-Door_Left_Open").innerText = "Open";
+      document.getElementById("SA_VBAP-Door_Left_Open").disabled = false;
+      document.getElementById("SA_VBAP-Door_Left_Close").innerText = "Close";
+      document.getElementById("SA_VBAP-Door_Left_Close").disabled = true;
+      document.getElementById("SA_VBAP-Door_Right_Open").innerText = "Open";
+      document.getElementById("SA_VBAP-Door_Right_Open").disabled = true;
+      document.getElementById("SA_VBAP-Door_Right_Close").innerText = "Close";
+      document.getElementById("SA_VBAP-Door_Right_Close").disabled = false;
+      break;
+    case "CC":
+      document.getElementById("SA_VBAP-Door_Left_Open").innerText = "Open";
+      document.getElementById("SA_VBAP-Door_Left_Open").disabled = false;
+      document.getElementById("SA_VBAP-Door_Left_Close").innerText = "Close";
+      document.getElementById("SA_VBAP-Door_Left_Close").disabled = true;
+      document.getElementById("SA_VBAP-Door_Right_Open").innerText = "Open";
+      document.getElementById("SA_VBAP-Door_Right_Open").disabled = false;
+      document.getElementById("SA_VBAP-Door_Right_Close").innerText = "Close";
+      document.getElementById("SA_VBAP-Door_Right_Close").disabled = true;
+      break;
+    default:
+      document.getElementById("SA_VBAP-Door_Left_Open").innerText = "unknown";
+      document.getElementById("SA_VBAP-Door_Left_Open").disabled = true;
+      document.getElementById("SA_VBAP-Door_Left_Close").innerText = "unknown";
+      document.getElementById("SA_VBAP-Door_Left_Close").disabled = true;
+      document.getElementById("SA_VBAP-Door_Right_Open").innerText = "unknown";
+      document.getElementById("SA_VBAP-Door_Right_Open").disabled = true;
+      document.getElementById("SA_VBAP-Door_Right_Close").innerText = "unknown";
+      document.getElementById("SA_VBAP-Door_Right_Close").disabled = true;
+      break;
+  }
+}

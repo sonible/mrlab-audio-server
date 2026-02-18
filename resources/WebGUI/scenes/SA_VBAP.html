@@ -2,37 +2,45 @@
 
 	<h2>Spatial Audio: VBAP</h2>
 	<div class="start-container">
-	
-		<div class="button-group">
-			<div style="gap: 10px;">
-				<button onClick="launchAppAndWait('SA_VBAP', 'SA_VBAP', 5, SceneModule.init, SceneModule.connect);" class="big-button">Launch App</button>
-				<p style="text-align: center;">Status: <b id="SA_VBAP-status">unclear</b></p>	
-        <br>	
-				<p style="text-align: center; font-weight: bold;">Doors:</p>
-				<button onClick="send('/app/SA_VBAP/osc/Control/Door/Set', 'OO')" class="big-button">OO</button>
-				<button onClick="send('/app/SA_VBAP/osc/Control/Door/Set', 'OC')" class="big-button">OC</button>
-				<button onClick="send('/app/SA_VBAP/osc/Control/Door/Set', 'CO')" class="big-button">CO</button>
-				<button onClick="send('/app/SA_VBAP/osc/Control/Door/Set', 'CC')"class="big-button">CC</button>
+    <div class="button-group">
+      <button onClick="launchAppAndWait('SA_VBAP', 'SA_VBAP', 5, SceneModule.init, SceneModule.connect);" class="big-button">Launch App</button>
+      <p style="text-align: center;">Status: <b id="SA_VBAP-status">unclear</b></p>	
+      <p style="text-align: center;">
+        Version: <b id="SA_VBAP-Control_Version">unknown</b>
+        <br>
+        Sample rate: <b id="SA_VBAP-Control_SampleRate">unknown</b> Hz
+      </p>				
+    </div>
+    <div class="button-group">
+      <p style="text-align: center; font-weight: bold;">Doors:
+        <b id="SA_VBAP-Control_Door">unknown</b>
+      </p>
+      <div class="start-container">
+        <div class="button-group">
+          <p style="text-align: center; font-weight: bold;">CAVE LED side:</p>
+          <button id="SA_VBAP-Door_Left_Open" onclick="SceneModule.Door_Left(0)" class="big-button">Open</button>
+          <button id="SA_VBAP-Door_Left_Close" onclick="SceneModule.Door_Left(1)" class="big-button">Close</button>
+        </div>
+        <div class="button-group">
+          <p style="text-align: center; font-weight: bold;">Curved LED side:</p>
+          <button id="SA_VBAP-Door_Right_Open" onclick="SceneModule.Door_Right(0)" class="big-button">Open</button>
+          <button id="SA_VBAP-Door_Right_Close" onclick="SceneModule.Door_Right(1)" class="big-button">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
-				<p style="text-align: center;">
-					Version: <b id="SA_VBAP-Control_Version">unknown</b>
-					<br>
-					Sample rate: <b id="SA_VBAP-Control_SampleRate">unknown</b> Hz
-				</p>				
-			</div>
-			
+	<div class="start-container">
+		<div class="button-group">
 			<div id="input-buttons-container" style="gap: 10px;">
         <!-- Input buttons will be injected here by input-controls.js -->
 			</div>
 
-			<br>
+		</div>
 			
-			<button onClick="quitApp('SA_VBAP', 'SA_VBAP', SceneModule.init)" class="big-button">Quit App</button>
-		</div>
-
-		<div id="input-group-container" class="input-group">
+    <div id="input-group-container" class="input-group">
       <!-- Input sections will be injected here by input-controls.js -->
-		</div>
+    </div>
 
 		<div class="slider-group">
 			<span>Volume</span>
@@ -52,6 +60,12 @@
 			<div class="level-box" id="SA_VBAP-Total_VU-number">--</div>
 			<p style="text-align: center; color: white;"><b id="SA_VBAP-Total_VU">&nbsp;</b></p>
 		</div>
+	</div>
+
+	<div class="start-container">
+		<div class="button-group">
+			<button onClick="quitApp('SA_VBAP', 'SA_VBAP', SceneModule.init)" class="big-button">Quit App</button>
+  	</div>
 	</div>
 	
 </div>
