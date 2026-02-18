@@ -1,7 +1,9 @@
 
 const inputNames = [
-    "DANTE_Mono_1", "DANTE_Mono_2", "DANTE_Stereo_1", "DANTE_Bluetooth",
-    "DANTE_HDMI", "DANTE_GCPU", "DANTE_CurvedLEDPC",
+    "DANTE_Mono_1", "DANTE_Mono_2", "DANTE_Mono_3", "DANTE_Mono_4",
+    "DANTE_Mono_5", "DANTE_Mono_6", "DANTE_Mono_7", "DANTE_Mono_8",
+    "DANTE_Stereo_1", "DANTE_Stereo_2", "DANTE_Stereo_3", "DANTE_Stereo_4",
+    "DANTE_Bluetooth", "DANTE_HDMI", "DANTE_GCPU", "DANTE_CurvedLEDPC",
     "Mic_Beam_1", "Mic_Beam_2", "Mic_Wireless_1", "Mic_Wireless_2", "Mic_Array",
     "Analog_Mono_1", "Analog_Mono_2", "Analog_Mono_3", "Analog_Mono_4",
     "Analog_Mono_5", "Analog_Mono_6", "Analog_Mono_7", "Analog_Mono_8",
@@ -9,29 +11,36 @@ const inputNames = [
 ];
 
 const inputLabels = {
-    "DANTE_Mono_1": "DANTE.Mono.1", "DANTE_Mono_2": "DANTE.Mono.2", 
-    "DANTE_Stereo_1": "DANTE.Stereo.1", "DANTE_Bluetooth": "DANTE.Bluetooth",
-    "DANTE_HDMI": "DANTE.HDMI", "DANTE_GCPU": "DANTE.GCPU", 
-    "DANTE_CurvedLEDPC": "DANTE.CurvedLEDPC",
-    "Mic_Beam_1": "Mic.Beam.1", "Mic_Beam_2": "Mic.Beam.2",
-    "Mic_Wireless_1": "Mic.Wireless.1", "Mic_Wireless_2": "Mic.Wireless.2", 
-    "Mic_Array": "Mic.Array",
-    "Analog_Mono_1": "Analog.Mono.1", "Analog_Mono_2": "Analog.Mono.2",
-    "Analog_Mono_3": "Analog.Mono.3", "Analog_Mono_4": "Analog.Mono.4",
-    "Analog_Mono_5": "Analog.Mono.5", "Analog_Mono_6": "Analog.Mono.6",
-    "Analog_Mono_7": "Analog.Mono.7", "Analog_Mono_8": "Analog.Mono.8",
-    "Analog_Stereo_1": "Analog.Stereo.1", "Analog_Stereo_2": "Analog.Stereo.2",
-    "Analog_Stereo_3": "Analog.Stereo.3", "Analog_Stereo_4": "Analog.Stereo.4"
+    "DANTE_Mono_1": "DANTE: Mono #1", "DANTE_Mono_2": "DANTE: Mono #2",
+    "DANTE_Mono_3": "DANTE: Mono #3", "DANTE_Mono_4": "DANTE: Mono #4",
+    "DANTE_Mono_5": "DANTE: Mono #5", "DANTE_Mono_6": "DANTE: Mono #6",
+    "DANTE_Mono_7": "DANTE: Mono #7", "DANTE_Mono_8": "DANTE: Mono #8",
+    "DANTE_Stereo_1": "DANTE: Stereo #1", "DANTE_Stereo_2": "DANTE: Stereo #2",
+    "DANTE_Stereo_3": "DANTE: Stereo #3", "DANTE_Stereo_4": "DANTE: Stereo #4",
+    "DANTE_Bluetooth": "DANTE: Bluetooth",
+    "DANTE_HDMI": "DANTE: HDMI", "DANTE_GCPU": "DANTE: GCPU",
+    "DANTE_CurvedLEDPC": "DANTE: CurvedLEDPC",
+    "Mic_Beam_1": "Mic: Beam #1", "Mic_Beam_2": "Mic: Beam #2",
+    "Mic_Wireless_1": "Mic: Wireless #1", "Mic_Wireless_2": "Mic: Wireless #2", 
+    "Mic_Array": "Mic: Array",
+    "Analog_Mono_1": "Analog: Mono #1", "Analog_Mono_2": "Analog: Mono #2",
+    "Analog_Mono_3": "Analog: Mono #3", "Analog_Mono_4": "Analog: Mono #4",
+    "Analog_Mono_5": "Analog: Mono #5", "Analog_Mono_6": "Analog: Mono #6",
+    "Analog_Mono_7": "Analog: Mono #7", "Analog_Mono_8": "Analog: Mono #8",
+    "Analog_Stereo_1": "Analog: Stereo #1", "Analog_Stereo_2": "Analog: Stereo #2",
+    "Analog_Stereo_3": "Analog: Stereo #3", "Analog_Stereo_4": "Analog: Stereo #4"
 };
 
 
 export function renderInputControls(buttonContainerId, groupContainerId, sceneName) {
     const btnContainer = document.getElementById(buttonContainerId);
     if (btnContainer) {
-        let html = '<p style="text-align: center; font-weight: bold;">Inputs:</p>';
+        let html = '';
+        html += '<div style="max-height: 650px; overflow-y: auto; display: flex; flex-direction: column; align-items: center; gap: 10px;">';
         inputNames.forEach(id => {
              html += `<button id="btn-${id}" onClick="SceneModule.showInputSection('${id}')" class="big-button">${inputLabels[id]}</button> `;
         });
+        html += '</div>';
         btnContainer.innerHTML = html;
     }
 
@@ -46,7 +55,7 @@ export function renderInputControls(buttonContainerId, groupContainerId, sceneNa
                 <br><br>
                 <div id="slider-container-${id}" class="slider-group" style="width: 100%;">
                     <span>Volume</span><br>
-                    <input type="range" id="slider-input-${id}" disabled style="opacity: 0.5;" min="0" max="100" value="0" 
+                    <input type="range" id="slider-input-${id}" disabled style="opacity: 0.5; max-height: 420px;" min="0" max="100" value="0" 
                         oninput="sendValue('/app/${sceneName}/osc/Input/${id}/Volume/Set', this.value); document.getElementById('volume-number-${id}').innerText = this.value + ' dB';" 
                         class="volume-slider">
                     <br>
