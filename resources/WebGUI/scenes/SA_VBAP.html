@@ -12,19 +12,23 @@
       </p>				
     </div>
     <div class="button-group">
-      <p style="text-align: center; font-weight: bold;">Doors:
-        <b id="SA_VBAP-Control_Door">unknown</b>
+      <p style="text-align: center;"><b>Doors:</b>
+        <span id="SA_VBAP-Control_Door" style="color: white;">unknown</span>
       </p>
       <div class="start-container">
-        <div class="button-group">
-          <p style="text-align: center; font-weight: bold;">CAVE LED side:</p>
-          <button id="SA_VBAP-Door_Left_Open" onclick="SceneModule.Door_Left(0)" class="big-button">Open</button>
-          <button id="SA_VBAP-Door_Left_Close" onclick="SceneModule.Door_Left(1)" class="big-button">Close</button>
+        <div class="button-group" style="gap: 10px;">
+          <p style="text-align: center;"><b>CAVE side:</b>
+            <br><span id="SA_VBAP-Door_CAVE">unknown</span>
+          </p>
+          <button id="SA_VBAP-Door_CAVE_Open" onclick="SceneModule.Door_Change({state_cave: 0})" class="big-button">Open</button>
+          <button id="SA_VBAP-Door_CAVE_Close" onclick="SceneModule.Door_Change({state_cave: 1})" class="big-button">Close</button>
         </div>
-        <div class="button-group">
-          <p style="text-align: center; font-weight: bold;">Curved LED side:</p>
-          <button id="SA_VBAP-Door_Right_Open" onclick="SceneModule.Door_Right(0)" class="big-button">Open</button>
-          <button id="SA_VBAP-Door_Right_Close" onclick="SceneModule.Door_Right(1)" class="big-button">Close</button>
+        <div class="button-group" style="gap: 10px;">
+          <p style="text-align: center;"><b>Curved side:</b>
+            <br><span id="SA_VBAP-Door_Curved">unknown</span>
+          </p>
+          <button id="SA_VBAP-Door_Curved_Open" onclick="SceneModule.Door_Change({state_curved: 0})" class="big-button">Open</button>
+          <button id="SA_VBAP-Door_Curved_Close" onclick="SceneModule.Door_Change({state_curved: 1})" class="big-button">Close</button>
         </div>
       </div>
     </div>
