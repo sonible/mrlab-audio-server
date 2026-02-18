@@ -1,6 +1,6 @@
 <div id="Curved_LED_Standard" class="scene-main">
 
-	<h2>Spatial Audio: VBAP</h2>
+	<h2>Curved LED: Standard</h2>
 	<div class="start-container">
 	
 		<div class="button-group">
@@ -13,38 +13,51 @@
 					Sample rate: <b id="Curved_LED_Standard-Control_SampleRate">unknown</b> Hz
 				</p>				
 			</div>
-			
-			<div id="input-buttons-container" style="gap: 10px;">
-        <!-- Input buttons will be injected here by input-controls.js -->
-			</div>
+	 </div>		
+  </div>
 
-			<br>
-			
-			<button onClick="unlockScene('Curved_LED_Standard');" class="big-button">Reset and Unlock</button>
-		</div>
-
-		<div id="input-group-container" class="input-group">
-      <!-- Input sections will be injected here by input-controls.js -->
+  <div class="start-container">
+    <div class="button-group" style="gap: 0px;">
+      <h3 style="text-align: center;">Inputs</h3>
+      <div class="start-container" style="height: 700px;">
+        <div id="input-buttons-container" style="text-align: center;">
+          <!-- Input buttons will be injected here by input-controls.js -->
+        </div>
+        <div id="input-group-container" class="input-group">
+          <!-- Input sections will be injected here by input-controls.js -->
+        </div>
+      </div>
 		</div>
     
-		<div class="slider-group">
-			<span>Volume</span>
-			<br>
-			<input type=range min="0" max="100" value="0" oninput="sendValue('/app/Curved_LED_Standard/osc/Total/Volume/Set', this.value); document.getElementById('volume-number').innerText = this.value + ' dB';" class="volume-slider" id="volume-slider">
-			<br>
-			<div class="level-box" id="volume-number">--</div>
-			<p style="text-align: center; color: white;"><b id="Curved_LED_Standard-Total_Volume">&nbsp;</b></p>
-		</div>
-		<div class="slider-group">
-			<span>Level</span>
-			<br>
-			<div class="meter-container">
-				<div class="meter-bar" id="Curved_LED_Standard-Total_VU-bar"></div>
-			</div>
-			<br>
-			<div class="level-box" id="Curved_LED_Standard-Total_VU-number">--</div>
-			<p style="text-align: center; color: white;"><b id="Curved_LED_Standard-Total_VU">&nbsp;</b></p>
+		<div class="button-group" style="gap: 0px;">
+      <h3 style="text-align: center;">Total</h3>
+      <div class="start-container" style="height: 700px;">
+        <div class="slider-group">
+        <span>Volume</span>
+        <br>
+        <input type=range min="0" max="100" value="0" oninput="sendValue('/app/Curved_LED_Standard/osc/Total/Volume/Set', this.value); document.getElementById('volume-number').innerText = this.value + ' dB';" class="volume-slider" id="volume-slider">
+        <br>
+        <div class="level-box" id="volume-number">--</div>
+        <p style="text-align: center; color: white;"><b id="Curved_LED_Standard-Total_Volume">&nbsp;</b></p>
+        </div>
+        <div class="slider-group">
+          <span>Level</span>
+          <br>
+          <div class="meter-container">
+            <div class="meter-bar" id="Curved_LED_Standard-Total_VU-bar"></div>
+          </div>
+          <br>
+          <div class="level-box" id="Curved_LED_Standard-Total_VU-number">--</div>
+          <p style="text-align: center; color: white;"><b id="Curved_LED_Standard-Total_VU">&nbsp;</b></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="start-container">
+		<div class="button-group">			
+			<button onClick="unlockScene('Curved_LED_Standard');" class="big-button">Reset and Unlock</button>
 		</div>
 	</div>
-	
+
 </div>

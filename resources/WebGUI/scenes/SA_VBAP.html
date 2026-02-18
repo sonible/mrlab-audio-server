@@ -37,34 +37,39 @@
 	<div class="start-container">
     <div class="button-group" style="gap: 0px;">
       <h3 style="text-align: center;">Inputs</h3>
-      <div class="start-container">
+      <div class="start-container" style="height: 700px;" style="gap: 0px;">
         <div id="input-buttons-container" style="text-align: center;">
           <!-- Input buttons will be injected here by input-controls.js -->
         </div>
-        <div id="input-group-container" class="input-group">
+        <div id="input-group-container" class="input-group" style="gap: 0px;">
           <!-- Input sections will be injected here by input-controls.js -->
         </div>
       </div>
 		</div>
 
-		<div class="slider-group">
-			<span>Volume</span>
-			<br>
-			<input type=range min="0" max="100" value="0" oninput="sendValue('/app/SA_VBAP/osc/Total/Volume/Set', this.value); document.getElementById('volume-number').innerText = this.value + ' dB';" class="volume-slider" id="volume-slider">
-			<br>
-			<div class="level-box" id="volume-number">--</div>
-			<p style="text-align: center; color: white;"><b id="SA_VBAP-Total_Volume">&nbsp;</b></p>
-		</div>
-		<div class="slider-group">
-			<span>Level</span>
-			<br>
-			<div class="meter-container">
-				<div class="meter-bar" id="SA_VBAP-Total_VU-bar"></div>
-			</div>
-			<br>
-			<div class="level-box" id="SA_VBAP-Total_VU-number">--</div>
-			<p style="text-align: center; color: white;"><b id="SA_VBAP-Total_VU">&nbsp;</b></p>
-		</div>
+    <div class="button-group" style="gap: 0px;">
+      <h3 style="text-align: center;">Total</h3>
+      <div class="start-container" style="height: 700px;">
+        <div class="slider-group">
+          <span>Volume</span>
+          <br>
+          <input type=range min="0" max="100" value="0" oninput="sendValue('/app/SA_VBAP/osc/Total/Volume/Set', this.value); document.getElementById('volume-number').innerText = this.value + ' dB';" class="volume-slider" id="volume-slider">
+          <br>
+          <div class="level-box" id="volume-number">--</div>
+          <p style="text-align: center; color: white;"><b id="SA_VBAP-Total_Volume">&nbsp;</b></p>
+        </div>
+        <div class="slider-group">
+          <span>Level</span>
+          <br>
+          <div class="meter-container">
+            <div class="meter-bar" id="SA_VBAP-Total_VU-bar"></div>
+          </div>
+          <br>
+          <div class="level-box" id="SA_VBAP-Total_VU-number">--</div>
+          <p style="text-align: center; color: white;"><b id="SA_VBAP-Total_VU">&nbsp;</b></p>
+        </div>
+      </div>
+    </div>
 	</div>
 
 	<div class="start-container">

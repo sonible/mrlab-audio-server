@@ -52,10 +52,9 @@ export function renderInputControls(buttonContainerId, groupContainerId, sceneNa
             <div id="input-section-${id}" class="input-section" style="display:none; text-align: center;">
                 <h3>${inputLabels[id]}</h3>
                 <button id="btn-input-${id}" class="small-button" onclick="SceneModule.toggleInputState('${id}')">Input: Off</button>
-                <br><br>
                 <div id="slider-container-${id}" class="slider-group" style="width: 100%;">
                     <span>Volume</span><br>
-                    <input type="range" id="slider-input-${id}" disabled style="opacity: 0.5; max-height: 420px;" min="0" max="100" value="0" 
+                    <input type="range" id="slider-input-${id}" disabled style="opacity: 0.5; max-height: 400px;" min="0" max="100" value="0" 
                         oninput="sendValue('/app/${sceneName}/osc/Input/${id}/Volume/Set', this.value); document.getElementById('volume-number-${id}').innerText = this.value + ' dB';" 
                         class="volume-slider">
                     <br>
