@@ -51,7 +51,7 @@ export function renderInputControls(buttonContainerId, groupContainerId, sceneNa
         let html = '';
         inputNames.forEach(id => {
             html += `
-            <div id="input-section-${id}" class="input-section" style="display:none; text-align: center;">
+            <div id="input-section-${id}" class="input-section" style="display:none; flex-direction: column; align-items: center; text-align: center;">
                 <h3>${inputLabels[id]}</h3>
                 <button id="btn-input-${id}" class="small-button" onclick="SceneModule.toggleInputState('${id}')">Input: Off</button>
                 <div id="slider-container-${id}" class="slider-group" style="width: 100%;">
@@ -76,7 +76,7 @@ export function showInputSection(id)
 
 	// show the selected input section
 	const section = document.getElementById('input-section-' + id);
-	if (section) section.style.display = 'block';
+	if (section) section.style.display = 'flex';
 }
 
 export function toggleInputState(id)

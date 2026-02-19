@@ -37,7 +37,7 @@ export function connect()
 	state = document.getElementById("pd_jungle-status");
 	state.innerText = "connecting...";
 	state.style.backgroundColor = "blue";
-	sendResponse('/app/pd_jungle/osc/Control/Response', 9340);
+	sendResponse('/app/pd_jungle/osc/Control/Response', 9336);
 	sendNoArgs('/app/pd_jungle/osc/Control/Version');
 	secWaited = 0;
 	setTimeout(() => { checkConnection(); }, 300);

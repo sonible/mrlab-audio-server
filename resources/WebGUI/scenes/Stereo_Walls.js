@@ -27,36 +27,36 @@ document.getElementById('Stereo_Walls-Total_Volume').addEventListener('updated',
 document.getElementById('Stereo_Walls-CAVE_Volume').addEventListener('updated', (e) => 
 {
 	const vol = document.getElementById('Stereo_Walls-CAVE_Volume');
-	document.getElementById('volume-cave-slider').value = Math.round(vol.innerText);
-	document.getElementById('volume-cave-number').innerText = Math.round(vol.innerText) + " dB";
+	document.getElementById('volume-CAVE-slider').value = Math.round(vol.innerText);
+	document.getElementById('volume-CAVE-number').innerText = Math.round(vol.innerText) + " dB";
 });	
 
 document.getElementById('Stereo_Walls-CAVEDoor_Volume').addEventListener('updated', (e) => 
 {
 	const vol = document.getElementById('Stereo_Walls-CAVEDoor_Volume');
-	document.getElementById('volume-cavedoor-slider').value = Math.round(vol.innerText);
-	document.getElementById('volume-cavedoor-number').innerText = Math.round(vol.innerText) + " dB";
+	document.getElementById('volume-CAVEDoor-slider').value = Math.round(vol.innerText);
+	document.getElementById('volume-CAVEDoor-number').innerText = Math.round(vol.innerText) + " dB";
 });	
 
 document.getElementById('Stereo_Walls-SA_Volume').addEventListener('updated', (e) => 
 {
 	const vol = document.getElementById('Stereo_Walls-SA_Volume');
-	document.getElementById('volume-sa-slider').value = Math.round(vol.innerText);
-	document.getElementById('volume-sa-number').innerText = Math.round(vol.innerText) + " dB";
+	document.getElementById('volume-SA-slider').value = Math.round(vol.innerText);
+	document.getElementById('volume-SA-number').innerText = Math.round(vol.innerText) + " dB";
 });	
 
 document.getElementById('Stereo_Walls-CurvedDoor_Volume').addEventListener('updated', (e) => 
 {
 	const vol = document.getElementById('Stereo_Walls-CurvedDoor_Volume');
-	document.getElementById('volume-curveddoor-slider').value = Math.round(vol.innerText);
-	document.getElementById('volume-curveddoor-number').innerText = Math.round(vol.innerText) + " dB";
+	document.getElementById('volume-CurvedDoor-slider').value = Math.round(vol.innerText);
+	document.getElementById('volume-CurvedDoor-number').innerText = Math.round(vol.innerText) + " dB";
 });	
 
-document.getElementById('Stereo_Walls-Curved_Volume').addEventListener('updated', (e) => 
+document.getElementById('Stereo_Walls-CurvedLED_Volume').addEventListener('updated', (e) => 
 {
-	const vol = document.getElementById('Stereo_Walls-Curved_Volume');
-	document.getElementById('volume-curved-slider').value = Math.round(vol.innerText);
-	document.getElementById('volume-curved-number').innerText = Math.round(vol.innerText) + " dB";
+	const vol = document.getElementById('Stereo_Walls-CurvedLED_Volume');
+	document.getElementById('volume-CurvedLED-slider').value = Math.round(vol.innerText);
+	document.getElementById('volume-CurvedLED-number').innerText = Math.round(vol.innerText) + " dB";
 });	
 
 export function connect()
@@ -101,3 +101,27 @@ export function checkConnection()
 		state.style.backgroundColor = "red";
 	}
 }		
+
+export function toggleWallState(id)
+{
+	const btn = document.getElementById('btn-wall-' + id);
+	const slider = document.getElementById('volume-' + id + '-slider');
+
+	if (!btn || !slider) return;
+
+	const isActive = btn.classList.contains('active-input');
+
+	if (!isActive) {
+		btn.classList.add('active-input');
+		btn.innerText = "On";
+		slider.disabled = false;
+		slider.style.opacity = "1.0";
+    sendValue('/app/Stereo_Walls/osc/' + id + '/Switch', 1);
+	} else {
+		btn.classList.remove('active-input');
+		btn.innerText = "Off";
+		slider.disabled = true;
+		slider.style.opacity = "0.5";
+    sendValue('/app/Stereo_Walls/osc/' + id + '/Switch', 0);
+	}
+}
