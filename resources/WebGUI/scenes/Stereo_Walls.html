@@ -1,0 +1,96 @@
+<div id="Stereo_Walls" class="scene-main">
+
+	<h2>Spatial Audio: VBAP</h2>
+	<div class="start-container">
+    <div class="button-group" style="gap: 0px;">
+      <button onClick="launchAppAndWait('Stereo_Walls', 'Stereo_Walls', 5, SceneModule.init, SceneModule.connect);" class="big-button">Launch App</button>
+      <p style="text-align: center;">Status: <b id="Stereo_Walls-status">unclear</b></p>	
+      <p style="text-align: center;">Version: <b id="Stereo_Walls-Control_Version">unknown</b></p>				
+    </div>
+  </div>
+
+	<div class="start-container">
+    <div class="button-group" style="gap: 0px;">
+      <h3 style="text-align: center;">Inputs</h3>
+      <div class="start-container" style="height: 700px;" style="gap: 0px;">
+        <div id="input-buttons-container" style="text-align: center;">
+          <!-- Input buttons will be injected here by input-controls.js -->
+        </div>
+        <div id="input-group-container" class="input-group" style="gap: 0px;">
+          <!-- Input sections will be injected here by input-controls.js -->
+        </div>
+      </div>
+		</div>
+
+    <div class="button-group" style="gap: 0px;">
+      <h3 style="text-align: center;">Wall Levels</h3>
+      <div class="start-container" style="height: 700px;">
+        <div class="slider-group">
+          <b>CAVE</b><br>
+          <input class="volume-slider" id="volume-cave-slider" type=range min="0" max="100" value="0" oninput="sendValue('/app/Stereo_Walls/osc/CAVE/Volume/Set', this.value); document.getElementById('volume-cave-number').innerText = this.value + ' dB';">
+          <br>
+          <div class="level-box" id="volume-cave-number">--</div>
+          <p style="text-align: center; color: white;"><b id="Stereo_Walls-CAVE_Volume">&nbsp;</b></p>
+        </div>
+        <div class="slider-group">
+          <b>Door</b><br>
+          <input class="volume-slider" id="volume-cavedoor-slider" type=range min="0" max="100" value="0" oninput="sendValue('/app/Stereo_Walls/osc/CAVEDoor/Volume/Set', this.value); document.getElementById('volume-cavedoor-number').innerText = this.value + ' dB';">
+          <br>
+          <div class="level-box" id="volume-cavedoor-number">--</div>
+          <p style="text-align: center; color: white;"><b id="Stereo_Walls-CAVEDoor_Volume">&nbsp;</b></p>
+        </div>
+        <div class="slider-group">
+          <b style="text-align: center;">Spatial Audio</b><br>
+          <input class="volume-slider" id="volume-sa-slider" type=range min="0" max="100" value="0" oninput="sendValue('/app/Stereo_Walls/osc/SA/Volume/Set', this.value); document.getElementById('volume-sa-number').innerText = this.value + ' dB';">
+          <br>
+          <div class="level-box" id="volume-sa-number">--</div>
+          <p style="text-align: center; color: white;"><b id="Stereo_Walls-SA_Volume">&nbsp;</b></p>
+        </div>
+        <div class="slider-group">
+          <b>Curved</b><br>
+          <input class="volume-slider" id="volume-curveddoor-slider" type=range min="0" max="100" value="0" oninput="sendValue('/app/Stereo_Walls/osc/CurvedDoor/Volume/Set', this.value); document.getElementById('volume-curveddoor-number').innerText = this.value + ' dB';">
+          <br>
+          <div class="level-box" id="volume-curveddoor-number">--</div>
+          <p style="text-align: center; color: white;"><b id="Stereo_Walls-CurvedDoor_Volume">&nbsp;</b></p>
+        </div>
+        <div class="slider-group">
+          <b>LED</b><br>
+          <input class="volume-slider" id="volume-curved-slider" type=range min="0" max="100" value="0" oninput="sendValue('/app/Stereo_Walls/osc/Curved/Volume/Set', this.value); document.getElementById('volume-curved-number').innerText = this.value + ' dB';">
+          <br>
+          <div class="level-box" id="volume-curved-number">--</div>
+          <p style="text-align: center; color: white;"><b id="Stereo_Walls-Curved_Volume">&nbsp;</b></p>
+        </div>
+      </div>
+    </div>
+    <div class="button-group" style="gap: 0px;">
+      <h3 style="text-align: center;">Total</h3>
+      <div class="start-container" style="height: 700px;">
+        <div class="slider-group">
+          <span>Volume</span>
+          <br>
+          <input type=range min="0" max="100" value="0" oninput="sendValue('/app/Stereo_Walls/osc/Total/Volume/Set', this.value); document.getElementById('volume-number').innerText = this.value + ' dB';" class="volume-slider" id="volume-slider">
+          <br>
+          <div class="level-box" id="volume-number">--</div>
+          <p style="text-align: center; color: white;"><b id="Stereo_Walls-Total_Volume">&nbsp;</b></p>
+        </div>
+        <div class="slider-group">
+          <span>Level</span>
+          <br>
+          <div class="meter-container">
+            <div class="meter-bar" id="Stereo_Walls-Total_VU-bar"></div>
+          </div>
+          <br>
+          <div class="level-box" id="Stereo_Walls-Total_VU-number">--</div>
+          <p style="text-align: center; color: white;"><b id="Stereo_Walls-Total_VU">&nbsp;</b></p>
+        </div>
+      </div>
+    </div>
+	</div>
+
+	<div class="start-container">
+		<div class="button-group">
+			<button onClick="quitApp('Stereo_Walls', 'Stereo_Walls', SceneModule.init)" class="big-button">Quit App</button>
+  	</div>
+	</div>
+	
+</div>

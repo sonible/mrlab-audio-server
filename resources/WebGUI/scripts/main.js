@@ -109,7 +109,7 @@ function checkStateLaunched(scene, app, timeout, readyFun)
 {
 	secWaited += 100;
 	state = document.getElementById(app + "-status");
-	console.log("waiting for " + secWaited/1000 + "s, status=" + state.innerText);
+	//console.log("waiting for " + secWaited/1000 + "s, status=" + state.innerText);
 	switch (state.innerText)
 	{
 		case "unclear":
@@ -123,13 +123,16 @@ function checkStateLaunched(scene, app, timeout, readyFun)
 			break;		
 		case "ready":
 			state.style.backgroundColor = "";
+      console.log("App " + app + ": ready");
 			if (readyFun != null) readyFun(); 
 			break;
 		case "error":
+      console.log("App " + app + ": error");
 			state.style.backgroundColor = "red";
 			break;
 		case "initialized": // unclear, but the app might have been started, let's act as ready
 			state.style.backgroundColor = "";
+      console.log("App " + app + ": initialized");
 			if (readyFun != null) readyFun(); 
 			break;
 	}
@@ -137,7 +140,7 @@ function checkStateLaunched(scene, app, timeout, readyFun)
 	{
 		state.style.backgroundColor = "red";
 		state.innerText = "time out!";
-		console.log("Time out!"); 
+		console.log("App " + app + ": Time out!"); 
 	}
 }
 

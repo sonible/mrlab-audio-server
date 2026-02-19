@@ -260,7 +260,7 @@ a:active {
 /* The container holding the left sidebar and the scene content */
 .main-layout-horizontal {
   display: flex; /* Ensure it takes up the rest of the page height */
-  min-height: calc(100vh - 54px); /* Full viewport height minus the header height (approx) */
+  height: calc(100vh - 54px); /* Full viewport height minus the header height (approx) */
 }
 
 /* Sidebar with the Buttons activating the Scenes */
@@ -273,6 +273,7 @@ a:active {
   flex-direction: column; /* Stack the buttons vertically */
   gap: 10px; /* Space between the buttons */
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.05);
+  overflow-y: auto; /* Make button list scrollable */
 }
 
 /* Button to activate a Scene */
@@ -305,6 +306,7 @@ a:active {
 .scene-port {
   flex-grow: 1; /* Allows content area to fill the rest of the space */
   padding: 20px;
+  overflow-y: auto; /* Scene content scrolls independently */
 }
 
 /* Main Scene Area */

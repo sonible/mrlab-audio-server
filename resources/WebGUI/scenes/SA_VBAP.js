@@ -29,6 +29,7 @@ document.getElementById('SA_VBAP-Total_Volume').addEventListener('updated', (e) 
 document.getElementById('SA_VBAP-Control_Door').addEventListener('updated', (e) => 
 {
 	Door_Status();
+  //console.log("Door status: " + document.getElementById("SA_VBAP-Control_Door").innerText);
 });	
 
 export function connect()
@@ -47,7 +48,7 @@ export function checkConnection()
 	const timeout = 1000; // timeout in ms
 	secWaited += 100;
 	state = document.getElementById("SA_VBAP-Control_Version");
-	console.log("waiting for " + secWaited/1000 + "s, version=" + state.innerText);
+	//console.log("waiting for " + secWaited/1000 + "s, version=" + state.innerText);
 	switch (state.innerText)
 	{
 		case "---":
@@ -59,6 +60,7 @@ export function checkConnection()
 			}
 			break;
 		default: // done!
+      console.log("SA_VBAP: connected");
 			state = document.getElementById("SA_VBAP-status");
 			state.innerText = "connected";
 			state.style.backgroundColor = "";
