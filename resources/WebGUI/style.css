@@ -10,10 +10,11 @@
 body,
 html {
   width: 100vw;
-  height: 100vh;
+  height: 1340px;
   font: 100% sans-serif;
   word-wrap: break-word;
   overflow-x: hidden; /* Prevents unwanted horizontal scrolling */
+  overflow-y: scroll; 
 }
 
 @media (min-width: 768px) {
@@ -24,7 +25,7 @@ html {
 }
 
 h1 {
-  margin: 2.5rem 0 1.5rem 0;
+  margin: 1rem 0 1rem 0;
   line-height: 1.25;
   color: white;
 }
@@ -260,7 +261,7 @@ a:active {
 /* The container holding the left sidebar and the scene content */
 .main-layout-horizontal {
   display: flex; /* Ensure it takes up the rest of the page height */
-  height: calc(100vh - 54px); /* Full viewport height minus the header height (approx) */
+  height: calc(1440px - 54px); /* Fixed height minus the header height (approx) */
 }
 
 /* Sidebar with the Buttons activating the Scenes */
@@ -306,7 +307,7 @@ a:active {
 .scene-port {
   flex-grow: 1; /* Allows content area to fill the rest of the space */
   padding: 20px;
-  overflow-y: auto; /* Scene content scrolls independently */
+  overflow-y: clip; /* Scene content scrolls independently */
 }
 
 /* Main Scene Area */
@@ -420,10 +421,10 @@ a:active {
 
 .level-box { /* Style to display a level */
   font-family: monospace;
-  font-size: 1.2rem;
-  background: #007bff;
+  font-size: 1rem;
+  background: #0061a0;
   color: white;
-  padding: 5px 10px;
+  padding: 5px 5px;
   border-radius: 4px;
   width: 100px;
   text-align: center;

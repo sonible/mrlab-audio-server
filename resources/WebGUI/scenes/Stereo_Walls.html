@@ -1,7 +1,6 @@
 <div id="Stereo_Walls" class="scene-main">
 
-	<h2>Stereo Walls</h2>
-  <h3>Play stereo audio via walls of loudspeakers. Left channel via the north wall; Right channel via the south wall.</h3>
+  <h3>Plays stereo audio via walls of loudspeakers. Left channel via the north wall; Right channel via the south wall.</h3>
 	<div class="start-container">
     <div class="button-group" style="gap: 0px;">
       <button onClick="launchAppAndWait('Stereo_Walls', 'Stereo_Walls', 5, SceneModule.init, SceneModule.connect);" class="big-button">Launch App</button>
@@ -28,9 +27,9 @@
 
     <div class="button-group" style="gap: 0px;">
       <h3 style="text-align: center;">Wall Levels</h3>
-      <div id="wall-levels" class="start-container" style="height: 700px;">
+      <div id="wall-levels" class="start-container" style="height: 700px; text-align: center;">
         <div class="slider-group">
-          <b>CAVE</b><br>
+          <b style="min-height: 3em">CAVE</b><br>
           <button id="btn-wall-CAVE" class="small-button" style="width: 50px;" onclick="SceneModule.toggleWallState('CAVE')">Off</button>
           <br>
           <input class="volume-slider" id="volume-CAVE-slider" disabled style="opacity: 0.5;" type=range min="0" max="100" value="0" oninput="sendValue('/app/Stereo_Walls/osc/CAVE/Volume/Set', this.value); document.getElementById('volume-CAVE-number').innerText = this.value + ' dB';">
@@ -39,7 +38,7 @@
           <p style="text-align: center; color: white;"><b id="Stereo_Walls-CAVE_Volume">&nbsp;</b></p>
         </div>
         <div class="slider-group">
-          <b>CAVE Door</b><br>
+          <b style="min-height: 3em">CAVE Door</b><br>
           <button id="btn-wall-CAVEDoor" class="small-button" style="width: 50px;" onclick="SceneModule.toggleWallState('CAVEDoor')">Off</button>
           <br>
           <input class="volume-slider" id="volume-CAVEDoor-slider" disabled style="opacity: 0.5;" type=range min="0" max="100" value="0" oninput="sendValue('/app/Stereo_Walls/osc/CAVEDoor/Volume/Set', this.value); document.getElementById('volume-CAVEDoor-number').innerText = this.value + ' dB';">
@@ -48,7 +47,7 @@
           <p style="text-align: center; color: white;"><b id="Stereo_Walls-CAVEDoor_Volume">&nbsp;</b></p>
         </div>
         <div class="slider-group">
-          <b style="text-align: center;">Spatial Audio</b><br>
+          <b style="min-height: 3em">Spatial Audio</b><br>
           <button id="btn-wall-SA" class="small-button" style="width: 50px;" onclick="SceneModule.toggleWallState('SA')">Off</button>
           <br>
           <input class="volume-slider" id="volume-SA-slider" disabled style="opacity: 0.5;" type=range min="0" max="100" value="0" oninput="sendValue('/app/Stereo_Walls/osc/SA/Volume/Set', this.value); document.getElementById('volume-SA-number').innerText = this.value + ' dB';">
@@ -57,7 +56,7 @@
           <p style="text-align: center; color: white;"><b id="Stereo_Walls-SA_Volume">&nbsp;</b></p>
         </div>
         <div class="slider-group">
-          <b>Curved Door</b><br>
+          <b style="min-height: 3em">Curved Door</b><br>
           <button id="btn-wall-CurvedDoor" class="small-button" style="width: 50px;" onclick="SceneModule.toggleWallState('CurvedDoor')">Off</button>
           <br>
           <input class="volume-slider" id="volume-CurvedDoor-slider" disabled style="opacity: 0.5;" type=range min="0" max="100" value="0" oninput="sendValue('/app/Stereo_Walls/osc/CurvedDoor/Volume/Set', this.value); document.getElementById('volume-CurvedDoor-number').innerText = this.value + ' dB';">
@@ -66,7 +65,7 @@
           <p style="text-align: center; color: white;"><b id="Stereo_Walls-CurvedDoor_Volume">&nbsp;</b></p>
         </div>
         <div class="slider-group">
-          <b>Curved LED</b><br>
+          <b style="min-height: 3em">Curved LED</b><br>
           <button id="btn-wall-CurvedLED" class="small-button" style="width: 50px;" onclick="SceneModule.toggleWallState('CurvedLED')">Off</button>
           <br>
           <input class="volume-slider" id="volume-CurvedLED-slider" disabled style="opacity: 0.5;" type=range min="0" max="100" value="0" oninput="sendValue('/app/Stereo_Walls/osc/CurvedLED/Volume/Set', this.value); document.getElementById('volume-CurvedLED-number').innerText = this.value + ' dB';">
