@@ -25,7 +25,13 @@ export function init()
 		// Update the status from the amps
 	document.querySelector('#control-Update_Status').addEventListener('click', async () => 
 	{
-		var x = await fetchHttpResponse('http://172.16.60.111/api/get/general/model', 200);
+		for (var i=1; i<=8; i++)
+		{
+			amps_status[i-1].innerHTML = "&#8212";
+			amps_status[i-1].style.color = "black";
+		}
+	
+		var x = await fetchHttpResponse('http://172.16.60.111/api/get/general/model', 300);
 		console.log("Model", x);
 		if(x.error)
 		{
@@ -35,7 +41,7 @@ export function init()
 			
 		for (var i=1; i<=8; i++)
 		{
-			x = await fetchHttpResponse('http://172.16.60.11' + i + '/api/get/system/mute', 200);
+			x = await fetchHttpResponse('http://172.16.60.11' + i + '/api/get/system/mute', 300);
 			console.log("Mute", x);
 			if(x.error)
 			{

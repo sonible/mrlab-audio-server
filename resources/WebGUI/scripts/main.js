@@ -167,4 +167,3 @@ async function fetchHttpResponse (url, timeout)
 		return {response:null, error};
   }
 }
-	

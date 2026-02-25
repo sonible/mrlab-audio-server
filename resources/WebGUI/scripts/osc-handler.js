@@ -44,7 +44,7 @@ oscPort.on("ready", function ()
 
 oscPort.on("message", function (oscMsg) 
 {
-	//console.log("OSC message received: ", oscMsg);
+	console.log("OSC message received: ", oscMsg);
 	pathstr= oscMsg.address.substring(1);
 	path = pathstr.split("/");
 		// Format of the message: device/scenename/osc/command1/command2/.../commandN
