@@ -11,7 +11,7 @@ app:
   workingDir: ""
 
   oscClients:
-    - id: reaper
+    - id: reaper_music
       subPath: osc
       listenPort: 9338
       destination: [ localhost, 10005 ]
