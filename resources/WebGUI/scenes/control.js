@@ -35,7 +35,12 @@ export function init()
 		console.log("Model", x);
 		if(x.error)
 		{
-			alert ("Error happened: " + x.error.name + "\n" + x.error.message + "\n\nIf the error is something with failed to fetch, try to install the add-on 'Allow CORS' and switch it on."); 
+      for (var i=1; i<=8; i++)
+      {
+        amps_status[i-1].innerHTML = "&#9711";
+        amps_status[i-1].style.color = "black";
+      }
+        //alert ("Error happened: " + x.error.name + "\n" + x.error.message + "\n\nIf the error is something with failed to fetch, try to install the add-on 'Allow CORS' and switch it on."); 
 			return;
 		}
 			
@@ -45,6 +50,7 @@ export function init()
 			console.log("Mute", x);
 			if(x.error)
 			{
+        console.log(x.error);
 				amps_status[i-1].innerHTML = "&#11044";
 				amps_status[i-1].style.color = "red";
 			}

@@ -4,33 +4,35 @@ export function init()
 	document.getElementById("pd_fly-status").style.backgroundColor = "";	
 	document.getElementById("pd_fly-Control_Version").innerText = "---";
 	document.getElementById("pd_fly-Control_SampleRate").innerText = "---";
+
+  document.getElementById('pd_fly-Play_VU').addEventListener('updated', (e) => 
+  {
+    const vu = document.getElementById('pd_fly-Play_VU');
+    document.getElementById('pd_fly-Play_VU-bar').style.height = vu.innerText + '%';
+    document.getElementById('pd_fly-Play_VU-number').innerText = Math.round(vu.innerText) + ' dB';
+  });			
+
+  document.getElementById('pd_fly-Play_Volume').addEventListener('updated', (e) => 
+  {
+    const vol = document.getElementById('pd_fly-Play_Volume');
+    document.getElementById('volume-slider').value = Math.round(vol.innerText);
+    document.getElementById('volume-number').innerText = Math.round(vol.innerText) + " dB";
+  });	
+
+  document.getElementById('pd_fly-Play_Duration').addEventListener('updated', (e) => 
+  {
+    const dur = document.getElementById('pd_fly-Play_Duration').innerText;
+    document.getElementById('duration').innerText = Math.round(dur / 60) + ":" + (dur % 60).toFixed(1);
+  });
+
+  document.getElementById('pd_fly-Play_Timecode').addEventListener('updated', (e) => 
+  {
+    const dur = document.getElementById('pd_fly-Play_Timecode').innerText;
+    document.getElementById('timecode').innerText = Math.round(dur / 60) + ":" + (dur % 60).toFixed(1);
+  });
+
+
 }
-
-document.getElementById('pd_fly-Play_VU').addEventListener('updated', (e) => 
-{
-	const vu = document.getElementById('pd_fly-Play_VU');
-	document.getElementById('pd_fly-Play_VU-bar').style.height = vu.innerText + '%';
-	document.getElementById('pd_fly-Play_VU-number').innerText = Math.round(vu.innerText) + ' dB';
-});			
-
-document.getElementById('pd_fly-Play_Volume').addEventListener('updated', (e) => 
-{
-	const vol = document.getElementById('pd_fly-Play_Volume');
-	document.getElementById('volume-slider').value = Math.round(vol.innerText);
-	document.getElementById('volume-number').innerText = Math.round(vol.innerText) + " dB";
-});	
-
-document.getElementById('pd_fly-Play_Duration').addEventListener('updated', (e) => 
-{
-	const dur = document.getElementById('pd_fly-Play_Duration').innerText;
-	document.getElementById('duration').innerText = Math.round(dur / 60) + ":" + (dur % 60).toFixed(1);
-});
-
-document.getElementById('pd_fly-Play_Timecode').addEventListener('updated', (e) => 
-{
-	const dur = document.getElementById('pd_fly-Play_Timecode').innerText;
-	document.getElementById('timecode').innerText = Math.round(dur / 60) + ":" + (dur % 60).toFixed(1);
-});
 
 export function connect()
 {
