@@ -277,6 +277,12 @@ a:active {
   overflow-y: auto; /* Make button list scrollable */
 }
 
+/* Spacer for consistent gap between button groups */
+.sidebar-spacer {
+  height: 40px;
+  flex-shrink: 0;
+}
+
 /* Button to activate a Scene */
 .scenes-sidebar button {
   padding: 20px;
