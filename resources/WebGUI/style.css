@@ -9,19 +9,12 @@
 
 body,
 html {
-  width: 100vw;
-  height: 1340px;
+  width: 1300px;
+  height: 755px;
   font: 100% sans-serif;
   word-wrap: break-word;
   overflow-x: hidden; /* Prevents unwanted horizontal scrolling */
   overflow-y: scroll; 
-}
-
-@media (min-width: 768px) {
-  html {
-    font-size: 125%;
-    max-width: 42em;
-  }
 }
 
 h1 {
@@ -225,7 +218,7 @@ header a+a {
 /* The top horizontal menu bar */
 .top-menu-bar {
   background-color: #0061a0; /* Dark background */
-  padding: 10px 20px;
+  padding: 5px 10px;
   display: flex; /* Arrange buttons horizontally */
   gap: 15px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -266,10 +259,10 @@ a:active {
 
 /* Sidebar with the Buttons activating the Scenes */
 .scenes-sidebar {
-  width: 300px; /* Fixed width for the button bar */
-  min-width: 300px;
+  width: 180px; /* Fixed width for the button bar */
+  min-width: 180px;
   background-color: #f4f4f4;
-  padding: 20px;
+  padding: 10px;
   display: flex;
   flex-direction: column; /* Stack the buttons vertically */
   gap: 10px; /* Space between the buttons */
@@ -285,11 +278,11 @@ a:active {
 
 /* Button to activate a Scene */
 .scenes-sidebar button {
-  padding: 20px;
+  padding: 10px;
   border: 1px solid #ccc;
   background-color: #9da0a5;
   cursor: pointer;
-  font-size: 20pt;
+  font-size: 13pt;
   text-align: center;
 }
 
@@ -345,7 +338,7 @@ a:active {
   border: 1px solid #ccc;
   background-color: #9da0a5;
   cursor: pointer;
-  font-size: 20pt;
+  font-size: 13pt;
   text-align: center;
   width: 300px;
 }
@@ -355,13 +348,13 @@ a:active {
 }
 
 .big-button {
-  width: 300px;
+  width: 180px;
   padding: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  font-size: 24px;
+  font-size: 13px;
   font-weight: bold;
   cursor: pointer;
 }
@@ -376,13 +369,13 @@ a:active {
 }
 
 .small-button {
-  width: 200px;
+  width: 120px;
   padding: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  font-size: 18px;
+  font-size: 13px;
   font-weight: bold;
   cursor: pointer;
 }
