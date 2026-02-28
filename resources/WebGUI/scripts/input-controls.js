@@ -38,7 +38,7 @@ export function renderInputControls(buttonContainerId, groupContainerId, sceneNa
     const btnContainer = document.getElementById(buttonContainerId);
     if (btnContainer) {
         let html = '';
-        html += '<div style="max-height: 650px; overflow-y: auto; display: flex; flex-direction: column; align-items: center; gap: 10px;">';
+        html += '<div style="max-height: 350px; overflow-y: auto; display: flex; flex-direction: column; align-items: center; gap: 10px;">';
         inputNames.forEach(id => {
              html += `<button id="btn-${id}" onClick="SceneModule.showInputSection('${id}')" class="big-button">${inputLabels[id]}</button> `;
         });
@@ -52,14 +52,12 @@ export function renderInputControls(buttonContainerId, groupContainerId, sceneNa
         inputNames.forEach(id => {
             html += `
             <div id="input-section-${id}" class="input-section" style="display:none; flex-direction: column; align-items: center; text-align: center;">
-                <h3>${inputLabels[id]}</h3>
-                <button id="btn-input-${id}" class="small-button" onclick="SceneModule.toggleInputState('${id}')">Input: Off</button>
-                <div id="slider-container-${id}" class="slider-group" style="width: 100%;">
-                    <span>Volume</span><br>
-                    <input type="range" id="slider-input-${id}" disabled style="opacity: 0.5; max-height: 400px;" min="0" max="100" value="0" 
+                <span style="text-align: center; font-weight: bold; gap: 0px;">${inputLabels[id]}</span>
+                <button id="btn-input-${id}" style="margin-top: 10px;" class="small-button" onclick="SceneModule.toggleInputState('${id}')">Input: Off</button>
+                <div id="slider-container-${id}">
+                    <input type="range" id="slider-input-${id}" disabled style="opacity: 0.5; max-height: 220px;" min="0" max="100" value="0" 
                         oninput="sendValue('/app/${sceneName}/osc/Input/${id}/Volume/Set', this.value); document.getElementById('volume-number-${id}').innerText = this.value + ' dB';" 
                         class="volume-slider">
-                    <br>
                     <div class="level-box" id="volume-number-${id}">--</div>
                 </div>
             </div>`;

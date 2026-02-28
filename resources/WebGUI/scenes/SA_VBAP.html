@@ -1,43 +1,46 @@
 <div id="SA_VBAP" class="scene-main">
 
 	<h3>Plays virtual sound sources positioned in the spatial-audio area.</h3>
-	<div class="start-container">
-    <div class="button-group" style="gap: 0px;">
+
+	<div class="start-container" style="height: 30%;">
+    <div class="button-group" style="width: 30%;">
       <button onClick="launchAppAndWait('SA_VBAP', 'SA_VBAP', 5, SceneModule.init, SceneModule.connect);" class="big-button">Launch App</button>
-      <p style="text-align: center;">Status: <b id="SA_VBAP-status">unclear</b></p>	
       <p style="text-align: center;">
+        Status: <b id="SA_VBAP-status">unclear</b>
+      	<br>
         Version: <b id="SA_VBAP-Control_Version">unknown</b>
-        <br>
+      	<br>
         Sample rate: <b id="SA_VBAP-Control_SampleRate">unknown</b> Hz
       </p>				
     </div>
-    <div class="button-group" style="gap: 0px;">
-      <h3 style="text-align: center;">Doors
+    <div class="button-group" style="width: 70%; height: 100%;">
+      <span style="text-align: center; font-weight: bold; gap: 0px;">
+        Doors
         <span id="SA_VBAP-Control_Door" style="color: white;">unknown</span>
-      </h3>
-      <div class="start-container">
-        <div class="button-group" style="gap: 10px;">
-          <p style="text-align: center;"><b>CAVE side:</b>
-            <br><span id="SA_VBAP-Door_CAVE">unknown</span>
+      </span>
+      <div class="start-container" style="height: 100%;">
+        <div class="button-group" style="height: 100%;">
+          <p style="text-align: center;">
+            <b>CAVE side:</b> <span id="SA_VBAP-Door_CAVE">unknown</span>
           </p>
-          <button id="SA_VBAP-Door_CAVE_Open" onclick="SceneModule.Door_Change({state_cave: 0})" class="big-button">Open</button>
-          <button id="SA_VBAP-Door_CAVE_Close" onclick="SceneModule.Door_Change({state_cave: 1})" class="big-button">Close</button>
+          <button class="small-button" id="SA_VBAP-Door_CAVE_Open" onclick="SceneModule.Door_Change({state_cave: 0})">Open</button>
+          <button class="small-button" id="SA_VBAP-Door_CAVE_Close" onclick="SceneModule.Door_Change({state_cave: 1})">Close</button>
         </div>
-        <div class="button-group" style="gap: 10px;">
-          <p style="text-align: center;"><b>Curved side:</b>
-            <br><span id="SA_VBAP-Door_Curved">unknown</span>
+        <div class="button-group" style="height: 100%;">
+          <p style="text-align: center;">
+            <b>Curved side:</b> <span id="SA_VBAP-Door_Curved">unknown</span>
           </p>
-          <button id="SA_VBAP-Door_Curved_Open" onclick="SceneModule.Door_Change({state_curved: 0})" class="big-button">Open</button>
-          <button id="SA_VBAP-Door_Curved_Close" onclick="SceneModule.Door_Change({state_curved: 1})" class="big-button">Close</button>
+          <button class="small-button" id="SA_VBAP-Door_Curved_Open" onclick="SceneModule.Door_Change({state_curved: 0})">Open</button>
+          <button class="small-button" id="SA_VBAP-Door_Curved_Close" onclick="SceneModule.Door_Change({state_curved: 1})">Close</button>
         </div>
       </div>
     </div>
   </div>
 
-	<div class="start-container">
-    <div class="button-group" style="gap: 0px;">
-      <h3 style="text-align: center;">Inputs</h3>
-      <div class="start-container" style="height: 700px;" style="gap: 0px;">
+	<div class="start-container" style="height: 60%;">
+    <div class="button-group" style="width: 70%; height: 100%; gap: 0px;">
+      <span style="text-align: center; font-weight: bold; gap: 0px;">Inputs</span>
+      <div class="start-container" style="height: 100%; gap: 0px;">
         <div id="input-buttons-container" style="text-align: center;">
           <!-- Input buttons will be injected here by input-controls.js -->
         </div>
@@ -47,24 +50,20 @@
       </div>
 		</div>
 
-    <div class="button-group" style="gap: 0px;">
-      <h3 style="text-align: center;">Total</h3>
-      <div class="start-container" style="height: 700px;">
+    <div class="button-group" style="width: 70%; height: 100%; gap: 0px;">
+      <span style="text-align: center; font-weight: bold; gap: 0px;">Total</span>
+      <div class="start-container">
         <div class="slider-group">
           <span>Volume</span>
-          <br>
-          <input type=range min="0" max="100" value="0" oninput="sendValue('/app/SA_VBAP/osc/Total/Volume/Set', this.value); document.getElementById('volume-number').innerText = this.value + ' dB';" class="volume-slider" id="volume-slider">
-          <br>
+          <input class="volume-slider" id="volume-slider" style="height: 350px;" type=range min="0" max="100" value="0" oninput="sendValue('/app/SA_VBAP/osc/Total/Volume/Set', this.value); document.getElementById('volume-number').innerText = this.value + ' dB';">
           <div class="level-box" id="volume-number">--</div>
           <p style="text-align: center; color: white;"><b id="SA_VBAP-Total_Volume">&nbsp;</b></p>
         </div>
         <div class="slider-group">
           <span>Level</span>
-          <br>
           <div class="meter-container">
             <div class="meter-bar" id="SA_VBAP-Total_VU-bar"></div>
           </div>
-          <br>
           <div class="level-box" id="SA_VBAP-Total_VU-number">--</div>
           <p style="text-align: center; color: white;"><b id="SA_VBAP-Total_VU">&nbsp;</b></p>
         </div>
@@ -72,10 +71,8 @@
     </div>
 	</div>
 
-	<div class="start-container">
-		<div class="button-group">
-			<button onClick="quitApp('SA_VBAP', 'SA_VBAP', SceneModule.init)" class="big-button">Quit App</button>
-  	</div>
+	<div class="start-container" style="height: 8%; width: 100%; justify-content: center;">
+		<button class="big-button" style="width: 30%;" onClick="quitApp('SA_VBAP', 'SA_VBAP', SceneModule.init)" >Quit App</button>
 	</div>
 	
 </div>

@@ -350,7 +350,7 @@ a:active {
 
 .big-button {
   width: 180px;
-  padding: 40px;
+  padding: 0px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -364,7 +364,7 @@ a:active {
   display: flex;
   justify-content: space-between; /* Pushes content to far left and far right */
   align-items: center;
-  padding: 20px;
+  padding: 0px;
   border: 1px solid #ccc;
   width: 100%;
   height: 95%;
@@ -372,7 +372,7 @@ a:active {
 
 .small-button {
   width: 120px;
-  padding: 40px;
+  padding: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -387,7 +387,7 @@ a:active {
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
-  gap: 50px;
+  gap: 0px;
   width: 80%;
   height: 60%;
   box-sizing: border-box;

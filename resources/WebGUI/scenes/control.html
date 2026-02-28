@@ -1,14 +1,14 @@
 <div id="control" class="scene-main">
 
   <h3>Start the system:</h3>
-	<div class="start-container">
+	<div class="start-container" style="height: 30%;">
 		<div>
 			<p style="text-align: center;">Step #1:</p>
 			<button onClick="send('/app/pdu_start/control', 'launch');" class="big-button">PDU: Start</button>
 			<p style="text-align: center; color: white;"> <b id="pdu_start-status">&nbsp;</b></p>
 		</div>
 
-		<div style="display: inline; width: 40%; font-size: 24px; text-align: center; font-weight: bold;">
+		<div style="display: inline; width: 40%; text-align: center; font-weight: bold;">
 			Amplifier Status<br>
 			<table style="text-align: center;">
 				<thead style="font-weight: bold;">
@@ -33,7 +33,6 @@
 				</tr>
 			</table>
 			<button id="control-Update_Status" class="small-button" style="margin: 0 auto;">Update Status</button>
-
 		</div>
 
 		<div>
@@ -42,8 +41,10 @@
 			<p style="text-align: center; color: white;"><b id="amps_unmute-status">&nbsp;</b></p>
 		</div>
 	</div>
+
+
 	<h3>Shutdown the system:</h3>
-	<div class="start-container">
+	<div class="start-container" style="height: 30%;">
 		<div>
 			<p style="text-align: center;">Step #1:</p>
 			<button onClick="send('/app/amps_mute/control', 'launch');" class="big-button">Amps: Mute</button>
@@ -60,8 +61,10 @@
 			<p style="text-align: center; color: white;"><b id="pdu_shutdown-status">&nbsp;</b></p>
 		</div>
 	</div>
+
+
 	<h3>Special:</h3>
-	<div class="start-container">
+	<div class="start-container" style="height: 30%;">
 		<div>
 			<button onClick="send('/app/matrix_default/control', 'launch');" class="big-button" disabled>Matrix:<br>Load
 				Default Routing</button>
