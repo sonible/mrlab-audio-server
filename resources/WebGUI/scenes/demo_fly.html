@@ -1,11 +1,11 @@
 <div id="demo_fly" class="scene-main">
 
   <h3>Plays a fly flying around.</h3>
-	<div class="start-container" style="height: 60%">
+	<div class="start-container">
 	
-		<div class="button-group">
+		<div class="slider-group">
 			<div style="gap: 10px;">
-				<button onClick="launchAppAndWait('demo_fly', 'pd_fly', 5, SceneModule.init, SceneModule.connect);" class="big-button">Launch App</button>
+				<button class="big-button" onClick="launchAppAndWait('demo_fly', 'pd_fly', 5, SceneModule.init, SceneModule.connect);">Launch App</button>
 				<p style="text-align: center;">Status: <b id="pd_fly-status">unclear</b></p>		
 				<p style="text-align: center;">
 					Version: <b id="pd_fly-Control_Version">unknown</b>
@@ -15,31 +15,26 @@
 			</div>
 			
 			<div style="gap: 10px;">
-				<button onClick="sendNoArgs('/app/pd_fly/osc/Play/Start')" class="big-button">Play</button>
+				<button class="big-button" onClick="sendNoArgs('/app/pd_fly/osc/Play/Start')">Play</button>
 				<p style="text-align: center;"><b id="timecode">0:0.0</b> of <b id="duration">0:0.0</b></p>
-				<button onClick="sendNoArgs('/app/pd_fly/osc/Play/Stop')"class="big-button">Stop</button>
+				<button class="big-button" onClick="sendNoArgs('/app/pd_fly/osc/Play/Stop')">Stop</button>
 			</div>
 
-			<br>
 			<p style="text-align: center; color: white;"><b id="pd_fly-Play_Timecode">0</b><b id="pd_fly-Play_Duration">0</b></p>
-			<button onClick="quitApp('demo_fly', 'pd_fly', SceneModule.init)" class="big-button">Quit App</button>
+			<button class="big-button" onClick="quitApp('demo_fly', 'pd_fly', SceneModule.init)">Quit App</button>
 		</div>
 
 		<div class="slider-group">
 			<span>Volume</span>
-			<br>
-			<input type=range min="0" max="100" value="0" oninput="sendValue('/app/pd_fly/osc/Play/Volume/Set', this.value); document.getElementById('volume-number').innerText = this.value + ' dB';" class="volume-slider" id="volume-slider">
-			<br>
+			<input class="volume-slider" id="volume-slider" style="height: 400px;" type=range min="0" max="100" value="0" oninput="sendValue('/app/pd_fly/osc/Play/Volume/Set', this.value); document.getElementById('volume-number').innerText = this.value + ' dB';">
 			<div class="level-box" id="volume-number">--</div>
 			<p style="text-align: center; color: white;"><b id="pd_fly-Play_Volume">&nbsp;</b></p>
 		</div>
 		<div class="slider-group">
 			<span>Level</span>
-			<br>
-			<div class="meter-container">
+			<div class="meter-container" style="height: 400px;">
 				<div class="meter-bar" id="pd_fly-Play_VU-bar"></div>
 			</div>
-			<br>
 			<div class="level-box" id="pd_fly-Play_VU-number">--</div>
 			<p style="text-align: center; color: white;"><b id="pd_fly-Play_VU">&nbsp;</b></p>
 		</div>

@@ -1,9 +1,9 @@
 <div id="demo_jungle" class="scene-main">
 
   <h3>Simulates an environment in a jungle.</h3>
-	<div class="start-container" style="height: 60%">
+	<div class="start-container">
 	
-		<div class="button-group">
+		<div class="slider-group">
 			<div style="gap: 10px;">
 				<button onClick="launchAppAndWait('demo_jungle', 'pd_jungle', 5, SceneModule.init, SceneModule.connect);" class="big-button">Launch App</button>
 				<p style="text-align: center;">Status: <b id="pd_jungle-status">unclear</b></p>		
@@ -27,19 +27,16 @@
 
 		<div class="slider-group">
 			<span>Volume</span>
-			<br>
-			<input type=range min="0" max="100" value="0" oninput="sendValue('/app/pd_jungle/osc/Play/Volume/Set', this.value); document.getElementById('volume-number').innerText = this.value + ' dB';" class="volume-slider" id="volume-slider">
-			<br>
+			<input class="volume-slider" id="volume-slider" style="height: 400px;" type=range min="0" max="100" value="0" oninput="sendValue('/app/pd_jungle/osc/Play/Volume/Set', this.value); document.getElementById('volume-number').innerText = this.value + ' dB';">
 			<div class="level-box" id="volume-number">--</div>
 			<p style="text-align: center; color: white;"><b id="pd_jungle-Play_Volume">&nbsp;</b></p>
 		</div>
+
 		<div class="slider-group">
 			<span>Level</span>
-			<br>
-			<div class="meter-container">
+			<div class="meter-container" style="height: 400px;" >
 				<div class="meter-bar" id="pd_jungle-Play_VU-bar"></div>
 			</div>
-			<br>
 			<div class="level-box" id="pd_jungle-Play_VU-number">--</div>
 			<p style="text-align: center; color: white;"><b id="pd_jungle-Play_VU">&nbsp;</b></p>
 		</div>

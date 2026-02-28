@@ -2,14 +2,11 @@
 
 	<h3>Simulates artificial reverberation in the spatial-audio area.</h2>
 	<div class="start-container">
-		<div>
-			<button onClick="launchApp('demo_reverb', 'reaper_reverb');" class="big-button" style="width: 600px">Launch Reaper and active reverb</button>
-		</div>
-		<div>
-			<button onClick="quitApp('demo_reverb', 'reaper_reverb');"class="big-button" style="width: 600px">Quit Reaper</button>
+		<div class="slider-group" style="width: 100%;">
+			<button class="big-button" style="width: 600px" onClick="launchApp('demo_reverb', 'reaper_reverb');">Launch Reaper and active reverb</button>
+	<p style="text-align: center;"><b id="reaper_reverb-status">&nbsp;</b></p>
+			<button class="big-button" style="width: 600px" onClick="quitApp('demo_reverb', 'reaper_reverb');">Quit Reaper</button>
 		</div>
 	</div>
 
-	<p style="text-align: center;"><b id="reaper_reverb-status">&nbsp;</b></p>
-	
 </div>

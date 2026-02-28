@@ -1,44 +1,45 @@
 <div id="demo_music" class="scene-main">
   
   <h3>Plays music via Reaper.</h3>
-	<div class="start-container" style="height: 60%;">
+	<div class="start-container">
 	
-		<div class="button-group">
-			<div style="gap: 10px;">
-				<button onClick="launchApp('demo_music','reaper_music');" class="big-button">Launch App</button>
-				<p style="text-align: center;">Status: <b id="reaper_music-status">unclear</b></p>		
-			</div>
-			
-			<div style="gap: 10px;">
-				<button onClick="sendNoArgs('/app/reaper_music/osc/play')" class="big-button">Play/Pause</button>
-				<p style="text-align: center;"><b id="timecode">0:0.0</b> of <b id="duration">4:20.0</b></p>
-				<button onClick="sendValue('/app/reaper_music/osc/time', 0)"class="big-button">Rewind</button>
-				<button onClick="sendNoArgs('/app/reaper_music/osc/stop')"class="big-button">Stop</button>
-			</div>
+    <div class="slider-group">
+        <div style="gap: 20px;">
+          <button class="big-button" onClick="launchApp('demo_music','reaper_music');" >Launch App</button>
+          <p style="text-align: center;">Status: <b id="reaper_music-status">unclear</b></p>		
+        </div>
+        
+        <div style="gap: 20px;">
+          <button class="big-button" onClick="sendNoArgs('/app/reaper_music/osc/play')" >Play/Pause</button>
+          <p style="text-align: center;"><b id="timecode">0:0.0</b> of <b id="duration">4:20.0</b></p>
+          <button class="big-button" style="margin-bottom: 20px;" onClick="sendValue('/app/reaper_music/osc/time', 0)">Rewind</button>
+          <button class="big-button" onClick="sendNoArgs('/app/reaper_music/osc/stop')">Stop</button>
+          <p style="text-align: center; color: white;"><b id="reaper_music-time">0</b><b id="reaper_music-Play_Duration">0</b></p>
+        </div>
 
-			<br>
-			<p style="text-align: center; color: white;"><b id="reaper_music-time">0</b><b id="reaper_music-Play_Duration">0</b></p>
-			<button onClick="quitApp('demo_music', 'reaper_music')" class="big-button">Quit App</button>
-		</div>
+        <div style="gap: 20px;">
+          <button class="big-button" onClick="quitApp('demo_music', 'reaper_music')">Quit App</button>
+        </div>
+    </div>
 
 		<div class="slider-group">
-			<span>Volume</span>
-			<br>
-			<input type=range min="-88" max="12" value="0" oninput="sendValue('/app/reaper_music/osc/track/7/volume/db', this.value); document.getElementById('volume-number').innerText = this.value + ' dB';" class="volume-slider" id="volume-slider">
-			<br>
+			<span>Volume</span>			
+			<input class="volume-slider" id="volume-slider" style="height: 400px;" type=range min="-88" max="12" value="0" oninput="sendValue('/app/reaper_music/osc/track/7/volume/db', this.value); document.getElementById('volume-number').innerText = this.value + ' dB';">
 			<div class="level-box" style="width: 130px;" id="volume-number">0 dB</div>
 			<p style="text-align: center; color: white; font-size: 8px;"><b id="reaper_music-track_7_volume_db">&nbsp;</b></p>
 		</div>
+
 		<div class="slider-group">
 			<span>Level</span>
 			<br>
-			<div class="meter-container">
+			<div class="meter-container" style="height: 400px;">
 				<div class="meter-bar" id="reaper_music-Play_VU-bar"></div>
 			</div>
 			<br>
 			<div class="level-box" id="reaper_music-Play_VU-number">--</div>
 			<p style="text-align: center; color: white; font-size: 8px;"><b id="reaper_music-track_7_vu">blah&nbsp;</b></p>
 		</div>
+
 	</div>
 	
 </div>

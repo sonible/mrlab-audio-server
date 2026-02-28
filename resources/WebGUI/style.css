@@ -10,7 +10,7 @@
 body,
 html {
   width: 1300px;
-  height: 755px;
+  height: 750px;
   font: 100% sans-serif;
   word-wrap: break-word;
   overflow-x: hidden; /* Prevents unwanted horizontal scrolling */
@@ -254,7 +254,7 @@ a:active {
 /* The container holding the left sidebar and the scene content */
 .main-layout-horizontal {
   display: flex; /* Ensure it takes up the rest of the page height */
-  height: calc(1440px - 54px); /* Fixed height minus the header height (approx) */
+  height: 89%; /* calc(755px - 70px); /* Fixed height minus the header height (approx) */
 }
 
 /* Sidebar with the Buttons activating the Scenes */
@@ -305,14 +305,15 @@ a:active {
 /* Port for the Scene Area (takes up remaining space) */
 .scene-port {
   flex-grow: 1; /* Allows content area to fill the rest of the space */
-  padding: 20px;
+  padding: 5px;
   overflow-y: clip; /* Scene content scrolls independently */
 }
 
 /* Main Scene Area */
 .scene-main {
   display: block;
-  padding: 20px;
+  padding: 5px;
+  height: 100%
 }
 
 .scene-main button {
@@ -366,6 +367,7 @@ a:active {
   padding: 20px;
   border: 1px solid #ccc;
   width: 100%;
+  height: 95%;
 }
 
 .small-button {
@@ -380,17 +382,15 @@ a:active {
   cursor: pointer;
 }
 
-/* Styles from demo_fly.html */
-
 .button-group {
-  box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
   align-items: center;
+  justify-content: space-evenly;
   gap: 50px;
   width: 80%;
   height: 60%;
+  box-sizing: border-box;
 }
 
 .slider-group { /* Group with the sliders, fills the entire vertical height */
@@ -415,7 +415,8 @@ a:active {
   writing-mode: vertical-lr;
   direction: rtl;
   width: 20px;
-  height: 600px;
+  height: 60%;
+  margin: 20px;
 }
 
 .level-box { /* Style to display a level */
@@ -431,13 +432,15 @@ a:active {
 
 .vu-meter {
   transform: rotate(-90deg);
-  width: 150px; /* This becomes the height */
+  width: 100%; /* This becomes the height */
   height: 20px; /* This becomes the thickness */
 }
 
 .meter-container {
   width: 30px;
-  height: 600px;
+  height: 60%;
+  min-height: 200px;
+  margin: 20px;
   background-color: #333;
   border: 2px solid #000;
   position: relative;
