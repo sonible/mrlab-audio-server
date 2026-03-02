@@ -12,16 +12,18 @@
 #include <controller/MainController.h>
 #include <controller/AppHandle.h>
 
-
 namespace mrlab::view
 {
 
 MainComponent::MainComponent (controller::MainController& controller)
-    : mainController (controller)
+    : mainController (controller),
+      loggingComponent (controller.getLogger())
 {
     mainController.getAppController().addListener (this);
 
-    setSize (800, 300);
+    addAndMakeVisible (loggingComponent);
+
+    setSize (800, 700);
 }
 
 MainComponent::~MainComponent()
@@ -36,8 +38,9 @@ void MainComponent::paint (juce::Graphics& g)
 
 void MainComponent::resized()
 {
-    auto y = 0;
+    loggingComponent.setBounds (getLocalBounds().withHeight (300).reduced (10));
 
+    auto y = loggingComponent.getBottom();
     for (auto& control : appControls)
         control->setBounds (50, y += 50, getWidth() - 100, 35);
 }

@@ -34,6 +34,8 @@ target_sources (mrlabctrl_Common
 
         view/AppControlComponent.h
         view/AppControlComponent.cpp
+        view/LoggingComponent.h
+        view/LoggingComponent.cpp
         view/MainComponent.h
         view/MainComponent.cpp
         view/MainWindow.h
