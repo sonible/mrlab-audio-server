@@ -11,6 +11,7 @@
 
 #include <juce_gui_basics/juce_gui_basics.h>
 #include <controller/AppController.h>
+#include "LoggingComponent.h"
 
 namespace mrlab::controller
 {
@@ -41,6 +42,7 @@ private:
     controller::MainController& mainController;
 
     std::vector<std::unique_ptr<AppControlComponent>> appControls;
+    LoggingComponent loggingComponent;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainComponent)
 };

@@ -38,6 +38,9 @@ public:
     /** @returns a reference to the WebServerController. */
     WebServerController& getWebServerController() { return webServerController; }
 
+    /** @returns a reference to the Logger. */
+    Logger& getLogger() { return logger; }
+
 private:
     //==============================================================================
     /** Perform a few initialisation tasks/checks. */
