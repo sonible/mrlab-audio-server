@@ -2,6 +2,20 @@
 let secWaited = 0; // Global counter for seconds waited after some action
 let SceneModule = null; // Module for all Scene-related scripts, will be loaded from scripts/%scene-name%.js
 
+    // Load the version number
+fetch('version.txt')
+  .then(response => {
+    if (!response.ok) throw new Error('File not found');
+    return response.text();
+  })
+  .then(text => {
+    // Den Inhalt in das span-Element schreiben (trim entfernt Zeilenumbrüche)
+    document.getElementById('git-version').innerText = text.trim();
+  })
+  .catch(error => {
+    document.getElementById('git-version').innerText = 'Version unknown';
+  });
+
 // Prevent going back or reload if a scene has been launched
 window.addEventListener('beforeunload', (event) => {
 	const launchedScenes = document.querySelector('.launched-scene');
@@ -167,3 +181,4 @@ async function fetchHttpResponse (url, timeout)
 		return {response:null, error};
   }
 }
+
