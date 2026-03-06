@@ -85,8 +85,8 @@ export function Door_Change({ state_cave = undefined, state_curved =  undefined 
   if(state_cave === undefined)
     state_cave = document.getElementById("SA_VBAP-Door_CAVE_Close").disabled;
 
-  if(state_curved) state = 'C'; else state = 'O';
-  if(state_cave) state = `${state}C`; else state = `${state}O`;
+  if(state_cave) state = 'C'; else state = 'O';
+  if(state_curved) state = `${state}C`; else state = `${state}O`;
 
   send('/app/SA_VBAP/osc/Control/Door/Set', state);
   sendNoArgs('/app/SA_VBAP/osc/Control/Door');
@@ -105,14 +105,14 @@ export function Door_Status()
       document.getElementById("SA_VBAP-Door_CAVE_Close").disabled = false;
       document.getElementById("SA_VBAP-Door_CAVE").innerText = "Door is open";
       break;
-    case "OC":
+    case "CO":
       document.getElementById("SA_VBAP-Door_Curved_Open").disabled = true;
       document.getElementById("SA_VBAP-Door_Curved_Close").disabled = false;
       document.getElementById("SA_VBAP-Door_Curved").innerText = "Door is open";
       document.getElementById("SA_VBAP-Door_CAVE_Open").disabled = false;
       document.getElementById("SA_VBAP-Door_CAVE_Close").disabled = true;
       break;
-    case "CO":
+    case "OC":
       document.getElementById("SA_VBAP-Door_Curved_Open").disabled = false;
       document.getElementById("SA_VBAP-Door_Curved_Close").disabled = true;
       document.getElementById("SA_VBAP-Door_Curved").innerText = "Door is closed";
