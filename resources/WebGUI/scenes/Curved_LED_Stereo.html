@@ -1,7 +1,7 @@
 <div id="Curved_LED_Stereo" class="scene-main">
 
   <h3>Plays stereo audio via the Curved-LED loudspeakers. The spatial-audio area is not used.</h3>
-	<div class="start-container">
+	<div class="start-container" style="height: 30%;">
 	
 		<div class="button-group">
 			<div style="gap: 10px;">
@@ -16,48 +16,44 @@
 	 </div>		
   </div>
 
-  <div class="start-container">
-    <div class="button-group" style="gap: 0px;">
-      <h3 style="text-align: center;">Inputs</h3>
-      <div class="start-container" style="height: 700px;">
+  <div class="start-container" style="height: 60%;">
+    
+    <div class="button-group" style="width: 50%; height: 100%; gap: 0px;">
+      <span style="text-align: center; font-weight: bold; gap: 0px;">Inputs</span>
+      <div class="start-container" style="height: 100%; gap: 0px;">
         <div id="input-buttons-container" style="text-align: center;">
           <!-- Input buttons will be injected here by input-controls.js -->
         </div>
-        <div id="input-group-container" class="input-group">
+        <div id="input-group-container" class="input-group" style="gap: 0px;">
           <!-- Input sections will be injected here by input-controls.js -->
         </div>
       </div>
 		</div>
     
-		<div class="button-group" style="gap: 0px;">
-      <h3 style="text-align: center;">Total</h3>
-      <div class="start-container" style="height: 700px;">
+    <div class="button-group" style="width: 50%; height: 100%; gap: 0px;">
+      <span style="text-align: center; font-weight: bold; gap: 0px;">Total</span>
+      <div class="start-container">
         <div class="slider-group">
-        <span>Volume</span>
-        <br>
-        <input type=range min="0" max="100" value="0" oninput="sendValue('/app/Curved_LED_Stereo/osc/Total/Volume/Set', this.value); document.getElementById('volume-number').innerText = this.value + ' dB';" class="volume-slider" id="volume-slider">
-        <br>
-        <div class="level-box" id="volume-number">--</div>
-        <p style="text-align: center; color: white;"><b id="Curved_LED_Stereo-Total_Volume">&nbsp;</b></p>
+          <b>Volume</b>
+          <input class="volume-slider" id="volume-slider" style="height: 350px;" type=range min="0" max="99" value="0" 
+            oninput="sendValue('/app/Curved_LED_Stereo/osc/Total/Volume/Set', this.value); document.getElementById('volume-number').innerText = this.value + ' dB';">
+          <div class="level-box" id="volume-number">--</div>
+          <span style="text-align: center; color: white;" id="Curved_LED_Stereo-Total_Volume">&nbsp;</span>
         </div>
         <div class="slider-group">
-          <span>Level</span>
-          <br>
-          <div class="meter-container">
+          <b>Level</b>
+          <div class="meter-container" style="height: 80%;">
             <div class="meter-bar" id="Curved_LED_Stereo-Total_VU-bar"></div>
           </div>
-          <br>
           <div class="level-box" id="Curved_LED_Stereo-Total_VU-number">--</div>
-          <p style="text-align: center; color: white;"><b id="Curved_LED_Stereo-Total_VU">&nbsp;</b></p>
+          <span style="text-align: center; color: white;" id="Curved_LED_Stereo-Total_VU">&nbsp;</span>
         </div>
       </div>
     </div>
   </div>
   
-  <div class="start-container">
-		<div class="button-group">			
-			<button onClick="unlockScene('Curved_LED_Stereo');" class="big-button">Reset and Unlock</button>
-		</div>
-	</div>
+  <div class="start-container" style="height: 8%; width: 100%; justify-content: center;">
+    <button class="big-button" style="width: 30%;" onClick="unlockScene('Curved_LED_Stereo');">Reset and Unlock</button>
+  </div>
 
 </div>

@@ -432,6 +432,7 @@ button:disabled {
   justify-content: center;
   width: 40%;
   height: 100%;
+  gap: 5px;
 }
 
 .input-group { /* Group with the signal input, fills the entire vertical height */
@@ -447,7 +448,7 @@ button:disabled {
   writing-mode: vertical-lr;
   direction: rtl;
   width: 20px;
-  height: 60%;
+  height: 70%;
   margin: 20px;
 }
 
@@ -458,7 +459,7 @@ button:disabled {
   color: white;
   padding: 5px 5px;
   border-radius: 4px;
-  width: 100px;
+  width: 60px;
   text-align: center;
 }
 
