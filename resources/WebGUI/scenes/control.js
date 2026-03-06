@@ -229,4 +229,29 @@ export function PduShutdown()
 	
 }
 
+export function AmpStatusLegend()
+{
+	const dialog = document.getElementById('infoDialog');
+	document.getElementById('infoTitle').innerText = "Amplifier Status Legend";
+	document.getElementById('infoText').innerHTML = `
+    <div>
+    <table style="margin: 0 auto; width:50%;">
+    <thead><tr><th>Symbol</th><th>Meaning</th></tr></thead>
+    <tbody>
+    <tr><td><span style="color: black;">&#8212;</span></td> <td>Request started</td></tr>
+		<tr><td><span style="color: red;">&#8212;</span></td> <td>Request in progress</td></tr>
+		<tr><td><span style="color: black;">&#9711;</span></td> <td>Shutdown</td></tr>
+		<tr><td><span style="color: black;">&#11044;</span></td> <td>Switched on</td></tr>
+		<tr><td><span style="color: green;">&#11044;</span></td> <td>Unmuted</td></tr>
+		<tr><td><span style="color: blue;">&#11044;</span></td> <td>Muted</td></tr>
+		<tr><td><span style="color: red;">&#11044;</span></td> <td>Error</td></tr>
+		<tr><td><span style="color: yellow;">&#11044;</span></td> <td>State unknown</td></tr>
+    </tbody></table></div>`;  
+	dialog.showModal();
+
+	document.getElementById('infoOkBtn').onclick = () => 
+	{
+		dialog.close();
+	};
+}
 

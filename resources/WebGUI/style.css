@@ -355,6 +355,26 @@ button:disabled {
   width: 300px;
 }
 
+#infoDialog {
+  padding: 20px;
+  text-align: center;
+}
+
+#infoDialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+}
+
+#infoDialog button {
+  padding: 20px;
+  border: 1px solid #ccc;
+  background-color: #83868a;
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 13pt;
+  text-align: center;
+  width: 300px;
+}
 #page-home {
   display: block; /* Default visible section */
 }
