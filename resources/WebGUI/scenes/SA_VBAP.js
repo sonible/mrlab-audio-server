@@ -90,6 +90,11 @@ export function Door_Change({ state_cave = undefined, state_curved =  undefined 
 
   send('/app/SA_VBAP/osc/Control/Door/Set', state);
   sendNoArgs('/app/SA_VBAP/osc/Control/Door');
+
+  document.getElementById("SA_VBAP-Door_Curved_Open").disabled = true;
+  document.getElementById("SA_VBAP-Door_Curved_Close").disabled = true;
+  document.getElementById("SA_VBAP-Door_CAVE_Open").disabled = true;
+  document.getElementById("SA_VBAP-Door_CAVE_Close").disabled = true;
 }
 
 export function Door_Status()

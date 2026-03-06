@@ -330,6 +330,10 @@ button:disabled {
   text-align: center;
 }
 
+.scene-main button:disabled {
+  background-color: #cccccc; 
+}
+
 #confirmDialog {
   padding: 20px;
   text-align: center;
