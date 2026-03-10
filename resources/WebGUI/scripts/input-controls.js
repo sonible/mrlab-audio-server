@@ -1,8 +1,11 @@
 
 const inputNames = [
     "DANTE_CurvedLEDPC",
-    "DANTE_Bluetooth", "DANTE_HDMI", "DANTE_GCPU", 
-    "Mic_Beam_1", "Mic_Beam_2", "Mic_Wireless_1", "Mic_Wireless_2", "Mic_Array",
+    "DANTE_CurvedLEDPC_4",
+    "DANTE_Bluetooth", 
+    "DANTE_HDMI_Stereo", 
+    "DANTE_GCPU", 
+    "Beam_Mic_Curved", "Beam_Mic_CAVE", "Mic_Wireless_1", "Mic_Wireless_2", "Mic_Array",
     "Analog_Mono_1", "Analog_Mono_2", "Analog_Mono_3", "Analog_Mono_4",
     "Analog_Mono_5", "Analog_Mono_6", "Analog_Mono_7", "Analog_Mono_8",
     "Analog_Stereo_1", "Analog_Stereo_2", "Analog_Stereo_3", "Analog_Stereo_4", 
@@ -12,17 +15,18 @@ const inputNames = [
 ];
 
 const inputLabels = {
-    "DANTE_CurvedLEDPC": "Curved LED PC",
+    "DANTE_CurvedLEDPC": "Curved LED PC Stereo",
+    "DANTE_CurvedLEDPC_4": "Curved LED PC CH1-4",
     "DANTE_Bluetooth": "Bluetooth Stereo",
-    "DANTE_HDMI": "HDMI", 
-    "DANTE_GCPU": "DANTE: Graphic CPU",
+    "DANTE_HDMI_Stereo": "HDMI Stereo", 
+    "DANTE_GCPU": "Graphic CPU",
     "DANTE_Mono_1": "DANTE: Mono #1", "DANTE_Mono_2": "DANTE: Mono #2",
     "DANTE_Mono_3": "DANTE: Mono #3", "DANTE_Mono_4": "DANTE: Mono #4",
     "DANTE_Mono_5": "DANTE: Mono #5", "DANTE_Mono_6": "DANTE: Mono #6",
     "DANTE_Mono_7": "DANTE: Mono #7", "DANTE_Mono_8": "DANTE: Mono #8",
     "DANTE_Stereo_1": "DANTE: Stereo #1", "DANTE_Stereo_2": "DANTE: Stereo #2",
     "DANTE_Stereo_3": "DANTE: Stereo #3", "DANTE_Stereo_4": "DANTE: Stereo #4",
-    "Mic_Beam_1": "Directional Mic Array #1", "Mic_Beam_2": "Directional Mic Array #2",
+    "Beam_Mic_Curved": "Beam Mic Curved", "Beam_Mic_CAVE": "Beam Mic CAVE",
     "Mic_Wireless_1": "Wireless Mic #1", "Mic_Wireless_2": "Wireless Mic #2", 
     "Mic_Array": "Ceiling Mic Array",
     "Analog_Mono_1": "Analog: Mono #1", "Analog_Mono_2": "Analog: Mono #2",
@@ -34,13 +38,15 @@ const inputLabels = {
 };
 
 
-export function renderInputControls(buttonContainerId, groupContainerId, sceneName) {
+export function renderInputControls(buttonContainerId, groupContainerId, sceneName, hiddenInputs = []) {
     const btnContainer = document.getElementById(buttonContainerId);
     if (btnContainer) {
         let html = '';
         html += '<div style="max-height: 350px; overflow-y: auto; display: flex; flex-direction: column; align-items: center; gap: 10px;">';
         inputNames.forEach(id => {
-             html += `<button id="btn-${id}" onClick="SceneModule.showInputSection('${id}')" class="big-button">${inputLabels[id]}</button> `;
+             if (!hiddenInputs.includes(id)) {
+                 html += `<button id="btn-${id}" onClick="SceneModule.showInputSection('${id}')" class="big-button">${inputLabels[id]}</button> `;
+             }
         });
         html += '</div>';
         btnContainer.innerHTML = html;
@@ -50,17 +56,19 @@ export function renderInputControls(buttonContainerId, groupContainerId, sceneNa
     if (groupContainer) {
         let html = '';
         inputNames.forEach(id => {
-            html += `
-            <div id="input-section-${id}" class="input-section" style="display:none; flex-direction: column; align-items: center; text-align: center;">
-                <span style="text-align: center; font-weight: bold; gap: 0px;">${inputLabels[id]}</span>
-                <button id="btn-input-${id}" style="margin-top: 10px;" class="small-button" onclick="SceneModule.toggleInputState('${id}')">Input: Off</button>
-                <div id="slider-container-${id}">
-                    <input class="volume-slider" type="range" id="slider-input-${id}" disabled min="0" max="99" value="0" 
-                        oninput="sendValue('/app/${sceneName}/osc/Input/${id}/Volume/Set', this.value); document.getElementById('volume-number-${id}').innerText = this.value + ' dB';" 
-                        style="opacity: 0.5; max-height: 220px;">
-                    <div class="level-box" id="volume-number-${id}">--</div>
-                </div>
-            </div>`;
+            if (!hiddenInputs.includes(id)) {
+                html += `
+                <div id="input-section-${id}" class="input-section" style="display:none; flex-direction: column; align-items: center; text-align: center;">
+                    <span style="text-align: center; font-weight: bold; gap: 0px;">${inputLabels[id]}</span>
+                    <button id="btn-input-${id}" style="margin-top: 10px;" class="small-button" onclick="SceneModule.toggleInputState('${id}')">Input: Off</button>
+                    <div id="slider-container-${id}">
+                        <input class="volume-slider" type="range" id="slider-input-${id}" disabled min="0" max="99" value="0" 
+                            oninput="sendValue('/app/${sceneName}/osc/Input/${id}/Volume/Set', this.value); document.getElementById('volume-number-${id}').innerText = this.value + ' dB';" 
+                            style="opacity: 0.5; max-height: 220px;">
+                        <div class="level-box" id="volume-number-${id}">--</div>
+                    </div>
+                </div>`;
+            }
         });
         groupContainer.innerHTML = html;
     }

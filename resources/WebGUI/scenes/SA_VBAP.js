@@ -9,7 +9,17 @@ export function init()
 	document.getElementById("SA_VBAP-Control_SampleRate").innerText = "---"; 
 	document.getElementById("SA_VBAP-Control_Door").innerText = "---";
     // Inject input controls
-    renderInputControls('input-buttons-container', 'input-group-container', 'SA_VBAP');
+    renderInputControls('input-buttons-container', 'input-group-container', 'SA_VBAP', 
+      [
+      "DANTE_Bluetooth", 
+      "DANTE_HDMI_Stereo", 
+      "Beam_Mic_Curved", "Beam_Mic_CAVE", "Mic_Wireless_1", "Mic_Wireless_2", "Mic_Array",
+      "Analog_Mono_1", "Analog_Mono_2", "Analog_Mono_3", "Analog_Mono_4",
+      "Analog_Mono_5", "Analog_Mono_6", "Analog_Mono_7", "Analog_Mono_8",
+      "Analog_Stereo_1", "Analog_Stereo_2", "Analog_Stereo_3", "Analog_Stereo_4", 
+      "DANTE_Mono_1", "DANTE_Mono_2", "DANTE_Mono_3", "DANTE_Mono_4",
+      "DANTE_Mono_5", "DANTE_Mono_6", "DANTE_Mono_7", "DANTE_Mono_8",
+      "DANTE_Stereo_1", "DANTE_Stereo_2", "DANTE_Stereo_3", "DANTE_Stereo_4"]);
 
   document.getElementById('SA_VBAP-Total_VU').addEventListener('updated', (e) => 
   {
