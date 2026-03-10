@@ -117,3 +117,48 @@ export function toggleInputState(id)
 		slider.style.opacity = "0.5";
 	}
 }
+
+export function renderInputButtons(buttonContainerId, sceneName, hiddenInputs = []) {
+    const btnContainer = document.getElementById(buttonContainerId);
+    if (btnContainer) {
+        let html = '';
+        html += '<div style="max-height: 350px; overflow-y: auto; display: flex; flex-direction: column; align-items: center; gap: 10px;">';
+        inputNames.forEach(id => {
+             if (!hiddenInputs.includes(id)) {
+                 html += `<button id="btn-${id}" onClick="SceneModule.setInputButtonExclusively('${id}', '${sceneName}')" class="big-button">${inputLabels[id]}</button> `;
+             }
+        });
+        html += '</div>';
+        btnContainer.innerHTML = html;
+    }
+}
+
+export function setInputButtonExclusively(id, sceneName)
+{	
+	const bigBtn = document.getElementById('btn-' + id);
+	if (!bigBtn) return;
+
+	// Check if currently active by class
+	const isActive = bigBtn.classList.contains('active-input');
+
+	if (!isActive) // User wants to turn it ON
+	{
+		// Find any currently active simple buttons
+		inputNames.forEach(otherId => {
+			if (otherId === id) return;
+			const otherBtn = document.getElementById('btn-' + otherId);
+			if (otherBtn && otherBtn.classList.contains('active-input')) {
+				otherBtn.classList.remove('active-input');
+				sendValue(`/app/${sceneName}/osc/Input/${otherId}/Volume/Set`, 0);
+			}
+		});
+
+		bigBtn.classList.add('active-input');
+		sendValue(`/app/${sceneName}/osc/Input/${id}/Volume/Set`, 100); 
+	}
+	else // Turn OFF
+	{
+		bigBtn.classList.remove('active-input');
+		sendValue(`/app/${sceneName}/osc/Input/${id}/Volume/Set`, 0);
+	}
+}

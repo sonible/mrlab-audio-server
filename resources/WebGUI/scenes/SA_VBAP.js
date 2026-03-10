@@ -1,5 +1,8 @@
-import { renderInputControls, showInputSection, toggleInputState } from '../scripts/input-controls.js';
-export { showInputSection, toggleInputState };
+import { renderInputButtons, setInputButtonExclusively } from '../scripts/input-controls.js';
+export { setInputButtonExclusively };
+
+let state_curved;
+let state_cave;
 
 export function init()
 {
@@ -9,7 +12,7 @@ export function init()
 	document.getElementById("SA_VBAP-Control_SampleRate").innerText = "---"; 
 	document.getElementById("SA_VBAP-Control_Door").innerText = "---";
     // Inject input controls
-    renderInputControls('input-buttons-container', 'input-group-container', 'SA_VBAP', 
+    renderInputButtons('input-buttons-container', 'SA_VBAP', 
       [
       "DANTE_Bluetooth", 
       "DANTE_HDMI_Stereo", 
