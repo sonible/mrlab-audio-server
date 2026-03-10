@@ -66,17 +66,17 @@
 	<h3>Special:</h3>
 	<div class="start-container" style="height: 30%;">
 		<div>
-			<button onClick="send('/app/matrix_default/control', 'launch');" class="big-button" disabled>Matrix:<br>Load
+			<button onClick="send('/matrix/load_defaults', 'launch');" class="big-button" disabled>Matrix:<br>Load
 				Default Routing</button>
 			<p style="text-align: center;"> <b id="matrix_default-status">&nbsp;</b></p>
 		</div>
 		<div>
-			<button onClick="send('/app/mixer_default/control', 'launch');" class="big-button" disabled>Mixer:<br>Load
+			<button onClick="send('/totalmix/load_defaults', 'launch');" class="big-button" disabled>Mixer:<br>Load
 				Default Routing</button>
 			<p style="text-align: center;"> <b id="mixer_default-status">&nbsp;</b></p>
 		</div>
 		<div>
-			<button onClick="send('/app', 'kill');" class="big-button" disabled>Apps:<br>Kill'em all</button>
+			<button onClick="send('/app/*', 'kill');" class="big-button" disabled>Apps:<br>Kill'em all</button>
 			<p style="text-align: center;"> <b id="kill-status">&nbsp;</b></p>
 		</div>
 	</div>
