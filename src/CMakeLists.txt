@@ -33,6 +33,8 @@ target_sources (mrlabctrl_Common
         controller/OscEndpoint.h
         controller/SubPathOscAgentWithEndpoint.h
         controller/SubPathOscAgentWithEndpoint.cpp
+        controller/TotalmixController.h
+        controller/TotalmixController.cpp
         controller/UdpEndpoint.h
         controller/UdpEndpoint.cpp
         controller/WebServerController.h

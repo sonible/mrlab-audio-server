@@ -12,6 +12,7 @@
 #include "AppController.h"
 #include "ConfigController.h"
 #include "OscController.h"
+#include "TotalmixController.h"
 #include "WebServerController.h"
 #include <util/Logger.h>
 
@@ -56,6 +57,7 @@ private:
     WebServerController webServerController;
     ConfigController configController;
     AppController appController;
+    TotalmixController totalmixController;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainController)
 };

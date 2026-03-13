@@ -19,7 +19,8 @@ namespace mrlab::controller
 
 MainController::MainController()
     : webServerController (oscController),
-      appController (*this)
+      appController (*this),
+      totalmixController (oscController)
 {
     // Initialisation tasks of this controller.
     initialise();
@@ -63,6 +64,9 @@ bool MainController::start()
 
     // This must not happen before the OscController was started.
     configController.initOscAgent (oscController);
+
+    if (! totalmixController.start())
+        return false;
 
     return true;
 }
