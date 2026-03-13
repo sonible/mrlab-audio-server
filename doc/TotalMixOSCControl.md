@@ -3,12 +3,16 @@
 ## TotalMix Settings
 - Enable OSC Control via "Options" -> "Enable Osc Control"
 - Go to OSC settings via "Options" -> "Settings" -> "OSC"
-- Make sure incoming and outgoing ports are 7001 and 9001 respectively
-- Enter the controlling devices IP in "Remote Controller Address" -> "IP or HostName"
+- Make sure that the incoming and outgoing ports match the settings in MRLabAudioServer's `Global.h`.
+  - Default for incoming: 7001
+  - Default for outgoing: 9001
+- Enter "localhost" in "Remote Controller Address" -> "IP or HostName" (assuming that TotalMix and the MRLabAudioServer app are running on the same machine)
+  - If you do not want to receive OSC messages from TotalMix, leave the field empty
 
 ## Loading snapshots via OSC commands
-From the webUI, you can now send the following commands **to the MRLabAudioServer**. It will forward the commands to TotalMix internally.
-Beware: You really load snapshot "1", by calling the command "../8/1". The numbering is inverted for some reason. These are not a typos.
+From the Webui (or any other OSC client of the MRLabAudioServer app), you can now send the following commands **to the MRLabAudioServer**. It will forward the commands to TotalMix internally.
+Beware: You really load snapshot "1", by calling the command "../8/1". The numbering is inverted for some reason. These are not typos.
+
 All commands are sent with a float payload of 1.0.
 
 - load snapshot 1: `/totalmix/3/snapshots/8/1 1.0`
