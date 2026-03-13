@@ -60,6 +60,15 @@ struct Globals
     /** @return The resource URI for the WebSocket connection handler. */
     static std::string getWebSocketUri() { return "/ws"; }
 
+    //==============================================================================
+    /** @return The listening (inbound) port for RME Totalmix. */
+    static uint16_t getTotalmixListeningPort() { return 9001; }
+
+    /** @return The remote host for controlling RME Totalmix. */
+    static std::string getTotalmixControlHost() { return "localhost"; }
+
+    /** @return The remote port for controlling RME Totalmix. */
+    static uint16_t getTotalmixControlPort() { return 7001; }
 };
 
 } // namespace mrlab
