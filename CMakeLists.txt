@@ -72,6 +72,7 @@ juce_add_gui_app (mrlabctrl_App
     PRODUCT_NAME  MRLabAudioServer
     COMPANY_NAME  sonible
     BUNDLE_ID     com.sonible.mrlabctrl
+    ICON_BIG      "${CMAKE_SOURCE_DIR}/src/assets/AppLogo.png"
 
     HARDENED_RUNTIME_ENABLED TRUE
 )
