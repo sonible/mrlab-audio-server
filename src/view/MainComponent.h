@@ -23,25 +23,19 @@ namespace mrlab::view
 class AppControlComponent;
 
 //==============================================================================
-class MainComponent : public juce::Component,
-                      public controller::AppController::Listener
+class MainComponent : public juce::Component
 {
 public:
     //==============================================================================
     MainComponent (controller::MainController& controller);
-    ~MainComponent() override;
 
     void paint (juce::Graphics&) override;
     void resized() override;
-
-    void appAdded (controller::AppHandle& app) override;
-    void appWillBeRemoved (controller::AppHandle& app) override;
 
 private:
     //==============================================================================
     controller::MainController& mainController;
 
-    std::vector<std::unique_ptr<AppControlComponent>> appControls;
     LoggingComponent loggingComponent;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainComponent)
