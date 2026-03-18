@@ -19,16 +19,9 @@ MainComponent::MainComponent (controller::MainController& controller)
     : mainController (controller),
       loggingComponent (controller.getLogger())
 {
-    mainController.getAppController().addListener (this);
-
     addAndMakeVisible (loggingComponent);
 
     setSize (800, 700);
-}
-
-MainComponent::~MainComponent()
-{
-    mainController.getAppController().removeListener (this);
 }
 
 void MainComponent::paint (juce::Graphics& g)
@@ -39,29 +32,6 @@ void MainComponent::paint (juce::Graphics& g)
 void MainComponent::resized()
 {
     loggingComponent.setBounds (getLocalBounds().withHeight (300).reduced (10));
-
-    auto y = loggingComponent.getBottom();
-    for (auto& control : appControls)
-        control->setBounds (50, y += 50, getWidth() - 100, 35);
-}
-
-void MainComponent::appAdded (controller::AppHandle& app)
-{
-    auto& c = appControls.emplace_back (std::make_unique<AppControlComponent> (app));
-    addAndMakeVisible (*c);
-    resized();
-}
-
-void MainComponent::appWillBeRemoved (controller::AppHandle& app)
-{
-    const auto it = std::find_if (appControls.begin(), appControls.end(), [id = app.getId()] (auto& c) { return c->getId() == id; });
-
-    if (it == appControls.end())
-        return;
-
-    removeChildComponent (it->get());
-    appControls.erase (it);
-    resized();
 }
 
 } // namespace mrlab::view
