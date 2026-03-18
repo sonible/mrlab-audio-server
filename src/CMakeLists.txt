@@ -64,4 +64,6 @@ target_sources (mrlabctrl_Common
         view/MainComponent.cpp
         view/MainWindow.h
         view/MainWindow.cpp
+        view/ProdigyStatusComponent.h
+        view/ProdigyStatusComponent.cpp
 )

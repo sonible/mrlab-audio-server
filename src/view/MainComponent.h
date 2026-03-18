@@ -12,6 +12,7 @@
 #include <juce_gui_basics/juce_gui_basics.h>
 #include <controller/AppController.h>
 #include "LoggingComponent.h"
+#include "ProdigyStatusComponent.h"
 
 namespace mrlab::controller
 {
@@ -20,7 +21,6 @@ class MainController;
 
 namespace mrlab::view
 {
-class AppControlComponent;
 
 //==============================================================================
 class MainComponent : public juce::Component
@@ -28,6 +28,7 @@ class MainComponent : public juce::Component
 public:
     //==============================================================================
     MainComponent (controller::MainController& controller);
+    ~MainComponent() override;
 
     void paint (juce::Graphics&) override;
     void resized() override;
@@ -37,6 +38,7 @@ private:
     controller::MainController& mainController;
 
     LoggingComponent loggingComponent;
+    ProdigyStatusComponent prodigyStatus;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainComponent)
 };
