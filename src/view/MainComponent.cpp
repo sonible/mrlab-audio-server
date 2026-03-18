@@ -8,9 +8,7 @@
  */
 
 #include "MainComponent.h"
-#include "AppControlComponent.h"
 #include <controller/MainController.h>
-#include <controller/AppHandle.h>
 
 namespace mrlab::view
 {
@@ -20,8 +18,16 @@ MainComponent::MainComponent (controller::MainController& controller)
       loggingComponent (controller.getLogger())
 {
     addAndMakeVisible (loggingComponent);
+    addAndMakeVisible (prodigyStatus);
 
-    setSize (800, 700);
+    mainController.getMatrixController().addListener (&prodigyStatus);
+
+    setSize (800, 350);
+}
+
+MainComponent::~MainComponent()
+{
+    mainController.getMatrixController().removeListener (&prodigyStatus);
 }
 
 void MainComponent::paint (juce::Graphics& g)
@@ -32,6 +38,7 @@ void MainComponent::paint (juce::Graphics& g)
 void MainComponent::resized()
 {
     loggingComponent.setBounds (getLocalBounds().withHeight (300).reduced (10));
+    prodigyStatus.setBounds (getLocalBounds().removeFromBottom (50).reduced (10));
 }
 
 } // namespace mrlab::view
