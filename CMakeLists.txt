@@ -61,7 +61,8 @@ CPMAddPackage (
     URI "gh:radarsat1/liblo#0.34"
     SOURCE_SUBDIR "cmake"
     PATCHES
-    "patches/liblo_stringview.patch" # "Fix" MSVC debug assertion.
+    "patches/liblo_stringview.patch" # "Fix" MSVC debug assertion and potential crash.
+    "patches/liblo_addmethod.patch" # Add missing add_method() overload.
     OPTIONS
     "WITH_TOOLS OFF"
     "WITH_TESTS OFF"

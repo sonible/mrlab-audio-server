@@ -1,0 +1,17 @@
+diff --git a/lo/lo_cpp.h b/lo/lo_cpp.h
+index 8f2b796..2360f71 100644
+--- a/lo/lo_cpp.h
++++ b/lo/lo_cpp.h
+@@ -602,6 +602,12 @@ namespace lo {
+                        ((char*)0, (char*)0, (lo_arg**)0, (int)0),
+                        (path, types, argv, argc) );
+ 
++        /** Add a method to handle a given path and type, with a
++         * handler taking (path, types, argv, argc, lo::Message), user data. */
++        LO_ADD_METHOD( (const char*, const char*, lo_arg**, int, const Message&),
++                       ((char*)0, (char*)0, (lo_arg**)0, (int)0, Message((lo_message)0)),
++                       (path, types, argv, argc, Message(msg)) );
++
+         /** Add a method to handle a given path and type, with a
+          * handler taking (types, argv, argc), user data. */
+         LO_ADD_METHOD( (const char*, lo_arg**, int),
