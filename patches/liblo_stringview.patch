@@ -7,7 +7,7 @@ index 8f2b796..810eeb1 100644
  #if __cplusplus >= 201703L
          string_type(const std::string_view& s) {
 -            if (s[s.length()]==0) _s = s.data();
-+            if (*(s.data()+s.length())==0) _s = s.data();
++            if (s.data() && *(s.data()+s.length())==0) _s = s.data();
              else { _p.reset(new std::string(s)); _s = _p->c_str(); }
          }
  #endif
