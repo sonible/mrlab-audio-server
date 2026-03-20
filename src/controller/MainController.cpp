@@ -20,18 +20,34 @@ namespace mrlab::controller
 MainController::MainController()
     : webServerController (oscController),
       appController (*this),
+      matrixController (oscController),
       totalmixController (oscController)
 {
     // Initialisation tasks of this controller.
     initialise();
-
-    // Start servers and subcontrollers.
-    start();
 }
 
 MainController::~MainController()
 {
     Logger::setCurrentLogger (nullptr);
+}
+
+bool MainController::start()
+{
+    if (! oscController.start())
+        return false;
+
+    // Not crucial, may best to do this after OscController was started.
+    if (! webServerController.start())
+        return false;
+
+    // This must not happen before the OscController was started.
+    configController.initOscAgent (oscController);
+
+    if (! totalmixController.start())
+        return false;
+
+    return true;
 }
 
 void MainController::initialise()
@@ -51,24 +67,6 @@ void MainController::initialise()
         if (! result)
             Logger::logFatal (juce::String ("Could not create app support dir, error: ") + result.getErrorMessage());
     }
-}
-
-bool MainController::start()
-{
-    if (! oscController.start())
-        return false;
-
-    // Not crucial, may best to do this after OscController was started.
-    if (! webServerController.start())
-        return false;
-
-    // This must not happen before the OscController was started.
-    configController.initOscAgent (oscController);
-
-    if (! totalmixController.start())
-        return false;
-
-    return true;
 }
 
 } // namespace mrlab::controller

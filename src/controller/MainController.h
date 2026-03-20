@@ -11,6 +11,7 @@
 
 #include "AppController.h"
 #include "ConfigController.h"
+#include "MatrixController.h"
 #include "OscController.h"
 #include "TotalmixController.h"
 #include "WebServerController.h"
@@ -27,6 +28,9 @@ public:
     MainController();
     ~MainController();
 
+    /** Start managed servers. */
+    bool start();
+
     /** @returns a reference to the OscController. */
     OscController& getOscController() { return oscController; }
 
@@ -39,6 +43,12 @@ public:
     /** @returns a reference to the AppController. */
     AppController& getAppController() { return appController; }
 
+    /** @returns a reference to the MatrixController. */
+    MatrixController& getMatrixController() { return matrixController; }
+
+    /** @returns a reference to the TotalmixController. */
+    TotalmixController& getTotalmixController() { return totalmixController; }
+
     /** @returns a reference to the Logger. */
     Logger& getLogger() { return logger; }
 
@@ -47,9 +57,6 @@ private:
     /** Perform a few initialisation tasks/checks. */
     void initialise();
 
-    /** Start managed servers. */
-    bool start();
-
     //==============================================================================
     Logger logger;
 
@@ -57,6 +64,7 @@ private:
     WebServerController webServerController;
     ConfigController configController;
     AppController appController;
+    MatrixController matrixController;
     TotalmixController totalmixController;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainController)

@@ -18,6 +18,8 @@ namespace mrlab
 TEST_CASE ("App handle controller", "[AppControllerTest]")
 {
     controller::MainController mainController;
+    mainController.start();
+
     controller::ConfigController& configController = mainController.getConfigController();
     controller::AppController& appController = mainController.getAppController();
 
