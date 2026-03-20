@@ -27,6 +27,10 @@ target_sources (mrlabctrl_Common
         controller/ConfigOscAgent.cpp
         controller/MainController.h
         controller/MainController.cpp
+        controller/MatrixController.h
+        controller/MatrixController.cpp
+        controller/MatrixOscAgent.h
+        controller/MatrixOscAgent.cpp
         controller/OscAgent.h
         controller/OscController.h
         controller/OscController.cpp

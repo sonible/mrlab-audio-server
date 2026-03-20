@@ -32,6 +32,9 @@ struct Address
     static constexpr std::string_view configinfo_list { "/configinfo/list" };
     static constexpr std::string_view configinfo_num { "/configinfo/num" };
 
+    // matrix sub-path
+    static constexpr std::string_view matrix { "/matrix" };
+
     // totalmix sub-path
     static constexpr std::string_view totalmix { "/totalmix" };
 };
