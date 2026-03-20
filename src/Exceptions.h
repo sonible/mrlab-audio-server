@@ -93,4 +93,23 @@ public:
     {}
 };
 
-} // namespace mrlab::osc
+//==============================================================================
+/** Wrong or unsupported JSON value type (e.g., while converting to OSC). */
+class ProdigyJsonTypeException : public std::runtime_error
+{
+public:
+    ProdigyJsonTypeException (const std::string& what)
+        : std::runtime_error ("ProdigyJsonTypeException: " + what)
+    {}
+};
+
+/** Exception while processing the Prodigy JSON state tree. */
+class ProdigyJsonStateException : public std::runtime_error
+{
+public:
+    ProdigyJsonStateException (const std::string& what)
+        : std::runtime_error ("ProdigyJsonStateException: " + what)
+    {}
+};
+
+} // namespace mrlab

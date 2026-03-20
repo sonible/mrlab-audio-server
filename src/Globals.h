@@ -61,6 +61,18 @@ struct Globals
     static std::string getWebSocketUri() { return "/ws"; }
 
     //==============================================================================
+    /** @return Host name or IP address of the Prodigy audio matrix. */
+    // static juce::String getMatrixHost() { return "localhost"; }
+    //static juce::String getMatrixHost() { return "prodigymp.mrlab"; }
+    static juce::String getMatrixHost() { return "172.16.60.15"; }
+
+    /** @return JSON control interface port of the Prodigy audio matrix. */
+    static uint16_t getMatrixControlPort() { return 5003; }
+
+    /** @return Levelmeter interface port of the Prodigy audio matrix. */
+    static uint16_t getMatrixLevelMeterPort() { return 5002; }
+
+    //==============================================================================
     /** @return The listening (inbound) port for RME Totalmix. */
     static uint16_t getTotalmixListeningPort() { return 9001; }
 
