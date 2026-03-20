@@ -30,8 +30,14 @@ public:
         mainController = std::make_unique<controller::MainController>();
         mainWindow = std::make_unique<view::MainWindow> (getApplicationName(), *mainController);
 
+        // Start servers and subcontrollers managed by the main controller.
+        mainController->start();
+
         // Load configuration files from app support directory.
         mainController->getConfigController().populateFromConfigDir();
+
+        // Attempt to connect to Prodigy matrix.
+        mainController->getMatrixController().connect();
     }
 
     //==============================================================================
