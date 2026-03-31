@@ -148,8 +148,15 @@ Example to stop all currently running apps:
 |---------|---------------------------|-------|---------------------------------------------------------------------------------------------------------------------------------------|
 | `STATE` | `/app/<id>/state`         | `is`  | Current app state with arguments state code (`i`) and state description (`s`)                                                         |
 | `STATE` | `/app/<id>/exitcode`      | `i`   | Exit code of the app in case it stopped                                                                                               |
-| `CMD`   | `/app/<id>/control`       | `s`   | `launch`: Trigger *startCmd* of a configured app\n`quit`: Trigger *stopCmd* of a configured app\n`kill`: Unconditionally kill the app |
+| `CMD`   | `/app/<id>/control`       | `s`   | `launch`: Trigger *startCmd* of a configured app<br>`quit`: Trigger *stopCmd* of a configured app<br>`kill`: Unconditionally kill the app |
 | `PASS`  | `/app/<id>/<subtree>/...` | `...` | Transparent pass-through example, `<subtree>` depending on configuration.                                                             |
+
+> [!NOTE]
+> `/app/<id>/control kill` will kill the process that was directly
+> started by the audio server. If that is, e.g., a command interpreter
+> (shell) that started further processes (via a script), the command
+> interpreter will be killed but not necessarily the additional
+> processes.
 
 ### *Prodigy matrix* control
 
