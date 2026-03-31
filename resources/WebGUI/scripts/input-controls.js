@@ -1,10 +1,9 @@
 
 const inputNames = [
     "DANTE_CurvedLEDPC",
-    "DANTE_CurvedLEDPC_4",
     "DANTE_Bluetooth", 
     "DANTE_HDMI_Stereo", 
-    "DANTE_GCPU", 
+    "DANTE_Mobile", 
     "Beam_Mic_Curved", "Beam_Mic_CAVE", "Mic_Wireless_1", "Mic_Wireless_2", "Mic_Array",
     "Analog_Mono_1", "Analog_Mono_2", "Analog_Mono_3", "Analog_Mono_4",
     "Analog_Mono_5", "Analog_Mono_6", "Analog_Mono_7", "Analog_Mono_8",
@@ -16,10 +15,9 @@ const inputNames = [
 
 const inputLabels = {
     "DANTE_CurvedLEDPC": "Curved LED PC Stereo",
-    "DANTE_CurvedLEDPC_4": "Curved LED PC CH1-4",
     "DANTE_Bluetooth": "Bluetooth Stereo",
     "DANTE_HDMI_Stereo": "HDMI Stereo", 
-    "DANTE_GCPU": "Graphic CPU",
+    "DANTE_Mobile": "Mobile Dante Station", 
     "DANTE_Mono_1": "DANTE: Mono #1", "DANTE_Mono_2": "DANTE: Mono #2",
     "DANTE_Mono_3": "DANTE: Mono #3", "DANTE_Mono_4": "DANTE: Mono #4",
     "DANTE_Mono_5": "DANTE: Mono #5", "DANTE_Mono_6": "DANTE: Mono #6",
