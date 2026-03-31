@@ -86,11 +86,12 @@ function lockScene(scene)
 }
 
 // Unlock a scene, consider interface functionality
-function unlockScene(scene)
+// setActive (optional, default: true): if false, 'active-scene' class is not added
+function unlockScene(scene, setActive = true)
 {
 	const activeButton = document.getElementById('button-' + scene);
-	activeButton.classList.remove('launched-scene');	
-	activeButton.classList.add('active-scene');
+	activeButton.classList.remove('launched-scene');
+	if (setActive) activeButton.classList.add('active-scene');
 }
 
 // Quit an app of a scene, consider interface functionality

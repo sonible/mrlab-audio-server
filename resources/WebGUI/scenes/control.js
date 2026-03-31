@@ -229,6 +229,26 @@ export function PduShutdown()
 	
 }
 
+export function CloseAllApps()
+{
+  const dialog = document.getElementById('confirmDialog');
+	document.getElementById('confirmTitle').innerText = "Close all applications?";
+	document.getElementById('confirmText').innerText = "This will close all potentially running applications and unlock all scenes. \n\nTo close all applications, press OK.";
+	dialog.showModal();
+
+	document.getElementById('okBtn').onclick = () => 
+	{  
+    send('/app/*/control', 'quit');
+    document.querySelectorAll('.launched-scene').forEach(btn => unlockScene(btn.id.replace('button-', ''),false));
+    dialog.close();
+  };
+
+	document.getElementById('cancelBtn').onclick = () => 
+	{
+		dialog.close();
+	};
+}
+
 export function AmpStatusLegend()
 {
 	const dialog = document.getElementById('infoDialog');
