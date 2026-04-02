@@ -4,7 +4,7 @@
 
 	<div class="start-container" style="height: 30%;">
     <div class="button-group" style="width: 30%;">
-      <button onClick="launchAppAndWait('SA_VBAP', 'SA_VBAP', 5, SceneModule.init, SceneModule.connect);" class="big-button">Launch App</button>
+      <button id="btn-SA_VBAP-launch" onClick="launchAppAndWait('SA_VBAP', 'SA_VBAP', 5, SceneModule.launch, SceneModule.connect);" class="big-button">Launch App</button>
       <p style="text-align: center;">
         Status: <b id="SA_VBAP-status">unclear</b>
       	<br>
@@ -42,7 +42,11 @@
       <span style="text-align: center; font-weight: bold; gap: 0px;">Inputs</span>
       <div class="start-container" style="height: 100%; gap: 0px;">
         <div id="input-buttons-container" style="text-align: center; width: 100%;">
-          <!-- Input buttons will be injected here by input-controls.js -->
+           <div style="max-height: 350px; overflow-y: auto; display: flex; flex-direction: column; align-items: center; gap: 10px;"> 
+            <button id="btn-DANTE_CurvedLEDPC_Channel_3" onClick="SceneModule.SetDanteLedPcChannel3();" class="big-button">Curved LED PC Test Channel #3</button> 
+            <button id="btn-DANTE_CurvedLEDPC" onClick="SceneModule.SetDanteLedPc();" class="big-button">Curved LED PC</button> 
+            <button id="btn-DANTE_Mobile" onClick="SceneModule.SetDanteMobile();" class="big-button" disabled>Mobile Dante Station</button> 
+           </div>
         </div>
       </div>
 		</div>

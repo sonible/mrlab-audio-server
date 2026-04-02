@@ -7,7 +7,8 @@ export function init()
 	document.getElementById("Stereo_Walls-status").style.backgroundColor = "";	
 	document.getElementById("Stereo_Walls-Control_Version").innerText = "---";
     // Inject input controls
-    renderInputControls('input-buttons-container', 'input-group-container', 'Stereo_Walls', ['DANTE_CurvedLEDPC_4', 'Mic_Array', 'DANTE_GCPU']);
+    renderInputControls('input-buttons-container', 'input-group-container', 'Stereo_Walls', 
+      ["DANTE_CurvedLEDPC", "DANTE_CurvedLEDPC_Channel_3", "Mic_Array"]);
 
 document.getElementById('Stereo_Walls-Total_VU').addEventListener('updated', (e) => 
 {

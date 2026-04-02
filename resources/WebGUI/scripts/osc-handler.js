@@ -19,6 +19,14 @@ function sendValue(address, value)
 		args: [{ type: "f", value: value }]
 	});
 }
+
+function sendValues3(address, value1, value2, value3) 
+{
+	oscPort.send({
+		address: address,
+		args: [{ type: "f", value: value1 }, { type: "f", value: value2 }, { type: "f", value: value3 }]
+	});
+}
 			
 function sendResponse(address,port) 
 {

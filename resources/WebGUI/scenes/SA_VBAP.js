@@ -6,23 +6,24 @@ let state_cave;
 
 export function init()
 {
-	document.getElementById("SA_VBAP-status").innerText = "initialized";
+  document.getElementById("btn-SA_VBAP-launch").disabled = false;
+  document.getElementById("SA_VBAP-status").innerText = "initialized";
 	document.getElementById("SA_VBAP-status").style.backgroundColor = "";	
 	document.getElementById("SA_VBAP-Control_Version").innerText = "---";
 	document.getElementById("SA_VBAP-Control_SampleRate").innerText = "---"; 
 	document.getElementById("SA_VBAP-Control_Door").innerText = "---";
-    // Inject input controls
-    renderInputButtons('input-buttons-container', 'SA_VBAP', 
-      [
-      "DANTE_Bluetooth", 
-      "DANTE_HDMI_Stereo", 
-      "Beam_Mic_Curved", "Beam_Mic_CAVE", "Mic_Wireless_1", "Mic_Wireless_2", "Mic_Array",
-      "Analog_Mono_1", "Analog_Mono_2", "Analog_Mono_3", "Analog_Mono_4",
-      "Analog_Mono_5", "Analog_Mono_6", "Analog_Mono_7", "Analog_Mono_8",
-      "Analog_Stereo_1", "Analog_Stereo_2", "Analog_Stereo_3", "Analog_Stereo_4", 
-      "DANTE_Mono_1", "DANTE_Mono_2", "DANTE_Mono_3", "DANTE_Mono_4",
-      "DANTE_Mono_5", "DANTE_Mono_6", "DANTE_Mono_7", "DANTE_Mono_8",
-      "DANTE_Stereo_1", "DANTE_Stereo_2", "DANTE_Stereo_3", "DANTE_Stereo_4"]);
+  
+  document.getElementById("btn-DANTE_CurvedLEDPC_Channel_3").disabled = true;
+  document.getElementById("btn-DANTE_CurvedLEDPC").disabled = true;
+  document.getElementById("btn-DANTE_Mobile").disabled = true;
+  document.getElementById("btn-DANTE_CurvedLEDPC_Channel_3").classList.remove('active-input');
+  document.getElementById("btn-DANTE_CurvedLEDPC").classList.remove('active-input');
+  document.getElementById("btn-DANTE_Mobile").classList.remove('active-input');
+
+  document.getElementById("SA_VBAP-Door_Curved_Open").disabled = true;
+  document.getElementById("SA_VBAP-Door_Curved_Close").disabled = true;
+  document.getElementById("SA_VBAP-Door_CAVE_Open").disabled = true;
+  document.getElementById("SA_VBAP-Door_CAVE_Close").disabled = true;
 
   document.getElementById('SA_VBAP-Total_VU').addEventListener('updated', (e) => 
   {
@@ -41,9 +42,20 @@ export function init()
   document.getElementById('SA_VBAP-Control_Door').addEventListener('updated', (e) => 
   {
     Door_Status();
-    //console.log("Door status: " + document.getElementById("SA_VBAP-Control_Door").innerText);
   });	
+}
 
+export function launch()
+{
+  document.getElementById("btn-SA_VBAP-launch").disabled = true;
+  document.getElementById("SA_VBAP-status").innerText = "initialized";
+	document.getElementById("SA_VBAP-status").style.backgroundColor = "";	
+	document.getElementById("SA_VBAP-Control_Version").innerText = "---";
+	document.getElementById("SA_VBAP-Control_SampleRate").innerText = "---"; 
+	document.getElementById("SA_VBAP-Control_Door").innerText = "---";
+  document.getElementById("btn-DANTE_CurvedLEDPC_Channel_3").disabled = true;
+  document.getElementById("btn-DANTE_CurvedLEDPC").disabled = true;
+  document.getElementById("btn-DANTE_Mobile").disabled = true;
 }
 
 export function connect()
@@ -75,12 +87,16 @@ export function checkConnection()
 			break;
 		default: // done!
       console.log("SA_VBAP: connected");
+      document.getElementById("btn-SA_VBAP-launch").disabled = false;
 			state = document.getElementById("SA_VBAP-status");
 			state.innerText = "connected";
 			state.style.backgroundColor = "";
 			sendNoArgs('/app/SA_VBAP/osc/Control/SampleRate');
 			sendNoArgs('/app/SA_VBAP/osc/Total/Volume');
       sendNoArgs('/app/SA_VBAP/osc/Control/Door');
+      document.getElementById("btn-DANTE_CurvedLEDPC_Channel_3").disabled = false;
+      document.getElementById("btn-DANTE_CurvedLEDPC").disabled = false;
+      document.getElementById("btn-DANTE_Mobile").disabled = false;
 			break;
 	}
 	if (secWaited > timeout)
@@ -88,6 +104,7 @@ export function checkConnection()
 		state = document.getElementById("SA_VBAP-status");
 		state.innerText = "time out while connecting";
 		state.style.backgroundColor = "red";
+    document.getElementById("btn-SA_VBAP-launch").disabled = false;
 	}
 }		
 
@@ -155,4 +172,28 @@ export function Door_Status()
       document.getElementById("SA_VBAP-Door_CAVE").innerText = "Door is unknown";
       break;
   }
+}
+
+export function SetDanteLedPcChannel3()
+{
+  if (setInputButtonExclusively('DANTE_CurvedLEDPC_Channel_3', 'SA_VBAP'))
+  {
+    send('/app/SA_VBAP/osc/VirtualSource/3/Switch', 1);
+    send('/app/SA_VBAP/osc/VirtualSource/3/Volume/Set', 100);
+    sendValues3('/app/SA_VBAP/osc/VirtualSource/3/Position/Set', 0, 0, 3.2);
+  }
+  else
+  { 
+    send('/app/SA_VBAP/osc/VirtualSource/3/Switch', 0);
+  }
+}
+
+export function SetDanteLedPc()
+{
+  setInputButtonExclusively('DANTE_CurvedLEDPC', 'SA_VBAP')
+}
+
+export function SetDanteMobile()
+{
+  setInputButtonExclusively('DANTE_Mobile', 'SA_VBAP');
 }

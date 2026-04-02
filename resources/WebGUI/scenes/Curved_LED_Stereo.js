@@ -8,7 +8,8 @@ export function init()
 	document.getElementById("Curved_LED_Stereo-Control_Version").innerText = "---";
 	document.getElementById("Curved_LED_Stereo-Control_SampleRate").innerText = "---";
     // Inject input controls
-    renderInputControls('input-buttons-container', 'input-group-container', 'Curved_LED_Stereo', ['DANTE_CurvedLEDPC_4', 'Mic_Array', 'DANTE_GCPU']);
+    renderInputControls('input-buttons-container', 'input-group-container', 'Curved_LED_Stereo', 
+      ["DANTE_CurvedLEDPC", "DANTE_CurvedLEDPC_Channel_3", "Mic_Array"]);
 
   document.getElementById('Curved_LED_Stereo-Total_VU').addEventListener('updated', (e) => 
   {

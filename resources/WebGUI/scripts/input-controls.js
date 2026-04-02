@@ -1,6 +1,8 @@
 
 const inputNames = [
     "DANTE_CurvedLEDPC",
+    "DANTE_CurvedLEDPC_Stereo",
+    "DANTE_CurvedLEDPC_Channel_3",
     "DANTE_Bluetooth", 
     "DANTE_HDMI_Stereo", 
     "DANTE_Mobile", 
@@ -14,7 +16,9 @@ const inputNames = [
 ];
 
 const inputLabels = {
-    "DANTE_CurvedLEDPC": "Curved LED PC Stereo",
+    "DANTE_CurvedLEDPC": "Curved LED PC",
+    "DANTE_CurvedLEDPC_Stereo": "Curved LED PC Stereo",
+    "DANTE_CurvedLEDPC_Channel_3": "Curved LED PC Test Channel #3",
     "DANTE_Bluetooth": "Bluetooth Stereo",
     "DANTE_HDMI_Stereo": "HDMI Stereo", 
     "DANTE_Mobile": "Mobile Dante Station", 
@@ -147,16 +151,14 @@ export function setInputButtonExclusively(id, sceneName)
 			const otherBtn = document.getElementById('btn-' + otherId);
 			if (otherBtn && otherBtn.classList.contains('active-input')) {
 				otherBtn.classList.remove('active-input');
-				sendValue(`/app/${sceneName}/osc/Input/${otherId}/Volume/Set`, 0);
 			}
 		});
-
 		bigBtn.classList.add('active-input');
-		sendValue(`/app/${sceneName}/osc/Input/${id}/Volume/Set`, 100); 
+    return true;
 	}
 	else // Turn OFF
 	{
 		bigBtn.classList.remove('active-input');
-		sendValue(`/app/${sceneName}/osc/Input/${id}/Volume/Set`, 0);
+    return false;
 	}
 }
