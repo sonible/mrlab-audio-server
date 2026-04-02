@@ -35,8 +35,8 @@
       <div class="start-container">
         <div class="slider-group">
           <b>Volume</b>
-          <input class="volume-slider" id="volume-slider" style="height: 350px;" type=range min="0" max="99" value="0" 
-            oninput="sendValue('/app/Curved_LED_Stereo/osc/Total/Volume/Set', this.value); document.getElementById('volume-number').innerText = this.value + ' dB';">
+          <input class="volume-slider" id="volume-slider" style="height: 350px;" type=range min="-100" max="18" value="0" 
+            oninput="sendValue('/matrix/settings/flex_channel/6/gain', this.value); sendValue('/matrix/settings/flex_channel/7/gain', this.value); document.getElementById('volume-number').innerText = this.value + ' dB';">
           <div class="level-box" id="volume-number">--</div>
           <span style="text-align: center; color: white;" id="Curved_LED_Stereo-Total_Volume">&nbsp;</span>
         </div>
