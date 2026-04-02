@@ -3,10 +3,11 @@ const inputNames = [
     "DANTE_CurvedLEDPC",
     "DANTE_CurvedLEDPC_Stereo",
     "DANTE_CurvedLEDPC_Channel_3",
-    "DANTE_Bluetooth", 
-    "DANTE_HDMI_Stereo", 
     "DANTE_Mobile", 
-    "Beam_Mic_Curved", "Beam_Mic_CAVE", "Mic_Wireless_1", "Mic_Wireless_2", "Mic_Array",
+    "DANTE_Bluetooth", 
+    "Mic_Wireless_1", "Mic_Wireless_2", 
+    "DANTE_HDMI_Stereo", 
+    "Beam_Mic_Curved", "Beam_Mic_CAVE", "Mic_Array",
     "Analog_Mono_1", "Analog_Mono_2", "Analog_Mono_3", "Analog_Mono_4",
     "Analog_Mono_5", "Analog_Mono_6", "Analog_Mono_7", "Analog_Mono_8",
     "Analog_Stereo_1", "Analog_Stereo_2", "Analog_Stereo_3", "Analog_Stereo_4", 
@@ -39,6 +40,16 @@ const inputLabels = {
     "Analog_Stereo_3": "Analog: Stereo #3", "Analog_Stereo_4": "Analog: Stereo #4"
 };
 
+const inputFlexChannelMap = {
+    0: "Mic_Wireless_1",
+    1: "Mic_Wireless_2",
+    2: "Beam_Mic_Curved",
+    3: "",
+    4: "Beam_Mic_CAVE",
+    5: "",
+    6: "DANTE_CurvedLEDPC_Stereo",
+    7: "DANTE_CurvedLEDPC_Stereo"
+};
 
 export function renderInputControls(buttonContainerId, groupContainerId, sceneName, hiddenInputs = []) {
     const btnContainer = document.getElementById(buttonContainerId);
@@ -102,21 +113,45 @@ export function toggleInputState(id)
 	{
 		smallBtn.classList.add('active-input');
 		smallBtn.innerText = "Input: On";
-		
 		bigBtn.classList.add('active-input');
-		
 		slider.disabled = false;
 		slider.style.opacity = "1.0";
+
+    switch(id)
+    {
+      case "DANTE_CurvedLEDPC_Stereo":
+        sendValue('/matrix/settings/flex_channel/6/mute', 0);
+        sendValue('/matrix/settings/flex_channel/7/mute', 0);
+        break;
+      case "Mic_Wireless_1":
+        sendValue('/matrix/settings/flex_channel/0/mute', 0);
+        break;
+      case "Mic_Wireless_2":
+        sendValue('/matrix/settings/flex_channel/1/mute', 0);
+        break;
+    }
 	}
 	else // Turn OFF
 	{
 		smallBtn.classList.remove('active-input');
 		smallBtn.innerText = "Input: Off";
-
 		bigBtn.classList.remove('active-input');
-
 		slider.disabled = true;
 		slider.style.opacity = "0.5";
+
+    switch(id)
+    {
+      case "DANTE_CurvedLEDPC_Stereo":
+        sendValue('/matrix/settings/flex_channel/6/mute', 1);
+        sendValue('/matrix/settings/flex_channel/7/mute', 1);
+        break;
+      case "Mic_Wireless_1":
+        sendValue('/matrix/settings/flex_channel/0/mute', 1);
+        break;
+      case "Mic_Wireless_2":
+        sendValue('/matrix/settings/flex_channel/1/mute', 1);
+        break;
+    }
 	}
 }
 

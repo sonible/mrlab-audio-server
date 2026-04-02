@@ -52,13 +52,13 @@ oscPort.on("ready", function ()
 
 oscPort.on("message", function (oscMsg) 
 {
-	//console.log("OSC message received: ", oscMsg);
 	pathstr= oscMsg.address.substring(1);
 	path = pathstr.split("/");
 		// Format of the message: device/scenename/osc/command1/command2/.../commandN
 	switch (path[0])
 	{
 		case 'app': // Messages related to an app
+    //console.log("OSC message related to an app received: ", oscMsg);
 			switch (path[2])
 			{
 				case 'state': // Launch status received 
@@ -80,16 +80,41 @@ oscPort.on("message", function (oscMsg)
 			};
 			break;
 
-		case 'matrix': 
+		case 'matrix': // Messages related to the matrix
 			console.log("Matrix message received", oscMsg);
-      case 'fan': // Fan status received, path[1] == 'fan'
-        const st = document.getElementById('fan-' + path[2]);
-        if (st != null)
-        {
-          st.innerHTML = oscMsg.args[1].value;
-        }
-			break;
-			
+      switch (path[1])
+			{
+        case 'fan': // Fan status received, path[1] == 'fan'
+          const st = document.getElementById('fan-' + path[2]);
+          if (st != null)
+          {
+            st.innerHTML = oscMsg.args[1].value;
+            console.log("Fan status received for " + path[2], oscMsg.args[1].value);
+          }
+          else
+          {
+            console.log("No OSC message handler for: 'fan-'" + path[2]);
+          }
+          break;
+
+        case 'status': // Status received, path[1] == 'status'
+          if (path[2] != 'ears_status')
+          {
+            console.log("Matrix status message received:" + path[2]);
+          }
+          break;
+
+        default: 
+          console.log("Unknown matrix message received:", oscMsg);
+          break;
+
+      }
+      break; 
+
+    case 'pong':
+      console.log("Pong message received");
+      break;
+
 		default:
 			console.log("No OSC message handler: ", oscMsg.address);
 			break;

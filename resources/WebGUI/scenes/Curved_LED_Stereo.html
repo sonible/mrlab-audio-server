@@ -5,7 +5,7 @@
 	
 		<div class="button-group">
 			<div style="gap: 10px;">
-				<button onClick="lockScene('Curved_LED_Stereo');" class="big-button">Lock</button>
+				<button onClick="SceneModule.Lock()" class="big-button">Lock</button>
 				<p style="text-align: center;">Status: <b id="Curved_LED_Stereo-status">unclear</b></p>		
 				<p style="text-align: center;">
 					Version: <b id="Curved_LED_Stereo-Control_Version">unknown</b>
@@ -36,7 +36,7 @@
         <div class="slider-group">
           <b>Volume</b>
           <input class="volume-slider" id="volume-slider" style="height: 350px;" type=range min="-100" max="18" value="0" 
-            oninput="sendValue('/matrix/settings/flex_channel/6/gain', this.value); sendValue('/matrix/settings/flex_channel/7/gain', this.value); document.getElementById('volume-number').innerText = this.value + ' dB';">
+            oninput="sendValue('/matrix/settings/sum_bus_master/0/gain', this.value); sendValue('/matrix/settings/sum_bus_master/1/gain', this.value); document.getElementById('volume-number').innerText = this.value + ' dB';">
           <div class="level-box" id="volume-number">--</div>
           <span style="text-align: center; color: white;" id="Curved_LED_Stereo-Total_Volume">&nbsp;</span>
         </div>

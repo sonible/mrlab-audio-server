@@ -7,6 +7,7 @@ export function init()
 	document.getElementById("Curved_LED_Stereo-status").style.backgroundColor = "";	
 	document.getElementById("Curved_LED_Stereo-Control_Version").innerText = "---";
 	document.getElementById("Curved_LED_Stereo-Control_SampleRate").innerText = "---";
+  
     // Inject input controls
     renderInputControls('input-buttons-container', 'input-group-container', 'Curved_LED_Stereo', 
       ["DANTE_CurvedLEDPC", "DANTE_CurvedLEDPC_Channel_3", "Mic_Array"]);
@@ -25,4 +26,12 @@ export function init()
     document.getElementById('volume-number').innerText = Math.round(vol.innerText) + " dB";
   });	
     
+}
+
+export function Lock()
+{
+  lockScene('Curved_LED_Stereo');
+  sendNoArgs('/matrix/settings/flex_channel/*/mute');
+  sendNoArgs('/matrix/settings/sum_bus_master/6/gain');
+  sendNoArgs('/matrix/settings/sum_bus_master/7/gain');
 }
