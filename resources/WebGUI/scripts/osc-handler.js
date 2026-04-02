@@ -44,7 +44,7 @@ oscPort.on("ready", function ()
 
 oscPort.on("message", function (oscMsg) 
 {
-	console.log("OSC message received: ", oscMsg);
+	//console.log("OSC message received: ", oscMsg);
 	pathstr= oscMsg.address.substring(1);
 	path = pathstr.split("/");
 		// Format of the message: device/scenename/osc/command1/command2/.../commandN
@@ -73,7 +73,13 @@ oscPort.on("message", function (oscMsg)
 			break;
 
 		case 'matrix': 
-			console.log("Matrix message received");
+			console.log("Matrix message received", oscMsg);
+      case 'fan': // Fan status received, path[1] == 'fan'
+        const st = document.getElementById('fan-' + path[2]);
+        if (st != null)
+        {
+          st.innerHTML = oscMsg.args[1].value;
+        }
 			break;
 			
 		default:
