@@ -56,7 +56,8 @@
       <div class="start-container">
         <div class="slider-group">
           <span>Volume</span>
-          <input class="volume-slider" id="volume-slider" style="height: 350px;" type=range min="0" max="100" value="0" oninput="sendValue('/app/SA_VBAP/osc/Total/Volume/Set', this.value); document.getElementById('volume-number').innerText = this.value + ' dB';">
+          <input class="volume-slider" id="volume-slider" style="height: 350px;" type=range min="0" max="100" value="0" 
+            oninput="sendValue('/app/SA_VBAP/osc/Total/Volume/Set', this.value); document.getElementById('volume-number').innerText = this.value + ' dB';">
           <div class="level-box" id="volume-number">--</div>
           <p style="text-align: center; color: white;"><b id="SA_VBAP-Total_Volume">&nbsp;</b></p>
         </div>
@@ -67,6 +68,13 @@
           </div>
           <div class="level-box" id="SA_VBAP-Total_VU-number">--</div>
           <p style="text-align: center; color: white;"><b id="SA_VBAP-Total_VU">&nbsp;</b></p>
+        </div>
+        <div class="slider-group">
+          <span style="text-align: center">Subwoofer<br>Volume</span>
+          <input class="volume-slider" id="subwoofer-slider" style="height: 350px;" type="range" min="-40" max="10" value="0" 
+            oninput="sendValue('/app/SA_VBAP/osc/Subwoofer/Volume/Set', this.value); document.getElementById('subwoofer-number').innerText = this.value + ' dB';">
+          <div class="level-box" id="subwoofer-number">--</div>
+          <p style="text-align: center; color: white;"><b id="SA_VBAP-Subwoofer_Volume">&nbsp;</b></p>
         </div>
       </div>
     </div>

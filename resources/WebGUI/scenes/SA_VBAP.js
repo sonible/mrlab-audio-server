@@ -24,6 +24,8 @@ export function init()
   document.getElementById("SA_VBAP-Door_Curved_Close").disabled = true;
   document.getElementById("SA_VBAP-Door_CAVE_Open").disabled = true;
   document.getElementById("SA_VBAP-Door_CAVE_Close").disabled = true;
+  document.getElementById('volume-slider').disabled = true;
+  document.getElementById('subwoofer-slider').disabled = true;
 
   document.getElementById('SA_VBAP-Total_VU').addEventListener('updated', (e) => 
   {
@@ -38,6 +40,16 @@ export function init()
     document.getElementById('volume-slider').value = Math.round(vol.innerText);
     document.getElementById('volume-number').innerText = Math.round(vol.innerText) + " dB";
   });	
+
+  const subLabel = document.getElementById('SA_VBAP-Total_Subwoofer');
+  if (subLabel) {
+    subLabel.addEventListener('updated', (e) => 
+    {
+      const sub = document.getElementById('SA_VBAP-Total_Subwoofer');
+      document.getElementById('subwoofer-slider').value = Math.round(sub.innerText);
+      document.getElementById('subwoofer-number').innerText = Math.round(sub.innerText) + " dB";
+    });
+  }
 
   document.getElementById('SA_VBAP-Control_Door').addEventListener('updated', (e) => 
   {
@@ -56,6 +68,8 @@ export function launch()
   document.getElementById("btn-DANTE_CurvedLEDPC_Channel_3").disabled = true;
   document.getElementById("btn-DANTE_CurvedLEDPC").disabled = true;
   document.getElementById("btn-DANTE_Mobile").disabled = true;
+  document.getElementById('volume-slider').disabled = true;
+  document.getElementById('subwoofer-slider').disabled = true;
 }
 
 export function connect()
@@ -93,10 +107,13 @@ export function checkConnection()
 			state.style.backgroundColor = "";
 			sendNoArgs('/app/SA_VBAP/osc/Control/SampleRate');
 			sendNoArgs('/app/SA_VBAP/osc/Total/Volume');
+      sendNoArgs('/app/SA_VBAP/osc/Subwoofer/Volume');
       sendNoArgs('/app/SA_VBAP/osc/Control/Door');
       document.getElementById("btn-DANTE_CurvedLEDPC_Channel_3").disabled = false;
       document.getElementById("btn-DANTE_CurvedLEDPC").disabled = false;
       document.getElementById("btn-DANTE_Mobile").disabled = false;
+      document.getElementById('volume-slider').disabled = false;
+      document.getElementById('subwoofer-slider').disabled = false;
 			break;
 	}
 	if (secWaited > timeout)
