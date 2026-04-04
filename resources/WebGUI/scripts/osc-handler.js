@@ -18,6 +18,7 @@ function sendValue(address, value)
 		address: address,
 		args: [{ type: "f", value: value }]
 	});
+  //console.log("OSC message sent: ", address, value);
 }
 
 function sendValues3(address, value1, value2, value3) 
@@ -104,6 +105,39 @@ oscPort.on("message", function (oscMsg)
           }
           break;
 
+        case 'settings':
+          switch (path[2])
+          {
+            case 'flex_channel': 
+              switch (path[4])
+              {
+                case 'mute':
+                  if (inputFlexChannelMap[path[3]]!="")
+                  {
+                    toggleInputState(inputFlexChannelMap[path[3]], oscMsg.args[1].value);
+                  }
+                  break;
+
+                case 'gain':
+                  if (inputFlexChannelMap[path[3]]!="")
+                  {
+                    const st = document.getElementById('slider-input-' + inputFlexChannelMap[path[3]]);
+                    st.value = oscMsg.args[1].value;                
+                  }
+                  break;
+              }
+              break;
+            case 'sum_bus_master':
+              switch (path[4])
+              {
+                case 6, 7: // Output to Curved LED PA
+                  const st = document.getElementById('volume-slider');
+                  st.value = oscMsg.args[1].value;                
+                  break;
+              }
+              break;
+          }
+          break;
         default: 
           console.log("Unknown matrix message received:", oscMsg);
           break;
