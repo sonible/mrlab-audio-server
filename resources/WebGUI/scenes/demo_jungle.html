@@ -15,9 +15,9 @@
 			</div>
 			
 			<div style="gap: 10px;">
-				<button onClick="sendNoArgs('/app/pd_jungle/osc/Play/Start')" class="big-button">Play</button>
+				<button disabled id="pd_jungle-Play_Start" class="big-button" onClick="sendNoArgs('/app/pd_jungle/osc/Play/Start')">Play</button>
 				<p style="text-align: center;"><b id="timecode">0:0.0</b> of <b id="duration">0:0.0</b></p>
-				<button onClick="sendNoArgs('/app/pd_jungle/osc/Play/Stop')"class="big-button">Stop</button>
+				<button disabled id="pd_jungle-Play_Stop" class="big-button" onClick="sendNoArgs('/app/pd_jungle/osc/Play/Stop')">Stop</button>
 			</div>
 
 			<br>
@@ -27,7 +27,7 @@
 
 		<div class="slider-group">
 			<span>Volume</span>
-			<input class="volume-slider" id="volume-slider" style="height: 400px;" type=range min="0" max="100" value="0" oninput="sendValue('/app/pd_jungle/osc/Play/Volume/Set', this.value); document.getElementById('volume-number').innerText = this.value + ' dB';">
+			<input disabled id="volume-slider" class="volume-slider" style="height: 400px;" type=range min="0" max="100" value="0" oninput="sendValue('/app/pd_jungle/osc/Play/Volume/Set', this.value); document.getElementById('volume-number').innerText = this.value + ' dB';">
 			<div class="level-box" id="volume-number">--</div>
 			<p style="text-align: center; color: white;"><b id="pd_jungle-Play_Volume">&nbsp;</b></p>
 		</div>
