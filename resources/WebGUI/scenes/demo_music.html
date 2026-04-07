@@ -6,19 +6,22 @@
     <div class="slider-group">
         <div style="gap: 20px;">
           <button class="big-button" onClick="launchApp('demo_music','reaper_music');" >Launch App</button>
-          <p style="text-align: center;">Status: <b id="reaper_music-status">unclear</b></p>		
+          <p style="text-align: center;">
+            Status: <b id="reaper_music-status">unclear</b>
+            <span id="reaper_music-stop" style="text-align: center; color: white; font-size: 8px;"></span>
+          </p>		
         </div>
         
         <div style="gap: 20px;">
-          <button class="big-button" onClick="sendNoArgs('/app/reaper_music/osc/play')" >Play/Pause</button>
+          <button id="reaper_music-btn-play" class="big-button" onClick="sendNoArgs('/app/reaper_music/osc/play')" >Play/Pause</button>
           <p style="text-align: center;"><b id="timecode">0:0.0</b> of <b id="duration">4:20.0</b></p>
-          <button class="big-button" style="margin-bottom: 20px;" onClick="sendValue('/app/reaper_music/osc/time', 0)">Rewind</button>
-          <button class="big-button" onClick="sendNoArgs('/app/reaper_music/osc/stop')">Stop</button>
+          <button id="reaper_music-btn-rewind" class="big-button" style="margin-bottom: 20px;" onClick="sendValue('/app/reaper_music/osc/time', 0)">Rewind</button>
+          <button id="reaper_music-btn-stop" class="big-button" onClick="sendNoArgs('/app/reaper_music/osc/stop')">Stop</button>
           <p style="text-align: center; color: white;"><b id="reaper_music-time">0</b><b id="reaper_music-Play_Duration">0</b></p>
         </div>
 
         <div style="gap: 20px;">
-          <button class="big-button" onClick="quitApp('demo_music', 'reaper_music')">Quit App</button>
+          <button class="big-button" onClick="quitApp('demo_music', 'reaper_music', SceneModule.init())">Quit App</button>
         </div>
     </div>
 

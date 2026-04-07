@@ -1,7 +1,19 @@
 export function init()
 {
 	document.getElementById("reaper_music-status").innerText = "initialized";
-	document.getElementById("reaper_music-status").style.backgroundColor = "";	
+	document.getElementById("reaper_music-status").style.backgroundColor = "";
+  document.getElementById("reaper_music-btn-play").disabled = true;
+  document.getElementById("reaper_music-btn-stop").disabled = true;
+  document.getElementById("volume-slider").disabled = true;
+  document.getElementById("reaper_music-btn-rewind").disabled = true;
+
+  document.getElementById('reaper_music-stop').addEventListener('updated', (e) => 
+  {
+    document.getElementById("reaper_music-btn-play").disabled = false;
+    document.getElementById("reaper_music-btn-stop").disabled = false;
+    document.getElementById("volume-slider").disabled = false;
+    document.getElementById("reaper_music-btn-rewind").disabled = false;
+  });			
 
   document.getElementById('reaper_music-track_7_vu').addEventListener('updated', (e) => 
   {
