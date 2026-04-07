@@ -22,7 +22,7 @@ const inputNames = [
 const inputLabels = {
     "DANTE_CurvedLEDPC": "Curved LED PC",
     "DANTE_CurvedLEDPC_Stereo": "Curved LED PC Stereo",
-    "DANTE_CurvedLEDPC_Channel_3": "Curved LED PC Test Channel #3",
+    "DANTE_CurvedLEDPC_Channel_3": "Curved LED PC Test VBAP on Channel #3",
     "DANTE_Bluetooth": "Bluetooth Stereo",
     "DANTE_HDMI_Stereo": "HDMI Stereo", 
     "DANTE_Mobile": "Mobile Dante", 
@@ -87,7 +87,7 @@ export function renderInputControls(buttonContainerId, groupContainerId, sceneNa
         html += '<div style="max-height: 350px; overflow-y: auto; display: flex; flex-direction: column; align-items: center; gap: 10px;">';
         inputNames.forEach(id => {
              if (!hiddenInputs.includes(id)) {
-                 html += `<button id="btn-${id}" onClick="SceneModule.showInputSection('${id}')" class="big-button">${inputLabels[id]}</button> `;
+                 html += `<button disabled id="btn-input-select-${id}" onClick="SceneModule.showInputSection('${id}')" class="big-button">${inputLabels[id]}</button> `;
              }
         });
         html += '</div>';
@@ -112,7 +112,7 @@ export function renderInputControls(buttonContainerId, groupContainerId, sceneNa
                 html += `
                 <div id="input-section-${id}" class="input-section" style="display:none; flex-direction: column; align-items: center; text-align: center;">
                     <span style="text-align: center; font-weight: bold; gap: 0px;">${inputLabels[id]}</span>
-                    <button id="btn-input-${id}" style="margin-top: 10px;" class="small-button" onclick="SceneModule.toggleInputState('${id}')">Input: Off</button>
+                    <button id="btn-input-mute-${id}" style="margin-top: 10px;" class="small-button" onclick="SceneModule.toggleInputState('${id}')">Input: Off</button>
                     <div id="slider-container-${id}">
                         <input class="volume-slider" type="range" id="slider-input-${id}" disabled min="-60" max="18" value="0" 
                             oninput="${oscCmd}document.getElementById('volume-number-${id}').innerText = this.value + ' dB';" 
@@ -139,8 +139,8 @@ export function showInputSection(id)
 
 export function toggleInputState(id, state)
 {	
-	const smallBtn = document.getElementById('btn-input-' + id);
-	const bigBtn = document.getElementById('btn-' + id);
+	const smallBtn = document.getElementById('btn-input-mute-' + id);
+	const bigBtn = document.getElementById('btn-input-select-' + id);
 	const slider = document.getElementById('slider-input-' + id);
 
 	if (!smallBtn || !bigBtn || !slider) return;
@@ -203,7 +203,7 @@ export function renderInputButtons(buttonContainerId, sceneName, hiddenInputs = 
         html += '<div style="max-height: 350px; overflow-y: auto; display: flex; flex-direction: column; align-items: center; gap: 10px;">';
         inputNames.forEach(id => {
              if (!hiddenInputs.includes(id)) {
-                 html += `<button id="btn-${id}" onClick="SceneModule.setInputButtonExclusively('${id}', '${sceneName}')" class="big-button">${inputLabels[id]}</button> `;
+                 html += `<button id="btn-input-select-${id}" onClick="SceneModule.setInputButtonExclusively('${id}', '${sceneName}')" class="big-button">${inputLabels[id]}</button> `;
              }
         });
         html += '</div>';
@@ -213,7 +213,7 @@ export function renderInputButtons(buttonContainerId, sceneName, hiddenInputs = 
 
 export function setInputButtonExclusively(id, sceneName)
 {	
-	const bigBtn = document.getElementById('btn-' + id);
+	const bigBtn = document.getElementById('btn-input-select-' + id);
 	if (!bigBtn) return;
 
 	// Check if currently active by class
@@ -224,7 +224,7 @@ export function setInputButtonExclusively(id, sceneName)
 		// Find any currently active simple buttons
 		inputNames.forEach(otherId => {
 			if (otherId === id) return;
-			const otherBtn = document.getElementById('btn-' + otherId);
+			const otherBtn = document.getElementById('btn-input-select-' + otherId);
 			if (otherBtn && otherBtn.classList.contains('active-input')) {
 				otherBtn.classList.remove('active-input');
 			}
@@ -237,4 +237,12 @@ export function setInputButtonExclusively(id, sceneName)
 		bigBtn.classList.remove('active-input');
     return false;
 	}
+}
+
+export function enableInputSelectButtons(enable = true)
+{
+	inputNames.forEach(id => {
+		const btn = document.getElementById('btn-input-select-' + id);
+		if (btn) btn.disabled = !enable;
+	});
 }

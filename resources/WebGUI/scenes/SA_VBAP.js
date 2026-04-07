@@ -1,5 +1,5 @@
-import { renderInputButtons, setInputButtonExclusively } from '../scripts/input-controls.js';
-export { setInputButtonExclusively };
+import { renderInputButtons, setInputButtonExclusively, enableInputSelectButtons } from '../scripts/input-controls.js';
+export { setInputButtonExclusively, enableInputSelectButtons };
 
 let state_curved;
 let state_cave;
@@ -13,12 +13,10 @@ export function init()
 	document.getElementById("SA_VBAP-Control_SampleRate").innerText = "---"; 
 	document.getElementById("SA_VBAP-Control_Door").innerText = "---";
   
-  document.getElementById("btn-DANTE_CurvedLEDPC_Channel_3").disabled = true;
-  document.getElementById("btn-DANTE_CurvedLEDPC").disabled = true;
-  document.getElementById("btn-DANTE_Mobile").disabled = true;
-  document.getElementById("btn-DANTE_CurvedLEDPC_Channel_3").classList.remove('active-input');
-  document.getElementById("btn-DANTE_CurvedLEDPC").classList.remove('active-input');
-  document.getElementById("btn-DANTE_Mobile").classList.remove('active-input');
+  enableInputSelectButtons(false);
+  document.getElementById("btn-input-select-DANTE_CurvedLEDPC_Channel_3").classList.remove('active-input');
+  document.getElementById("btn-input-select-DANTE_CurvedLEDPC").classList.remove('active-input');
+  document.getElementById("btn-input-select-DANTE_Mobile").classList.remove('active-input');
 
   document.getElementById("SA_VBAP-Door_Curved_Open").disabled = true;
   document.getElementById("SA_VBAP-Door_Curved_Close").disabled = true;
@@ -65,9 +63,7 @@ export function launch()
 	document.getElementById("SA_VBAP-Control_Version").innerText = "---";
 	document.getElementById("SA_VBAP-Control_SampleRate").innerText = "---"; 
 	document.getElementById("SA_VBAP-Control_Door").innerText = "---";
-  document.getElementById("btn-DANTE_CurvedLEDPC_Channel_3").disabled = true;
-  document.getElementById("btn-DANTE_CurvedLEDPC").disabled = true;
-  document.getElementById("btn-DANTE_Mobile").disabled = true;
+  enableInputSelectButtons(false);
   document.getElementById('volume-slider').disabled = true;
   document.getElementById('subwoofer-slider').disabled = true;
 }
@@ -109,9 +105,7 @@ export function checkConnection()
 			sendNoArgs('/app/SA_VBAP/osc/Total/Volume');
       sendNoArgs('/app/SA_VBAP/osc/Subwoofer/Volume');
       sendNoArgs('/app/SA_VBAP/osc/Control/Door');
-      document.getElementById("btn-DANTE_CurvedLEDPC_Channel_3").disabled = false;
-      document.getElementById("btn-DANTE_CurvedLEDPC").disabled = false;
-      document.getElementById("btn-DANTE_Mobile").disabled = false;
+      enableInputSelectButtons(true);
       document.getElementById('volume-slider').disabled = false;
       document.getElementById('subwoofer-slider').disabled = false;
 			break;

@@ -1,14 +1,15 @@
-import { renderInputControls, showInputSection, toggleInputState } from '../scripts/input-controls.js';
-export { showInputSection, toggleInputState };
+import { renderInputControls, showInputSection, toggleInputState, enableInputSelectButtons } from '../scripts/input-controls.js';
+export { showInputSection, toggleInputState, enableInputSelectButtons };
 
 export function init()
 {
 	document.getElementById("Curved_LED_Stereo-status").innerText = "initialized";
 	document.getElementById("Curved_LED_Stereo-status").style.backgroundColor = "";	
   
-    // Inject input controls
-    renderInputControls('input-buttons-container', 'input-group-container', 'Curved_LED_Stereo', 
+    // Inject input controls and disabled buttons
+   renderInputControls('input-buttons-container', 'input-group-container', 'Curved_LED_Stereo', 
       ["DANTE_CurvedLEDPC", "DANTE_CurvedLEDPC_Channel_3", "DANTE_Mobile", "Mic_Array"]);
+  enableInputSelectButtons(false);
 
   document.getElementById('Curved_LED_Stereo-Total_VU').addEventListener('updated', (e) => 
   {
@@ -32,4 +33,14 @@ export function Lock()
   sendNoArgs('/matrix/settings/flex_channel/*/mute');
   sendNoArgs('/matrix/settings/sum_bus_master/6/gain');
   sendNoArgs('/matrix/settings/sum_bus_master/7/gain');
+  enableInputSelectButtons(true);
+  document.getElementById("volume-slider").disabled = false;
+}
+
+export function Unlock()
+{
+  sendValue('/matrix/settings/flex_channel/*/mute', 1);
+  unlockScene('Curved_LED_Stereo');
+  enableInputSelectButtons(false);
+  document.getElementById("volume-slider").disabled = true;
 }
