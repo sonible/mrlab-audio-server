@@ -112,12 +112,14 @@ export function renderInputControls(buttonContainerId, groupContainerId, sceneNa
                 html += `
                 <div id="input-section-${id}" class="input-section" style="display:none; flex-direction: column; align-items: center; text-align: center;">
                     <span style="text-align: center; font-weight: bold; gap: 0px;">${inputLabels[id]}</span>
-                    <button id="btn-input-mute-${id}" style="margin-top: 10px;" class="small-button" onclick="SceneModule.toggleInputState('${id}')">Input: Off</button>
+                    <button id="btn-input-mute-${id}" style="margin-top: 10px;" class="small-button" 
+                      onclick="SceneModule.toggleInputState('${id}')">Input: Off
+                    </button>
                     <div id="slider-container-${id}">
-                        <input class="volume-slider" type="range" id="slider-input-${id}" disabled min="-60" max="18" value="0" 
-                            oninput="${oscCmd}document.getElementById('volume-number-${id}').innerText = this.value + ' dB';" 
-                            style="opacity: 0.5; max-height: 220px;">
-                        <div class="level-box" id="volume-number-${id}">--</div>
+                      <input class="volume-slider" type="range" id="slider-input-${id}" disabled min="-60" max="18" value="0" 
+                        oninput="${oscCmd}document.getElementById('volume-number-${id}').innerText = this.value + ' dB';" 
+                        style="opacity: 0.5; max-height: 220px;">
+                      <div class="level-box" id="volume-number-${id}">--</div>
                     </div>
                 </div>`;
             }
@@ -145,53 +147,41 @@ export function toggleInputState(id, state)
 
 	if (!smallBtn || !bigBtn || !slider) return;
 
-	// Check if currently active by class
 	const isActive = smallBtn.classList.contains('active-input');
+	const turnOn = state === undefined ? !isActive : state; // Unmute if state is true or undefined and the button was not active
 
-	const turnOn = state === undefined ? !isActive : state; // turn ON if state is true or undefined and the button was not active
-
-	if (turnOn) // User wants to turn it ON
+	if (turnOn) // Unmute this input
 	{
 		smallBtn.classList.add('active-input');
 		smallBtn.innerText = "Input: On";
 		bigBtn.classList.add('active-input');
 		slider.disabled = false;
 		slider.style.opacity = "1.0";
-
-    switch(id)
+    if (state===undefined) // Only send OSC if the user is toggling the input state
     {
-      case "DANTE_CurvedLEDPC_Stereo":
-        sendValue('/matrix/settings/flex_channel/6/mute', 0);
-        sendValue('/matrix/settings/flex_channel/7/mute', 0);
-        break;
-      case "Mic_Wireless_1":
-        sendValue('/matrix/settings/flex_channel/0/mute', 0);
-        break;
-      case "Mic_Wireless_2":
-        sendValue('/matrix/settings/flex_channel/1/mute', 0);
-        break;
+      let matchingKeys = Object.keys(inputFlexChannelMap).filter(key => inputFlexChannelMap[key] === id);
+      if (matchingKeys.length > 0) {
+          matchingKeys.forEach(ch => {
+              sendValue('/matrix/settings/flex_channel/${ch}/mute', 0);
+          });
+      }
     }
 	}
-	else // Turn OFF
+	else // Mute this input
 	{
 		smallBtn.classList.remove('active-input');
 		smallBtn.innerText = "Input: Off";
 		bigBtn.classList.remove('active-input');
 		slider.disabled = true;
 		slider.style.opacity = "0.5";
-
-    switch(id)
-    {
-      case "DANTE_CurvedLEDPC_Stereo":
-        sendValue('/matrix/settings/flex_channel/6/mute', 1);
-        sendValue('/matrix/settings/flex_channel/7/mute', 1);
-        break;
-      case "Mic_Wireless_1":
-        sendValue('/matrix/settings/flex_channel/0/mute', 1);
-        break;
-      case "Mic_Wireless_2":
-        sendValue('/matrix/settings/flex_channel/1/mute', 1);
-        break;
+    if (state===undefined) // Only send OSC if the user is toggling the input state
+    {  
+      let matchingKeys = Object.keys(inputFlexChannelMap).filter(key => inputFlexChannelMap[key] === id);
+      if (matchingKeys.length > 0) {
+          matchingKeys.forEach(ch => {
+              sendValue('/matrix/settings/flex_channel/${ch}/mute', 1);
+          });
+      }
     }
 	}
 }

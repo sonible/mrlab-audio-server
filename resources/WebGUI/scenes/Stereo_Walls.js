@@ -1,5 +1,5 @@
 import { renderInputControls, showInputSection, toggleInputState } from '../scripts/input-controls.js';
-export { showInputSection, toggleInputState };
+export { showInputSection, toggleInputState};
 
 export function init()
 {
