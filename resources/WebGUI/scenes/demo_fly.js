@@ -4,6 +4,9 @@ export function init()
 	document.getElementById("pd_fly-status").style.backgroundColor = "";	
 	document.getElementById("pd_fly-Control_Version").innerText = "---";
 	document.getElementById("pd_fly-Control_SampleRate").innerText = "---";
+  document.getElementById("pd_fly-Play_Start").disabled = true;
+  document.getElementById("pd_fly-Play_Stop").disabled = true;
+  document.getElementById("volume-slider").disabled = true;
 
   document.getElementById('pd_fly-Play_VU').addEventListener('updated', (e) => 
   {
@@ -68,6 +71,9 @@ export function checkConnection()
 			sendNoArgs('/app/pd_fly/osc/Control/SampleRate');
 			sendNoArgs('/app/pd_fly/osc/Play/Volume');
 			sendNoArgs('/app/pd_fly/osc/Play/Duration');
+      document.getElementById("pd_fly-Play_Start").disabled = false;
+      document.getElementById("pd_fly-Play_Stop").disabled = false;
+      document.getElementById("volume-slider").disabled = false;
 			break;
 	}
 	if (secWaited > timeout)
