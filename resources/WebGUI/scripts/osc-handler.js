@@ -115,39 +115,53 @@ oscPort.on("message", function (oscMsg)
           switch (path[2])
           {
             case 'flex_channel': 
-              //console.log(path);
               switch (path[4])
               {
                 case 'mute':
-                  console.log("Received mute #"+ path[3] + " -> " + inputFlexChannelMap[path[3]]);
                   if (inputFlexChannelMap[path[3]]!="")
                   {
-                    toggleInputState(inputFlexChannelMap[path[3]], oscMsg.args[1].value);
+                    //console.log("Received mute #"+ path[3] + " -> " + inputFlexChannelMap[path[3]]);
+                    toggleInputState(inputFlexChannelMap[path[3]], !oscMsg.args[0].value);
                   }
                   break;
 
                 case 'gain':
-                  console.log("Received gain #"+ path[3] + " -> " + inputFlexChannelMap[path[3]]);
                   if (inputFlexChannelMap[path[3]]!="")
                   {
+                    //console.log("Received gain #"+ path[3] + " -> " + inputFlexChannelMap[path[3]]);
                     const st = document.getElementById('slider-input-' + inputFlexChannelMap[path[3]]);
-                    st.value = oscMsg.args[1].value;                
+                    st.value = oscMsg.args[0].value;  
                   }
                   break;
-
-                
               }
               break;
 
             case 'sum_bus_master':
+              //console.log(oscMsg);
               switch (path[4])
               {
-                case 6, 7: // Output to Curved LED PA
-                  const st = document.getElementById('volume-slider');
-                  st.value = oscMsg.args[1].value;                
+                case 'mute':                  
+                  break;
+
+                case 'gain':
+                  console.log("Received bus master gain #"+ path[3] + ": " + oscMsg.args[0].value);                  
+                  switch (path[3])
+                  {
+                    case "0":
+                    case "1": // Output to Curved LED PA
+                      console.log("Bus master gain 0 or 1");
+                      const st = document.getElementById('sum_bus_master-gain');
+                      st.innerHTML = oscMsg.args[0].value;                
+                      const statusEvent = new CustomEvent('updated', { detail: { time: Date.now() } });
+                      st.dispatchEvent(statusEvent); // dispatch an event that the status has changed                                  
+                      break;
+                    default:
+                      console.log("Bus master gain: channel#" + path[3]);
+                      break;
+                  }
                   break;
               }
-              break;          
+              break;                   
           }
           break;
 

@@ -139,8 +139,11 @@ function showInputSection(id)
 	if (section) section.style.display = 'flex';
 }
 
+// id: input name, see inputNames
+// state: false: unmuted, input active; true: muted, input inactive
 function toggleInputState(id, state)
 {	
+  //console.log("toggleInputState", id, state);
 	const smallBtn = document.getElementById('btn-input-mute-' + id);
 	const bigBtn = document.getElementById('btn-input-select-' + id);
 	const slider = document.getElementById('slider-input-' + id);
@@ -162,7 +165,7 @@ function toggleInputState(id, state)
       let matchingKeys = Object.keys(inputFlexChannelMap).filter(key => inputFlexChannelMap[key] === id);
       if (matchingKeys.length > 0) {
           matchingKeys.forEach(ch => {
-              sendValue('/matrix/settings/flex_channel/${ch}/mute', 0);
+              sendValue("/matrix/settings/flex_channel/" + ch + "/mute", 0);
           });
       }
     }
@@ -179,7 +182,7 @@ function toggleInputState(id, state)
       let matchingKeys = Object.keys(inputFlexChannelMap).filter(key => inputFlexChannelMap[key] === id);
       if (matchingKeys.length > 0) {
           matchingKeys.forEach(ch => {
-              sendValue('/matrix/settings/flex_channel/${ch}/mute', 1);
+              sendValue("/matrix/settings/flex_channel/" + ch + "/mute", 1);
           });
       }
     }
@@ -233,6 +236,10 @@ function enableInputSelectButtons(enable = true)
 {
 	inputNames.forEach(id => {
 		const btn = document.getElementById('btn-input-select-' + id);
-		if (btn) btn.disabled = !enable;
+		if (btn) 
+    {
+      btn.disabled = !enable;
+      toggleInputState(id, false);
+    }
 	});
 }

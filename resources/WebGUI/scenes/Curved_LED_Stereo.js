@@ -15,11 +15,12 @@ export function init()
     document.getElementById('Curved_LED_Stereo-Total_VU-number').innerText = Math.round(vu.innerText) + ' dB';
   });			
 
-  document.getElementById('Curved_LED_Stereo-Total_Volume').addEventListener('updated', (e) => 
+  document.getElementById('sum_bus_master-gain').addEventListener('updated', (e) => 
   {
-    const vol = document.getElementById('Curved_LED_Stereo-Total_Volume');
-    document.getElementById('volume-slider').value = Math.round(vol.innerText);
-    document.getElementById('volume-number').innerText = Math.round(vol.innerText) + " dB";
+    const vol = document.getElementById('sum_bus_master-gain');
+    console.log(vol.innerText);
+    document.getElementById('sum_bus_master-volume-slider').value = Math.round(vol.innerText);
+    document.getElementById('sum_bus_master-volume-number').innerText = Math.round(vol.innerText) + " dB";
   });	
     
 }
@@ -28,10 +29,10 @@ export function Lock()
 {
   lockScene('Curved_LED_Stereo');
   sendNoArgs('/matrix/settings/flex_channel/*/mute');
-  sendNoArgs('/matrix/settings/sum_bus_master/6/gain');
-  sendNoArgs('/matrix/settings/sum_bus_master/7/gain');
+  sendNoArgs('/matrix/settings/sum_bus_master/0/gain');
+  sendNoArgs('/matrix/settings/sum_bus_master/1/gain');
   enableInputSelectButtons(true);
-  document.getElementById("volume-slider").disabled = false;
+  document.getElementById("sum_bus_master-volume-slider").disabled = false;
 }
 
 export function Unlock()
@@ -39,5 +40,5 @@ export function Unlock()
   sendValue('/matrix/settings/flex_channel/*/mute', 1);
   unlockScene('Curved_LED_Stereo');
   enableInputSelectButtons(false);
-  document.getElementById("volume-slider").disabled = true;
+  document.getElementById("sum_bus_master-volume-slider").disabled = true;
 }
