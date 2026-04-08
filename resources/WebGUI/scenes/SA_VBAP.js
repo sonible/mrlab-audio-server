@@ -1,6 +1,3 @@
-import { renderInputButtons, setInputButtonExclusively, enableInputSelectButtons } from '../scripts/input-controls.js';
-export { setInputButtonExclusively, enableInputSelectButtons };
-
 let state_curved;
 let state_cave;
 
@@ -81,7 +78,7 @@ export function connect()
 
 export function checkConnection()
 {
-	const timeout = 1000; // timeout in ms
+	const timeout = 5000; // timeout in ms
 	secWaited += 100;
 	state = document.getElementById("SA_VBAP-Control_Version");
 	//console.log("waiting for " + secWaited/1000 + "s, version=" + state.innerText);

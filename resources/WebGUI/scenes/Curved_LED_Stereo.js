@@ -1,6 +1,3 @@
-import { renderInputControls, showInputSection, toggleInputState, enableInputSelectButtons } from '../scripts/input-controls.js';
-export { showInputSection, toggleInputState, enableInputSelectButtons };
-
 export function init()
 {
 	document.getElementById("Curved_LED_Stereo-status").innerText = "initialized";

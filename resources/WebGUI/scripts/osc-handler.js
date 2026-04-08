@@ -18,7 +18,7 @@ function sendValue(address, value)
 		address: address,
 		args: [{ type: "f", value: value }]
 	});
-  console.log("OSC message sent: ", address, value);
+  //console.log("OSC message sent: ", address, value);
 }
 
 function sendValues3(address, value1, value2, value3) 
@@ -73,7 +73,6 @@ oscPort.on("message", function (oscMsg)
 					commands = (pathstr.substring(path[0].length+path[1].length+path[2].length+3));
 						// Format of the variable as scenename-command1_command2_..._commandN
 					const el = document.getElementById(path[1] + "-" + commands.replaceAll("/", "_"));
-					//console.log(path[1] + "-" + commands.replace("/", "_"));
 					el.innerHTML = oscMsg.args[0].value;
 					const elementEvent = new CustomEvent('updated', { detail: { time: Date.now() } });
 					el.dispatchEvent(elementEvent); // dispatch an event that the variable has changed
@@ -82,10 +81,11 @@ oscPort.on("message", function (oscMsg)
 			break;
 
 		case 'matrix': // Messages related to the matrix
-			console.log("Matrix message received", oscMsg);
+			//console.log("Matrix message received", oscMsg);
       switch (path[1])
 			{
         case 'fan': // Fan status received, path[1] == 'fan'
+          //console.log("Fan message received", oscMsg);
           const st = document.getElementById('fan-' + path[2]);
           if (st != null)
           {
@@ -101,17 +101,25 @@ oscPort.on("message", function (oscMsg)
         case 'status': // Status received, path[1] == 'status'
           if (path[2] != 'ears_status')
           {
-            console.log("Matrix status message received:" + path[2]);
+            console.log("Matrix unknown status message received: " + path[2]);
+          }
+          else
+          {
+            //console.log("Matrix ears status message received:" + path[2]);
           }
           break;
 
         case 'settings':
+          //console.log("Settings status message received: " + path[2]);
+          //console.log(path[2]);
           switch (path[2])
           {
             case 'flex_channel': 
+              //console.log(path);
               switch (path[4])
               {
                 case 'mute':
+                  console.log("Received mute #"+ path[3] + " -> " + inputFlexChannelMap[path[3]]);
                   if (inputFlexChannelMap[path[3]]!="")
                   {
                     toggleInputState(inputFlexChannelMap[path[3]], oscMsg.args[1].value);
@@ -119,14 +127,18 @@ oscPort.on("message", function (oscMsg)
                   break;
 
                 case 'gain':
+                  console.log("Received gain #"+ path[3] + " -> " + inputFlexChannelMap[path[3]]);
                   if (inputFlexChannelMap[path[3]]!="")
                   {
                     const st = document.getElementById('slider-input-' + inputFlexChannelMap[path[3]]);
                     st.value = oscMsg.args[1].value;                
                   }
                   break;
+
+                
               }
               break;
+
             case 'sum_bus_master':
               switch (path[4])
               {
@@ -135,9 +147,10 @@ oscPort.on("message", function (oscMsg)
                   st.value = oscMsg.args[1].value;                
                   break;
               }
-              break;
+              break;          
           }
           break;
+
         default: 
           console.log("Unknown matrix message received:", oscMsg);
           break;

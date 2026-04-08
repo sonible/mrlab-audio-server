@@ -80,14 +80,14 @@ const inputFlexChannelMap = {
     31: "",
 };
 
-export function renderInputControls(buttonContainerId, groupContainerId, sceneName, hiddenInputs = []) {
+function renderInputControls(buttonContainerId, groupContainerId, sceneName, hiddenInputs = []) {
     const btnContainer = document.getElementById(buttonContainerId);
     if (btnContainer) {
         let html = '';
         html += '<div style="max-height: 350px; overflow-y: auto; display: flex; flex-direction: column; align-items: center; gap: 10px;">';
         inputNames.forEach(id => {
              if (!hiddenInputs.includes(id)) {
-                 html += `<button disabled id="btn-input-select-${id}" onClick="SceneModule.showInputSection('${id}')" class="big-button">${inputLabels[id]}</button> `;
+                 html += `<button disabled id="btn-input-select-${id}" onClick="showInputSection('${id}')" class="big-button">${inputLabels[id]}</button> `;
              }
         });
         html += '</div>';
@@ -113,7 +113,7 @@ export function renderInputControls(buttonContainerId, groupContainerId, sceneNa
                 <div id="input-section-${id}" class="input-section" style="display:none; flex-direction: column; align-items: center; text-align: center;">
                     <span style="text-align: center; font-weight: bold; gap: 0px;">${inputLabels[id]}</span>
                     <button id="btn-input-mute-${id}" style="margin-top: 10px;" class="small-button" 
-                      onclick="SceneModule.toggleInputState('${id}')">Input: Off
+                      onclick="toggleInputState('${id}')">Input: Off
                     </button>
                     <div id="slider-container-${id}">
                       <input class="volume-slider" type="range" id="slider-input-${id}" disabled min="-60" max="18" value="0" 
@@ -128,7 +128,7 @@ export function renderInputControls(buttonContainerId, groupContainerId, sceneNa
     }
 }
 
-export function showInputSection(id)
+function showInputSection(id)
 {
 	// hide all input sections
 	const allSections = document.querySelectorAll('.input-section');
@@ -139,7 +139,7 @@ export function showInputSection(id)
 	if (section) section.style.display = 'flex';
 }
 
-export function toggleInputState(id, state)
+function toggleInputState(id, state)
 {	
 	const smallBtn = document.getElementById('btn-input-mute-' + id);
 	const bigBtn = document.getElementById('btn-input-select-' + id);
@@ -186,14 +186,14 @@ export function toggleInputState(id, state)
 	}
 }
 
-export function renderInputButtons(buttonContainerId, sceneName, hiddenInputs = []) {
+function renderInputButtons(buttonContainerId, sceneName, hiddenInputs = []) {
     const btnContainer = document.getElementById(buttonContainerId);
     if (btnContainer) {
         let html = '';
         html += '<div style="max-height: 350px; overflow-y: auto; display: flex; flex-direction: column; align-items: center; gap: 10px;">';
         inputNames.forEach(id => {
              if (!hiddenInputs.includes(id)) {
-                 html += `<button id="btn-input-select-${id}" onClick="SceneModule.setInputButtonExclusively('${id}', '${sceneName}')" class="big-button">${inputLabels[id]}</button> `;
+                 html += `<button id="btn-input-select-${id}" onClick="setInputButtonExclusively('${id}', '${sceneName}')" class="big-button">${inputLabels[id]}</button> `;
              }
         });
         html += '</div>';
@@ -201,7 +201,7 @@ export function renderInputButtons(buttonContainerId, sceneName, hiddenInputs = 
     }
 }
 
-export function setInputButtonExclusively(id, sceneName)
+function setInputButtonExclusively(id, sceneName)
 {	
 	const bigBtn = document.getElementById('btn-input-select-' + id);
 	if (!bigBtn) return;
@@ -229,7 +229,7 @@ export function setInputButtonExclusively(id, sceneName)
 	}
 }
 
-export function enableInputSelectButtons(enable = true)
+function enableInputSelectButtons(enable = true)
 {
 	inputNames.forEach(id => {
 		const btn = document.getElementById('btn-input-select-' + id);
