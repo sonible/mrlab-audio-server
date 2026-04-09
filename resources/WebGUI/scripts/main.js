@@ -183,3 +183,25 @@ async function fetchHttpResponse (url, timeout)
   }
 }
 
+function SystemStatusLegend()
+{
+	const dialog = document.getElementById('infoDialog');
+	document.getElementById('infoTitle').innerText = "Legend";
+	document.getElementById('infoText').innerHTML = `
+    <div>
+    This symbol indicates the status of the system. Currently it just watches for a sign of life from the audio matrix.
+    <br><br>
+    <table style="margin: 0 auto; width:50%;">
+    <thead><tr><th>Symbol</th><th>Meaning</th></tr></thead>
+    <tbody>
+		<tr><td><span style="background-color: #0061a0; color: white;">&#9711;</span></td> <td>Unknown</td></tr>
+		<tr><td><span style="background-color: #0061a0; color: white;">&#11044;</span></td> <td>Sign of live received from the audio matrix</td></tr>
+    </tbody></table></div>`;
+	dialog.showModal();
+
+	document.getElementById('infoOkBtn').onclick = () => 
+	{
+		dialog.close();
+	};
+	
+}
