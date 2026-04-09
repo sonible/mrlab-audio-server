@@ -183,10 +183,11 @@ export function init()
 				case "success": // script done, amps shut down
 					amps_status[i-1].innerHTML = "&#11044";
 					amps_status[i-1].style.color = "black";
+          const st = document.getElementById('system-status');
+          st.innerHTML = '<span style="color: white;">&#9711;</span>';  // Sytem status to unknown
 			}
 		}
 	});
-
 }
 	
 
@@ -207,6 +208,11 @@ export function AmpsShutdown()
 	{
 		dialog.close();
 	};
+}
+
+export function PduStart()
+{
+	send('/app/pdu_start/control', 'launch');
 }
 
 export function PduShutdown()

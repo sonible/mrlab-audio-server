@@ -104,7 +104,7 @@ oscPort.on("message", function (oscMsg)
             case 'ears_status':
               //console.log('Ears status received');
               const st = document.getElementById('system-status');
-              st.innerHTML = '<span style="color: white;">&#11044;</span>'                              
+              st.innerHTML = '<span style="color: white;">&#11044;</span>';
               break;
             default:
               console.log("Matrix unknown status message received: " + path[2]);
