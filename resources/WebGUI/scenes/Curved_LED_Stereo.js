@@ -44,5 +44,6 @@ export function Unlock()
   //sendValue('/matrix/settings/flex_channel/*/mute', 1);
   unlockScene('Curved_LED_Stereo');
   enableInputSelectButtons(false);
+  showInputSection('none'); // Hide all input sections
   document.getElementById("sum_bus_master-volume-slider").disabled = true;
 }
