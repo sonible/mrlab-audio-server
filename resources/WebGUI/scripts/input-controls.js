@@ -12,11 +12,7 @@ const inputNames = [
     "DANTE_HDMI_Stereo", 
     "DANTE_Bluetooth", 
     "Analog_Mono_1", "Analog_Mono_2", "Analog_Mono_3", "Analog_Mono_4",
-    "Analog_Mono_5", "Analog_Mono_6", "Analog_Mono_7", "Analog_Mono_8",
-    "Analog_Stereo_1", "Analog_Stereo_2", "Analog_Stereo_3", "Analog_Stereo_4", 
-    "DANTE_Mono_1", "DANTE_Mono_2", "DANTE_Mono_3", "DANTE_Mono_4",
-    "DANTE_Mono_5", "DANTE_Mono_6", "DANTE_Mono_7", "DANTE_Mono_8",
-    "DANTE_Stereo_1", "DANTE_Stereo_2", "DANTE_Stereo_3", "DANTE_Stereo_4",
+    "Analog_Mono_5", "Analog_Mono_6", "Analog_Mono_7", "Analog_Mono_8"
 ];
 
 const inputLabels = {
@@ -27,12 +23,6 @@ const inputLabels = {
     "DANTE_HDMI_Stereo": "HDMI Stereo", 
     "DANTE_Mobile": "Mobile Dante", 
     "DANTE_Mobile_Stereo": "Mobile Dante Stereo", 
-    "DANTE_Mono_1": "Dante: Mono #1", "DANTE_Mono_2": "Dante: Mono #2",
-    "DANTE_Mono_3": "Dante: Mono #3", "DANTE_Mono_4": "Dante: Mono #4",
-    "DANTE_Mono_5": "Dante: Mono #5", "DANTE_Mono_6": "Dante: Mono #6",
-    "DANTE_Mono_7": "Dante: Mono #7", "DANTE_Mono_8": "Dante: Mono #8",
-    "DANTE_Stereo_1": "Dante: Stereo #1", "DANTE_Stereo_2": "Dante: Stereo #2",
-    "DANTE_Stereo_3": "Dante: Stereo #3", "DANTE_Stereo_4": "Dante: Stereo #4",
     "Beam_Curved_Focus": "Beam Curved Focus", "Beam_Curved_Ambient": "Beam Curved Ambient",
     "Beam_CAVE_Focus": "Beam CAVE Focus", "Beam_CAVE_Ambient": "Beam CAVE Ambient", 
     "Mic_Wireless_1": "Wireless Mic #1", "Mic_Wireless_2": "Wireless Mic #2", 
@@ -41,8 +31,6 @@ const inputLabels = {
     "Analog_Mono_3": "Analog: Mono #3", "Analog_Mono_4": "Analog: Mono #4",
     "Analog_Mono_5": "Analog: Mono #5", "Analog_Mono_6": "Analog: Mono #6",
     "Analog_Mono_7": "Analog: Mono #7", "Analog_Mono_8": "Analog: Mono #8",
-    "Analog_Stereo_1": "Analog: Stereo #1", "Analog_Stereo_2": "Analog: Stereo #2",
-    "Analog_Stereo_3": "Analog: Stereo #3", "Analog_Stereo_4": "Analog: Stereo #4"
 };
 
 const inputFlexChannelMap = {
@@ -54,14 +42,14 @@ const inputFlexChannelMap = {
     5: "Beam_CAVE_Ambient",
     6: "DANTE_CurvedLEDPC_Stereo",
     7: "DANTE_CurvedLEDPC_Stereo",
-    8: "",
-    9: "",
-    10: "",
-    11: "",
-    12: "",
-    13: "",
-    14: "",
-    15: "",
+    8: "Analog_Mono_1",
+    9: "Analog_Mono_2",
+    10: "Analog_Mono_3",
+    11: "Analog_Mono_4",
+    12: "Analog_Mono_5",
+    13: "Analog_Mono_6",
+    14: "Analog_Mono_7",
+    15: "Analog_Mono_8",
     16: "",
     17: "",
     18: "",
@@ -116,7 +104,7 @@ function renderInputControls(buttonContainerId, groupContainerId, sceneName, hid
                       onclick="toggleInputState('${id}')">Input: Off
                     </button>
                     <div id="slider-container-${id}">
-                      <input class="volume-slider" type="range" id="slider-input-${id}" disabled min="-60" max="18" value="0" 
+                      <input class="volume-slider" type="range" id="slider-input-${id}" disabled min="-60" max="18" value="-60" 
                         oninput="${oscCmd}document.getElementById('volume-number-${id}').innerText = this.value + ' dB';" 
                         style="opacity: 0.5; max-height: 220px;">
                       <div class="level-box" id="volume-number-${id}">--</div>

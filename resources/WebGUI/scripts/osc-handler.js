@@ -134,6 +134,8 @@ oscPort.on("message", function (oscMsg)
                     //console.log("Received gain #"+ path[3] + " -> " + inputFlexChannelMap[path[3]]);
                     const st = document.getElementById('slider-input-' + inputFlexChannelMap[path[3]]);
                     st.value = oscMsg.args[0].value;  
+                    const statusEvent = new CustomEvent('updated', { detail: { time: Date.now() } });
+                    st.dispatchEvent(statusEvent); // dispatch an event that the status has changed     
                   }
                   break;
               }
@@ -147,7 +149,7 @@ oscPort.on("message", function (oscMsg)
                   break;
 
                 case 'gain':
-                  console.log("Received bus master gain #"+ path[3] + ": " + oscMsg.args[0].value);                  
+                  //console.log("Received bus master gain #"+ path[3] + ": " + oscMsg.args[0].value);                  
                   switch (path[3])
                   {
                     case "0":
