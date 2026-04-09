@@ -15,7 +15,7 @@ app:
   workingDir: C:\MRLab\Audio-Apps\Stereo-Walls
 
   oscClients:
-    - id: sa_vbap
+    - id: stereo_walls
       subPath: osc
       listenPort: 9336
       destination: [ localhost, 10003 ]

@@ -1,6 +1,3 @@
-import { renderInputControls, showInputSection, toggleInputState } from '../scripts/input-controls.js';
-export { showInputSection, toggleInputState};
-
 export function init()
 {
 	document.getElementById("Stereo_Walls-status").innerText = "initialized";
@@ -10,19 +7,19 @@ export function init()
     renderInputControls('input-buttons-container', 'input-group-container', 'Stereo_Walls', 
       ["DANTE_CurvedLEDPC", "DANTE_CurvedLEDPC_Channel_3", "Mic_Array"]);
 
-document.getElementById('Stereo_Walls-Total_VU').addEventListener('updated', (e) => 
-{
-	const vu = document.getElementById('Stereo_Walls-Total_VU');
-	document.getElementById('Stereo_Walls-Total_VU-bar').style.height = vu.innerText + '%';
-	document.getElementById('Stereo_Walls-Total_VU-number').innerText = Math.round(vu.innerText) + ' dB';
-});			
+  document.getElementById('Stereo_Walls-Total_VU').addEventListener('updated', (e) => 
+  {
+    const vu = document.getElementById('Stereo_Walls-Total_VU');
+    document.getElementById('Stereo_Walls-Total_VU-bar').style.height = vu.innerText + '%';
+    document.getElementById('Stereo_Walls-Total_VU-number').innerText = Math.round(vu.innerText) + ' dB';
+  });			
 
-document.getElementById('Stereo_Walls-Total_Volume').addEventListener('updated', (e) => 
-{
-	const vol = document.getElementById('Stereo_Walls-Total_Volume');
-	document.getElementById('volume-slider').value = Math.round(vol.innerText);
-	document.getElementById('volume-number').innerText = Math.round(vol.innerText) + " dB";
-});	
+  document.getElementById('sum_bus_master-gain').addEventListener('updated', (e) => 
+  {   // Curved PA Volume
+    const vol = document.getElementById('sum_bus_master-gain');
+    document.getElementById('sum_bus_master-volume-slider').value = Math.round(vol.innerText);
+    document.getElementById('sum_bus_master-volume-number').innerText = Math.round(vol.innerText) + " dB";
+  });	
 
   document.getElementById('Stereo_Walls-CAVE_Volume').addEventListener('updated', (e) => 
   {
@@ -52,11 +49,11 @@ document.getElementById('Stereo_Walls-Total_Volume').addEventListener('updated',
     document.getElementById('volume-CurvedDoor-number').innerText = Math.round(vol.innerText) + " dB";
   });	
 
-  document.getElementById('Stereo_Walls-CurvedLED_Volume').addEventListener('updated', (e) => 
+  document.getElementById('Stereo_Walls-Total_Volume').addEventListener('updated', (e) => 
   {
-    const vol = document.getElementById('Stereo_Walls-CurvedLED_Volume');
-    document.getElementById('volume-CurvedLED-slider').value = Math.round(vol.innerText);
-    document.getElementById('volume-CurvedLED-number').innerText = Math.round(vol.innerText) + " dB";
+    const vol = document.getElementById('Stereo_Walls-Total_Volume');
+    document.getElementById('Stereo_Walls-Total_Volume-slider').value = Math.round(vol.innerText);
+    document.getElementById('Stereo_Walls-Total_Volume-number').innerText = Math.round(vol.innerText) + " dB";
   });	
     
 }
@@ -94,6 +91,14 @@ export function checkConnection()
 			state.innerText = "connected";
 			state.style.backgroundColor = "";
 			sendNoArgs('/app/Stereo_Walls/osc/Total/Volume');
+      sendNoArgs('/app/Stereo_Walls/osc/CAVE/Volume');
+      sendNoArgs('/app/Stereo_Walls/osc/CAVEDoor/Volume');
+      sendNoArgs('/app/Stereo_Walls/osc/SA/Volume');
+      sendNoArgs('/app/Stereo_Walls/osc/CurvedDoor/Volume');
+      sendNoArgs('/matrix/settings/sum_bus_master/0/gain'); // Curved PA Volume
+      sendNoArgs('/matrix/settings/sum_bus_master/1/gain'); // Curved PA Volume
+      enableInputSelectButtons(true);
+      //document.getElementById("Stereo_Walls-Total_Volume-slider").disabled = false;
 			break;
 	}
 	if (secWaited > timeout)
@@ -104,7 +109,7 @@ export function checkConnection()
 	}
 }		
 
-export function toggleWallState(id)
+export function toggleWallStateApp(id)
 {
 	const btn = document.getElementById('btn-wall-' + id);
 	const slider = document.getElementById('volume-' + id + '-slider');
@@ -125,5 +130,49 @@ export function toggleWallState(id)
 		slider.disabled = true;
 		slider.style.opacity = "0.5";
     sendValue('/app/Stereo_Walls/osc/' + id + '/Switch', 0);
+	}
+}
+
+export function toggleWallStateCurved()
+{
+	const btn = document.getElementById('btn-wall-Curved');
+	const slider = document.getElementById('sum_bus_master-volume-slider');
+	if (!btn || !slider) return;
+
+	const isActive = btn.classList.contains('active-input');
+	if (!isActive) {
+		btn.classList.add('active-input');
+		btn.innerText = "On";
+		slider.disabled = false;
+		slider.style.opacity = "1.0";
+    sendValue('/matrix/settings/sum_bus_master/0/mute', 0);
+    sendValue('/matrix/settings/sum_bus_master/1/mute', 0);
+	} else {
+		btn.classList.remove('active-input');
+		btn.innerText = "Off";
+		slider.disabled = true;
+		slider.style.opacity = "0.5";
+    sendValue('/matrix/settings/sum_bus_master/0/mute', 1);
+    sendValue('/matrix/settings/sum_bus_master/1/mute', 1);
+	}
+}
+
+export function toggleWallStateCAVE()
+{
+  const btn = document.getElementById('btn-wall-CAVE');
+	const slider = document.getElementById('volume-CAVE-slider');
+	if (!btn || !slider) return;
+
+	const isActive = btn.classList.contains('active-input');
+	if (!isActive) {
+		btn.classList.add('active-input');
+		btn.innerText = "On";
+		slider.disabled = false;
+		slider.style.opacity = "1.0";
+	} else {
+		btn.classList.remove('active-input');
+		btn.innerText = "Off";
+		slider.disabled = true;
+		slider.style.opacity = "0.5";
 	}
 }
