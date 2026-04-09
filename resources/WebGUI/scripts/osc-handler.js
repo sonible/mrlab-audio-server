@@ -18,7 +18,7 @@ function sendValue(address, value)
 		address: address,
 		args: [{ type: "f", value: value }]
 	});
-  console.log("OSC message sent: ", address, value);
+  //console.log("OSC message sent: ", address, value);
 }
 
 function sendValues3(address, value1, value2, value3) 

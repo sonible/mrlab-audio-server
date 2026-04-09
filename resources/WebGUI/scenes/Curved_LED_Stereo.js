@@ -35,6 +35,8 @@ export function Lock()
   sendNoArgs('/matrix/settings/flex_channel/*/mute');
   sendNoArgs('/matrix/settings/sum_bus_master/0/gain');
   sendNoArgs('/matrix/settings/sum_bus_master/1/gain');
+  sendValue('/matrix/settings/sum_bus_master/0/mute', 0); // unmute in case that muted
+  sendValue('/matrix/settings/sum_bus_master/1/mute', 0);
   enableInputSelectButtons(true);
   document.getElementById("sum_bus_master-volume-slider").disabled = false;
 }
