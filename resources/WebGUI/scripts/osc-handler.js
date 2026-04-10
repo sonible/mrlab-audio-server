@@ -44,6 +44,7 @@ function sendResponse(address,port)
 function sendNoArgs(address) 
 {
 	oscPort.send({ address: address });
+  //console.log("OSC message sent: ", address);
 }
 
 oscPort.on("ready", function () 
@@ -161,6 +162,23 @@ oscPort.on("message", function (oscMsg)
                       break;
                     default:
                       console.log("Bus master gain: channel#" + path[3]);
+                      break;
+                  }
+                  break;
+
+                case 'meter':
+                  switch (path[3])
+                  {
+                    case "0":
+                    case "1": // Meter for Curved LED PA
+                      console.log("Bus master meter 0 or 1");
+                      const st = document.getElementById('sum_bus_master-meter');
+                      st.innerHTML = oscMsg.args[0].value;
+                      const statusEvent = new CustomEvent('updated', { detail: { time: Date.now() } });
+                      st.dispatchEvent(statusEvent); // dispatch an event that the status has changed
+                      break;
+                    default:
+                      console.log("Bus master meter: channel#" + path[3]);
                       break;
                   }
                   break;

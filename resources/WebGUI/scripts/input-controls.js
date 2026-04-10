@@ -113,6 +113,20 @@ function renderInputControls(buttonContainerId, groupContainerId, sceneName, hid
             }
         });
         groupContainer.innerHTML = html;
+
+        // Add event listeners for the 'updated' event to each slider
+        inputNames.forEach(id => {
+            if (!hiddenInputs.includes(id)) {
+                const slider = document.getElementById(`slider-input-${id}`);
+                const numberDisplay = document.getElementById(`volume-number-${id}`);
+                if (slider && numberDisplay) {
+                    slider.addEventListener('updated', (e) => {
+                        slider.value = Math.round(slider.value); // Ensure it's rounded if needed, though usually OSC sends formatted values
+                        numberDisplay.innerText = slider.value + ' dB';
+                    });
+                }
+            }
+        });
     }
 }
 
@@ -127,9 +141,9 @@ function showInputSection(id)
 	if (section) section.style.display = 'flex';
 }
 
-// id: input name, see inputNames
-// state: false: unmuted, input active; true: muted, input inactive
-function toggleInputState(id, state)
+    // id: input name, see inputNames
+    // mute: false: unmuted, input active; true: muted, input inactive
+function toggleInputState(id, mute)
 {	
   //console.log("toggleInputState", id, state);
 	const smallBtn = document.getElementById('btn-input-mute-' + id);
@@ -139,7 +153,7 @@ function toggleInputState(id, state)
 	if (!smallBtn || !bigBtn || !slider) return;
 
 	const isActive = smallBtn.classList.contains('active-input');
-	const turnOn = state === undefined ? !isActive : state; // Unmute if state is true or undefined and the button was not active
+	const turnOn = mute === undefined ? !isActive : mute; // Unmute if mute is true or undefined and the button was not active
 
 	if (turnOn) // Unmute this input
 	{
@@ -148,12 +162,21 @@ function toggleInputState(id, state)
 		bigBtn.classList.add('active-input');
 		slider.disabled = false;
 		slider.style.opacity = "1.0";
-    if (state===undefined) // Only send OSC if the user is toggling the input state
-    {
+    if (mute===undefined) 
+    {   // mute undefined: The user is toggling the input state, send OSC to unmute
       let matchingKeys = Object.keys(inputFlexChannelMap).filter(key => inputFlexChannelMap[key] === id);
       if (matchingKeys.length > 0) {
           matchingKeys.forEach(ch => {
               sendValue("/matrix/settings/flex_channel/" + ch + "/mute", 0);
+          });
+      }
+    }
+    else 
+    { // mute defined: The GUI is updating the input state, trigger update of the volume slider
+      let matchingKeys = Object.keys(inputFlexChannelMap).filter(key => inputFlexChannelMap[key] === id);
+      if (matchingKeys.length > 0) {
+          matchingKeys.forEach(ch => {
+              send("/matrix/settings/flex_channel/" + ch + "/gain");
           });
       }
     }
@@ -165,7 +188,7 @@ function toggleInputState(id, state)
 		bigBtn.classList.remove('active-input');
 		slider.disabled = true;
 		slider.style.opacity = "0.5";
-    if (state===undefined) // Only send OSC if the user is toggling the input state
+    if (mute===undefined) // Only send OSC if the user is toggling the input state
     {  
       let matchingKeys = Object.keys(inputFlexChannelMap).filter(key => inputFlexChannelMap[key] === id);
       if (matchingKeys.length > 0) {
