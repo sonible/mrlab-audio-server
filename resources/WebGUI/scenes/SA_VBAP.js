@@ -25,7 +25,7 @@ export function init()
   document.getElementById('SA_VBAP-Total_VU').addEventListener('updated', (e) => 
   {
     const vu = document.getElementById('SA_VBAP-Total_VU');
-    document.getElementById('SA_VBAP-Total_VU-bar').style.height = vu.innerText + '%';
+    document.getElementById('SA_VBAP-Total_VU-bar').style.height = String(Math.round(vu.innerText)+100) + '%';
     document.getElementById('SA_VBAP-Total_VU-number').innerText = Math.round(vu.innerText) + ' dB';
   });			
 
@@ -186,8 +186,8 @@ export function SetDanteLedPcChannel3()
 {
   if (setInputButtonExclusively('DANTE_CurvedLEDPC_Channel_3', 'SA_VBAP'))
   {
-    send('/app/SA_VBAP/osc/VirtualSource/3/Switch', 1);
-    send('/app/SA_VBAP/osc/VirtualSource/3/Volume/Set', 100);
+    sendValue('/app/SA_VBAP/osc/VirtualSource/3/Switch', 1);
+    sendValue('/app/SA_VBAP/osc/VirtualSource/3/Volume/Set', 0);
     sendValues3('/app/SA_VBAP/osc/VirtualSource/3/Position/Set', 0, 0, 3.2);
   }
   else
