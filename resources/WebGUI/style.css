@@ -454,7 +454,7 @@ button:disabled {
 
 .level-box { /* Style to display a level */
   font-family: monospace;
-  font-size: 1rem;
+  font-size: 0.9rem;
   background: #0061a0;
   color: white;
   padding: 5px 5px;

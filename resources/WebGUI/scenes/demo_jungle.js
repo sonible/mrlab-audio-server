@@ -11,7 +11,7 @@ export function init()
   document.getElementById('pd_jungle-Play_VU').addEventListener('updated', (e) => 
   {
     const vu = document.getElementById('pd_jungle-Play_VU');
-    document.getElementById('pd_jungle-Play_VU-bar').style.height = vu.innerText + '%';
+    document.getElementById('pd_jungle-Play_VU-bar').style.height = String(Math.round(vu.innerText)+100) + '%';
     document.getElementById('pd_jungle-Play_VU-number').innerText = Math.round(vu.innerText) + ' dB';
   });			
 
