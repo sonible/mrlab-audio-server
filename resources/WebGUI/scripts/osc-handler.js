@@ -82,6 +82,8 @@ oscPort.on("message", function (oscMsg)
 
 		case 'matrix': // Messages related to the matrix
 			//console.log("Matrix message received", oscMsg);
+      const st = document.getElementById('system-status');  // update sign of life on any message from the matrix
+      st.innerHTML = '<span style="color: white;">&#11044;</span>';
       switch (path[1])
 			{
         case 'fan': // Fan status received, path[1] == 'fan'
@@ -89,12 +91,12 @@ oscPort.on("message", function (oscMsg)
           const st = document.getElementById('fan-' + path[2]);
           if (st != null)
           {
-            st.innerHTML = oscMsg.args[1].value;
-            console.log("Fan status received for " + path[2], oscMsg.args[1].value);
+            st.innerHTML = Math.round(oscMsg.args[0].value*100)/100;
+            //console.log("Fan status received for " + path[2], );
           }
           else
           {
-            console.log("No OSC message handler for: 'fan-'" + path[2]);
+            console.log("No OSC message handler for: 'fan-" + path[2] + "'");
           }
           break;
 
@@ -102,9 +104,6 @@ oscPort.on("message", function (oscMsg)
           switch(path[2])
           {
             case 'ears_status':
-              //console.log('Ears status received');
-              const st = document.getElementById('system-status');
-              st.innerHTML = '<span style="color: white;">&#11044;</span>';
               break;
             default:
               console.log("Matrix unknown status message received: " + path[2]);
@@ -182,7 +181,7 @@ oscPort.on("message", function (oscMsg)
       break;
 
 		default:
-			console.log("No OSC message handler: ", oscMsg.address);
+			console.log("No OSC message handler: ", oscMsg);
 			break;
 	}
 });
