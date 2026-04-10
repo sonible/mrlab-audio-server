@@ -49,3 +49,8 @@ export function Unlock()
   showInputSection('none'); // Hide all input sections
   document.getElementById("sum_bus_master-volume-slider").disabled = true;
 }
+
+export function MuteAll()
+{
+  sendValue('/matrix/settings/flex_channel/*/mute', 1);
+}
