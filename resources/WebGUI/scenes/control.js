@@ -30,6 +30,7 @@ export function init()
 			amps_status[i-1].innerHTML = "&#8212";
 			amps_status[i-1].style.color = "black";
 		}
+    document.getElementById('control-Update_Status').disabled = true;
 	
 		var x = await fetchHttpResponse('http://172.16.60.111/api/get/general/model', 300);
 		console.log("Model", x);
@@ -41,7 +42,8 @@ export function init()
         amps_status[i-1].style.color = "black";
       }
         //alert ("Error happened: " + x.error.name + "\n" + x.error.message + "\n\nIf the error is something with failed to fetch, try to install the add-on 'Allow CORS' and switch it on."); 
-			return;
+			document.getElementById('control-Update_Status').disabled = false;
+      return;
 		}
 			
 		for (var i=1; i<=8; i++)
@@ -70,6 +72,7 @@ export function init()
 				}
 			}
 		}
+    document.getElementById('control-Update_Status').disabled = false;
 	});	
 
 	// Controls the status when running "PDU Start"
@@ -91,6 +94,10 @@ export function init()
 				case "success": // script done, devices have power
 					amps_status[i-1].innerHTML = "&#11044";
 					amps_status[i-1].style.color = "black";
+          document.getElementById('system_start-button').disabled = false;
+          break;
+        default:
+          document.getElementById('system_start-button').disabled = false;
 			}
 		}
 	});
@@ -114,6 +121,10 @@ export function init()
 				case "success": // script done, devices switched off
 					amps_status[i-1].innerHTML = "&#9711";
 					amps_status[i-1].style.color = "black";
+          document.getElementById('system_shutdown-button').disabled = false;
+          break;
+        default:
+          document.getElementById('system_shutdown-button').disabled = false;
 			}
 		}
 	});
@@ -137,6 +148,10 @@ export function init()
 				case "success": // script done, amps unmuted
 					amps_status[i-1].innerHTML = "&#11044";
 					amps_status[i-1].style.color = "green";
+          document.getElementById('amps_unmute-button').disabled = false;
+          break;
+        default:
+          document.getElementById('amps_unmute-button').disabled = false;
 			}
 		}
 	});
@@ -160,6 +175,10 @@ export function init()
 				case "success": // script done, amps muted
 					amps_status[i-1].innerHTML = "&#11044";
 					amps_status[i-1].style.color = "blue";
+          document.getElementById('amps_mute-button').disabled = false;
+          break;
+        default:
+          document.getElementById('amps_mute-button').disabled = false;
 			}
 		}
 	});
@@ -185,6 +204,10 @@ export function init()
 					amps_status[i-1].style.color = "black";
           const st = document.getElementById('system-status');
           st.innerHTML = '<span style="color: white;">&#9711;</span>';  // Sytem status to unknown
+          document.getElementById('amps_shutdown-button').disabled = false;
+          break;
+        default:
+          document.getElementById('amps_shutdown-button').disabled = false;
 			}
 		}
 	});
@@ -200,8 +223,9 @@ export function AmpsShutdown()
 
 	document.getElementById('okBtn').onclick = () => 
 	{
-		send('/app/amps_shutdown/control', 'launch');
 		dialog.close();
+    send('/app/amps_shutdown/control', 'launch');
+    document.getElementById('amps_shutdown-button').disabled = true;
 	};
 
 	document.getElementById('cancelBtn').onclick = () => 
@@ -210,12 +234,13 @@ export function AmpsShutdown()
 	};
 }
 
-export function PduStart()
+export function SystemStart()
 {
 	send('/app/pdu_start/control', 'launch');
+  document.getElementById('system_start-button').disabled = true;
 }
 
-export function PduShutdown()
+export function SystemShutdown()
 {
 	const dialog = document.getElementById('confirmDialog');
 	document.getElementById('confirmTitle').innerText = "Shutdown the Audio System?";
@@ -224,8 +249,9 @@ export function PduShutdown()
 
 	document.getElementById('okBtn').onclick = () => 
 	{
-		send('/app/pdu_shutdown/control', 'launch');
 		dialog.close();
+    send('/app/pdu_shutdown/control', 'launch');
+    document.getElementById('system_shutdown-button').disabled = true;
 	};
 
 	document.getElementById('cancelBtn').onclick = () => 
@@ -244,9 +270,9 @@ export function CloseAllApps()
 
 	document.getElementById('okBtn').onclick = () => 
 	{  
+    dialog.close();
     send('/app/*/control', 'quit');
     document.querySelectorAll('.launched-scene').forEach(btn => unlockScene(btn.id.replace('button-', ''),false));
-    dialog.close();
   };
 
 	document.getElementById('cancelBtn').onclick = () => 

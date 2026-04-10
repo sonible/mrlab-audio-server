@@ -4,7 +4,7 @@
 	<div class="start-container" style="height: 30%;">
 		<div>
 			<p style="text-align: center;">Step #1:</p>
-			<button onClick="SceneModule.PduStart();" class="big-button">PDU: Start</button>
+			<button id="system_start-button" onClick="SceneModule.SystemStart();" class="big-button">System: Start</button>
 			<p style="text-align: center; color: white;"> <b id="pdu_start-status">&nbsp;</b></p>
 		</div>
 
@@ -37,41 +37,39 @@
 
 		<div>
 			<p style="text-align: center;">Step #2:</p>
-			<button onClick="send('/app/amps_unmute/control', 'launch');" class="big-button">Amps: Unmute</button>
+			<button id="amps_unmute-button" onClick="send('/app/amps_unmute/control', 'launch'); document.getElementById('amps_unmute-button').disabled = true;" class="big-button">Amps: Unmute</button>
 			<p style="text-align: center; color: white;"><b id="amps_unmute-status">&nbsp;</b></p>
 		</div>
 	</div>
-
 
 	<h3>Shutdown the system:</h3>
 	<div class="start-container" style="height: 30%;">
 		<div>
 			<p style="text-align: center;">Step #1:</p>
-			<button onClick="send('/app/amps_mute/control', 'launch');" class="big-button">Amps: Mute</button>
+			<button id="amps_mute-button" onClick="send('/app/amps_mute/control', 'launch'); document.getElementById('amps_mute-button').disabled = true;" class="big-button">Amps: Mute</button>
 			<p style="text-align: center; color: white;"><b id="amps_mute-status">&nbsp;</b></p>
 		</div>
 		<div>
 			<p style="text-align: center;">Step #2:</p>
-			<button onClick="SceneModule.AmpsShutdown();" class="big-button">Amps: Shutdown</button>
+			<button id="amps_shutdown-button" onClick="SceneModule.AmpsShutdown();" class="big-button">Amps: Shutdown</button>
 			<p style="text-align: center; color: white;"><b id="amps_shutdown-status">&nbsp;</b></p>
 		</div>
 		<div>
 			<p style="text-align: center;">Step #3:</p>
-			<button onClick="SceneModule.PduShutdown();" class="big-button">PDU Shutdown</button>
+			<button id="system_shutdown-button" onClick="SceneModule.SystemShutdown();" class="big-button">System: Shutdown</button>
 			<p style="text-align: center; color: white;"><b id="pdu_shutdown-status">&nbsp;</b></p>
 		</div>
 	</div>
 
-
 	<h3>Special:</h3>
 	<div class="start-container" style="height: 30%;">
 		<div>
-			<button onClick="send('/matrix/snapshots/0/author', 'Piotr');" class="big-button">Matrix:<br>Load
+			<button disabled onClick="send('/matrix/snapshots/0/author', 'Piotr');" class="big-button">Matrix:<br>Load
 				Default Snapshot</button>
 			<p style="text-align: center;"> <b id="matrix_default-status">&nbsp;</b></p>
 		</div>
 		<div>
-			<button onClick="send('/totalmix/load_defaults', 'launch');" class="big-button" disabled>Mixer:<br>Load
+			<button disabled onClick="send('/totalmix/load_defaults', 'launch');" class="big-button">Mixer:<br>Load
 				Default Routing</button>
 			<p style="text-align: center;"> <b id="mixer_default-status">&nbsp;</b></p>
 		</div>
