@@ -29,9 +29,10 @@ export function init()
 export function Lock()
 {
   lockScene('Curved_LED_Stereo');
-  sendNoArgs('/matrix/settings/flex_channel/*/mute');
-  sendNoArgs('/matrix/settings/sum_bus_master/0/gain');
-  sendNoArgs('/matrix/settings/sum_bus_master/1/gain');
+  sendNoArgs('/matrix/settings/flex_channel/*/mute'); // get all mute states
+  sendNoArgs('/matrix/settings/flex_channel/*/gain'); // get all gain values
+  sendNoArgs('/matrix/settings/sum_bus_master/0/gain'); // get master gain
+  sendNoArgs('/matrix/settings/sum_bus_master/1/gain'); // get master gain
   sendValue('/matrix/settings/sum_bus_master/0/mute', 0); // unmute in case that muted
   sendValue('/matrix/settings/sum_bus_master/1/mute', 0);
   enableInputSelectButtons(true);

@@ -131,11 +131,10 @@ oscPort.on("message", function (oscMsg)
                 case 'gain':
                   if (inputFlexChannelMap[path[3]]!="")
                   {
-                    //console.log("Received gain #"+ path[3] + " -> " + inputFlexChannelMap[path[3]]);
                     const st = document.getElementById('slider-input-' + inputFlexChannelMap[path[3]]);
                     st.value = oscMsg.args[0].value;  
                     const statusEvent = new CustomEvent('updated', { detail: { time: Date.now() } });
-                    st.dispatchEvent(statusEvent); // dispatch an event that the status has changed     
+                    st.dispatchEvent(statusEvent); // dispatch an event that the status has changed    
                   }
                   break;
               }
@@ -171,14 +170,14 @@ oscPort.on("message", function (oscMsg)
                   {
                     case "0":
                     case "1": // Meter for Curved LED PA
-                      console.log("Bus master meter 0 or 1");
+                      //console.log("Bus master meter 0 or 1", oscMsg);
                       const st = document.getElementById('sum_bus_master-meter');
                       st.innerHTML = oscMsg.args[0].value;
                       const statusEvent = new CustomEvent('updated', { detail: { time: Date.now() } });
                       st.dispatchEvent(statusEvent); // dispatch an event that the status has changed
                       break;
                     default:
-                      console.log("Bus master meter: channel#" + path[3]);
+                      //console.log("Bus master meter: channel#" + path[3]);
                       break;
                   }
                   break;
