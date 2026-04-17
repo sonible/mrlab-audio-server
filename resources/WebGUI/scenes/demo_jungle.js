@@ -59,7 +59,7 @@ export function checkConnection()
 		case "---":
 			if (secWaited <= timeout)
 			{		// try again
-				sendResponse('/app/pd_jungle/osc/Control/Response');
+				sendResponse('/app/pd_jungle/osc/Control/Response', 9336);
 				sendNoArgs('/app/pd_jungle/osc/Control/Version');		
 				setTimeout(() => { checkConnection(); }, 100);
 			}

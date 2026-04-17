@@ -80,7 +80,7 @@ export function checkConnection()
 		case "---":
 			if (secWaited <= timeout)
 			{		// try again
-				sendResponse('/app/Stereo_Walls/osc/Control/Response');
+				sendResponse('/app/Stereo_Walls/osc/Control/Response', 9336);
 				sendNoArgs('/app/Stereo_Walls/osc/Control/Version');		
 				setTimeout(() => { checkConnection(); }, 100);
 			}

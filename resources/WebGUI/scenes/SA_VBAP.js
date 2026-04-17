@@ -78,16 +78,16 @@ export function connect()
 
 export function checkConnection()
 {
-	const timeout = 5000; // timeout in ms
+	const timeout = 10000; // timeout in ms
 	secWaited += 100;
 	state = document.getElementById("SA_VBAP-Control_Version");
-	//console.log("waiting for " + secWaited/1000 + "s, version=" + state.innerText);
+	console.log("waiting for " + secWaited/1000 + "s, version=" + state.innerText);
 	switch (state.innerText)
 	{
 		case "---":
 			if (secWaited <= timeout)
 			{		// try again
-				sendResponse('/app/SA_VBAP/osc/Control/Response');
+				sendResponse('/app/SA_VBAP/osc/Control/Response', 9336);
 				sendNoArgs('/app/SA_VBAP/osc/Control/Version');		
 				setTimeout(() => { checkConnection(); }, 100);
 			}
