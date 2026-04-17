@@ -9,12 +9,12 @@ export function init()
         ]);
   enableInputSelectButtons(false);
 
-  document.getElementById('sum_bus_master-meter').addEventListener('updated', (e) => 
+  /*document.getElementById('sum_bus_master-meter').addEventListener('updated', (e) => 
   {
     const vu = document.getElementById('sum_bus_master-meter');
     document.getElementById('sum_bus_master-meter-bar').style.height = vu.innerText + '%';
     document.getElementById('sum_bus_master-meter-number').innerText = Math.round(vu.innerText) + ' dB';
-  });
+  });*/
 
   document.getElementById('sum_bus_master-gain').addEventListener('updated', (e) => 
   {
@@ -37,10 +37,10 @@ export function Lock()
   sendValue('/matrix/settings/sum_bus_master/1/mute', 0);
   enableInputSelectButtons(true);
   document.getElementById("sum_bus_master-volume-slider").disabled = false;
-  setTimeout(() => { triggerMeter(); }, 100);
+  //setTimeout(() => { triggerMeter(); }, 100);
 }
 
-function triggerMeter()
+function triggerMeter() // currently unused because the VU meter does not work in the matrix this way
 {
   sendNoArgs('/matrix/settings/sum_bus_master/0/meter');
   if (!document.getElementById("sum_bus_master-volume-slider").disabled)
