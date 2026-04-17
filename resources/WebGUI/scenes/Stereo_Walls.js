@@ -16,7 +16,7 @@ export function init()
   document.getElementById('Stereo_Walls-Total_VU').addEventListener('updated', (e) => 
   {
     const vu = document.getElementById('Stereo_Walls-Total_VU');
-    document.getElementById('Stereo_Walls-Total_VU-bar').style.height = Math.round(vu.innerText)+100 + '%';
+    document.getElementById('Stereo_Walls-Total_VU-bar').style.width = Math.round(vu.innerText+100) + '%';
     document.getElementById('Stereo_Walls-Total_VU-number').innerText = Math.round(vu.innerText) + ' dB';
   });			
 

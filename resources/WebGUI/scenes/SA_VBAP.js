@@ -25,7 +25,7 @@ export function init()
   document.getElementById('SA_VBAP-Total_VU').addEventListener('updated', (e) => 
   {
     const vu = document.getElementById('SA_VBAP-Total_VU');
-    document.getElementById('SA_VBAP-Total_VU-bar').style.height = String(Math.round(vu.innerText)+100) + '%';
+    document.getElementById('SA_VBAP-Total_VU-bar').style.width = String(Math.round(vu.innerText)+100) + '%';
     document.getElementById('SA_VBAP-Total_VU-number').innerText = Math.round(vu.innerText) + ' dB';
   });			
 
