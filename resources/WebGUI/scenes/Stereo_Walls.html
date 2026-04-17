@@ -13,7 +13,7 @@
   </div>
 
 	<div class="start-container" style="height: 60%;">
-    <div class="button-group" style="width: 30%; height: 100%; gap: 0px;">
+    <div class="button-group" style="width: 40%; height: 100%; gap: 0px;">
       <span style="text-align: center; font-weight: bold; gap: 0px;">Inputs</span>
       <div class="start-container" style="height: 100%; gap: 0px;">
         <div id="input-buttons-container" style="text-align: center;">
@@ -25,17 +25,21 @@
       </div>
 		</div>
 
+    <div class="button-group" style="width: 10%; height: 100%; gap: 0px;">
+      <span style="text-align: center; font-weight: bold; gap: 0px;">CAVE PA</span>
+      <div class="slider-group">
+        <b>Volume</b><br>
+        <button disabled id="btn-wall-CAVE" class="small-button" style="width: 50px;" onclick="SceneModule.toggleWallStateCAVE()">Off</button>          
+        <input disabled id="volume-CAVE-slider" class="volume-slider" style="opacity: 0.5; height: 182px;" type=range min="-60" max="20" value="-60" 
+          oninput="sendValue('/app/Stereo_Walls/osc/CAVE/Volume/Set', this.value); document.getElementById('volume-CAVE-number').innerText = this.value + ' dB';">
+        <div id="volume-CAVE-number" class="level-box">--</div>
+        <span style="text-align: center; color: white;" id="Stereo_Walls-CAVE_Volume">&nbsp;</span>
+      </div>
+    </div>
+    
     <div class="button-group" style="width: 50%; height: 100%; gap: 0px;">
-      <span style="text-align: center; font-weight: bold; gap: 0px;">Wall Levels</span>
+      <span style="text-align: center; font-weight: bold; gap: 0px;">Walls</span>
       <div id="wall-levels" class="start-container" style="height: 95%; text-align: center; gap:0px;">
-        <div class="slider-group">
-          <b style="min-height: 1em">CAVE</b><br>
-          <button disabled id="btn-wall-CAVE" class="small-button" style="width: 50px;" onclick="SceneModule.toggleWallStateCAVE()">Off</button>          
-          <input disabled id="volume-CAVE-slider" class="volume-slider" style="opacity: 0.5;" type=range min="-60" max="20" value="-60" 
-            oninput="sendValue('/app/Stereo_Walls/osc/CAVE/Volume/Set', this.value); document.getElementById('volume-CAVE-number').innerText = this.value + ' dB';">
-          <div id="volume-CAVE-number" class="level-box">--</div>
-          <span style="text-align: center; color: white;" id="Stereo_Walls-CAVE_Volume">&nbsp;</span>
-        </div>
         <div class="slider-group">
           <b style="min-height: 1em">CAVE Door</b><br>
           <button disabled id="btn-wall-CAVEDoor" class="small-button" style="width: 50px;" onclick="SceneModule.toggleWallStateApp('CAVEDoor')">Off</button>
@@ -60,20 +64,6 @@
           <div id="volume-CurvedDoor-number" class="level-box">--</div>
           <span style="text-align: center; color: white;" id="Stereo_Walls-CurvedDoor_Volume">&nbsp;</span>
         </div>
-      </div>
-    </div>
-
-    <div class="button-group" style="width: 20%; height: 100%; gap: 0px;">
-      <span style="text-align: center; font-weight: bold; gap: 0px;">Total</span>
-      <div class="start-container">
-        <div class="slider-group">
-          <b style="min-height: 1em">Total</b><br>
-          <button disabled id="btn-wall-Total" class="small-button" style="width: 50px;" onclick="SceneModule.toggleWallStateTotal()">Off</button>
-          <input disabled id="sum_bus_master-volume-slider" class="volume-slider" style="opacity: 0.5;" type=range min="-60" max="20" value="-60"
-            oninput="SceneModule.setVolumeTotal(this.value)">
-          <div id="sum_bus_master-volume-number" class="level-box">--</div>
-          <span id="sum_bus_master-gain" style="text-align: center; color: white;">&nbsp;</span>
-        </div>
         <div class="slider-group">
           <b>Level</b>
           <div class="meter-container" style="height: 80%;">
@@ -82,6 +72,18 @@
           <div class="level-box" id="Stereo_Walls-Total_VU-number">--</div>
           <span style="text-align: center; color: white;" id="Stereo_Walls-Total_VU">&nbsp;</span>
         </div>
+      </div>
+    </div>
+
+    <div class="button-group" style="width: 10%; height: 100%; gap: 0px;">
+      <span style="text-align: center; font-weight: bold; gap: 0px;">Curved PA</span>
+      <div class="slider-group">
+        <b>Volume</b><br>
+        <button disabled id="btn-wall-Total" class="small-button" style="width: 50px;" onclick="SceneModule.toggleWallStateTotal()">Off</button>
+        <input disabled id="sum_bus_master-volume-slider" class="volume-slider" style="opacity: 0.5; height: 186px;" type=range min="-60" max="20" value="-60"
+          oninput="SceneModule.setVolumeTotal(this.value)">
+        <div id="sum_bus_master-volume-number" class="level-box">--</div>
+        <span id="sum_bus_master-gain" style="text-align: center; color: white;">&nbsp;</span>
       </div>
     </div>
 	</div>
