@@ -70,7 +70,7 @@
             <div id="Stereo_Walls-Total_VU-bar" class="meter-bar" style="height: 0%;"></div>
           </div>
           <div class="level-box" id="Stereo_Walls-Total_VU-number">--</div>
-          <span style="text-align: center; color: white;" id="Stereo_Walls-Total_VU">&nbsp;</span>
+          <span style="text-align: center; color: white; max-width: 65px; overflow: hidden;white-space: nowrap;" id="Stereo_Walls-Total_VU">&nbsp;</span>
         </div>
       </div>
     </div>
@@ -79,9 +79,9 @@
       <span style="text-align: center; font-weight: bold; gap: 0px;">Curved PA</span>
       <div class="slider-group">
         <b>Volume</b><br>
-        <button disabled id="btn-wall-Total" class="small-button" style="width: 50px;" onclick="SceneModule.toggleWallStateTotal()">Off</button>
+        <button disabled id="btn-wall-CurvedPA" class="small-button" style="width: 50px;" onclick="SceneModule.toggleWallStateCurvedPA()">Off</button>
         <input disabled id="sum_bus_master-volume-slider" class="volume-slider" style="opacity: 0.5; height: 186px;" type=range min="-60" max="20" value="-60"
-          oninput="SceneModule.setVolumeTotal(this.value)">
+          oninput="SceneModule.setVolumeCurvedPA(this.value)">
         <div id="sum_bus_master-volume-number" class="level-box">--</div>
         <span id="sum_bus_master-gain" style="text-align: center; color: white;">&nbsp;</span>
       </div>
