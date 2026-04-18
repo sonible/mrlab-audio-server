@@ -7,6 +7,8 @@ export function init()
   document.getElementById("pd_fly-Play_Start").disabled = true;
   document.getElementById("pd_fly-Play_Stop").disabled = true;
   document.getElementById("volume-slider").disabled = true;
+  document.getElementById('pd_fly-Play_VU-bar').style.height = '0%';
+  document.getElementById('pd_fly-Play_VU-number').innerText = '--';
 
   document.getElementById('pd_fly-Play_VU').addEventListener('updated', (e) => 
   {

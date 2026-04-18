@@ -9,6 +9,8 @@ export function init()
 	document.getElementById("SA_VBAP-Control_Version").innerText = "---";
 	document.getElementById("SA_VBAP-Control_SampleRate").innerText = "---"; 
 	document.getElementById("SA_VBAP-Control_Door").innerText = "---";
+  document.getElementById('SA_VBAP-Total_VU-bar').style.height = '0%';
+  document.getElementById('SA_VBAP-Total_VU-number').innerText = '--';
   
   enableInputSelectButtons(false);
   document.getElementById("btn-input-select-DANTE_CurvedLEDPC_Channel_3").classList.remove('active-input');
@@ -25,7 +27,7 @@ export function init()
   document.getElementById('SA_VBAP-Total_VU').addEventListener('updated', (e) => 
   {
     const vu = document.getElementById('SA_VBAP-Total_VU');
-    document.getElementById('SA_VBAP-Total_VU-bar').style.width = String(Math.round(vu.innerText)+100) + '%';
+    document.getElementById('SA_VBAP-Total_VU-bar').style.height = String(Math.round(vu.innerText)+100) + '%';
     document.getElementById('SA_VBAP-Total_VU-number').innerText = Math.round(vu.innerText) + ' dB';
   });			
 

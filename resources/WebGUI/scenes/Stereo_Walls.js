@@ -16,7 +16,7 @@ export function init()
   document.getElementById('Stereo_Walls-Total_VU').addEventListener('updated', (e) => 
   {
     const vu = document.getElementById('Stereo_Walls-Total_VU');
-    document.getElementById('Stereo_Walls-Total_VU-bar').style.width = Math.round(vu.innerText+100) + '%';
+    document.getElementById('Stereo_Walls-Total_VU-bar').style.height = String(Math.round(vu.innerText)+100) + '%';
     document.getElementById('Stereo_Walls-Total_VU-number').innerText = Math.round(vu.innerText) + ' dB';
   });			
 
@@ -123,6 +123,8 @@ export function quit()
   toggleWallStateApp('SA', false, true);
   toggleWallStateApp('CurvedDoor', false, true);
   toggleWallStateTotal(false, true);
+  document.getElementById('Stereo_Walls-Total_VU-bar').style.height = '0%';
+  document.getElementById('Stereo_Walls-Total_VU-number').innerText = '--';
 }
 
 export function toggleWallStateApp(id, state, btn_disable)
