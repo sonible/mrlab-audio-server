@@ -40,6 +40,7 @@ void MatrixOscAgent::stateChanged (MatrixController&, MatrixController::State st
     // Query full JSON state tree from matrix after connecting.
     if (state == MatrixController::State::connected)
     {
+        addCommandOscMethods();
         startTimer (prodigyPingIntervalMs);
         matrixController.sendMatrixMessage (makeMessage (Type::get));
     }
@@ -78,7 +79,7 @@ void MatrixOscAgent::timerCallback()
     if (auto numPending = pendingMsg.size(); numPending > 0)
         Logger::logWarn (juce::String ("MatrixOscAgent: ") + juce::String (numPending) + " Prodigy JSON command message responses pending.");
 
-    matrixController.sendMatrixMessage (makeMessage (Type::cmd, Command::ping));
+    matrixController.sendMatrixMessage (makeMessage (Type::cmd, {}, Command::ping));
 }
 
 void MatrixOscAgent::handleGetRespMessage (nlohmann::json&& msg)
@@ -360,6 +361,61 @@ nlohmann::json::iterator MatrixOscAgent::findSubArrayForIndex (nlohmann::json& a
     };
 
     return std::find_if (array.begin(), array.end(), std::move (subArrayMatches));
+}
+
+void MatrixOscAgent::addCommandOscMethods()
+{
+    addMethod (std::string (osc::Address::matrixcmd) += "/*", [this] (OscEndpoint* source, std::string_view path, std::string_view types, lo_arg** argv, int argc) {
+        if (argc > 1)
+            return sendError (source, osc::Error::matrixCommandUnsupportedNumArguments, path, argc);
+
+        // Get wildcard path segment, i.e., the CMD selector (JSON obj).
+        const auto cmd = osc::Util::getPathSegment (path, 1);
+
+        // Assign payload from OSC argument.
+        nlohmann::json payload;
+
+        if (argc > 0)
+        {
+            switch (types.front())
+            {
+                case 'i':
+                    payload = argv[0]->i;
+                    break;
+
+                case 'f':
+                    payload = argv[0]->f;
+                    break;
+
+                case 's':
+                    payload = &argv[0]->s;
+                    break;
+
+                case 'T':
+                    payload = true;
+                    break;
+
+                case 'F':
+                    payload = false;
+                    break;
+
+                /* We could support transparent base64 encoding of OSC
+                   binary blobs to JSON strings here but let's stay reasonable.
+                 */
+
+                default:
+                    return sendError (source, osc::Error::matrixCommandIncompatibleArgumentType, path, types.front());
+            }
+        }
+
+        // Send CMD message.
+        auto cmdMsg = makeMessage (Type::cmd, payload, cmd);
+#if JUCE_DEBUG
+        std::cout << "[JSON Prodigy send]" << std::endl;
+        std::cout << std::setw (2) << cmdMsg << std::endl;
+#endif
+        matrixController.sendMatrixMessage (std::move (cmdMsg));
+    });
 }
 
 void MatrixOscAgent::addStateGetterOscMethod (nlohmann::json::json_pointer top)
