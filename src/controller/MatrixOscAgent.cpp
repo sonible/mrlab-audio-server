@@ -86,7 +86,8 @@ void MatrixOscAgent::handleGetRespMessage (nlohmann::json&& msg)
 {
     jassert (msg.at (Field::type).get_ref<const std::string&>() == Type::get_resp);
 
-    removeMessageFromPending (msg);
+    if (! removeMessageFromPending (msg))
+        Logger::logDebug ("MatrixOscAgent: Received non-pending response for message seq: " + (msg.contains (Field::seq) ? nlohmann::to_string (msg.at (Field::seq)) : "<?>"));
 
     if (msg.contains (Field::obj) && ! msg.at (Field::obj).empty())
         return Logger::logError ("MatrixOscAgent: Received unsupported get_resp Prodigy JSON message with obj pointer: " + msg.at (Field::obj).dump());
@@ -130,20 +131,22 @@ void MatrixOscAgent::handleErrorMessage (nlohmann::json&& msg)
 {
     jassert (msg.at (Field::type).get_ref<const std::string&>() == Type::error);
 
-    removeMessageFromPending (msg);
+    Logger::logError (juce::String ("MatrixOscAgent: Received Prodigy JSON error for message seq: ") +
+                      (msg.contains (Field::seq) ? nlohmann::to_string (msg.at (Field::seq)) : "<?>") + " (" + msg.at (Field::obj).get_ref<std::string&>() + ").");
 
-    return Logger::logError (juce::String ("MatrixOscAgent: Received Prodigy JSON error for message seq ") +
-        (msg.contains (Field::seq) ? nlohmann::to_string (msg.at (Field::seq)) : "<?>") + " (" + msg.at (Field::obj).get_ref<std::string&>() + ").");
+    if (! removeMessageFromPending (msg))
+        Logger::logDebug ("MatrixOscAgent: Received non-pending response for message seq: " + (msg.contains (Field::seq) ? nlohmann::to_string (msg.at (Field::seq)) : "<?>"));
 }
 
 void MatrixOscAgent::handleAckMessage (nlohmann::json&& msg)
 {
     jassert (msg.at (Field::type).get_ref<const std::string&>() == Type::ack);
 
-    removeMessageFromPending (msg);
-
     Logger::logDebug (juce::String ("MatrixOscAgent: Received Prodigy JSON ack for message seq: ") +
                       (msg.contains (Field::seq) ? nlohmann::to_string (msg.at (Field::seq)) : "<?>"));
+
+    if (! removeMessageFromPending (msg))
+        Logger::logDebug ("MatrixOscAgent: Received non-pending response for message seq: " + (msg.contains (Field::seq) ? nlohmann::to_string (msg.at (Field::seq)) : "<?>"));
 }
 
 nlohmann::json MatrixOscAgent::makeMessage (std::string_view type, const nlohmann::json& payload, const nlohmann::json& obj)
